@@ -17,6 +17,6 @@ How to submit to heroku
 6. heroku open
 
 ##note: add jar if needed, go to the folder of the jar
-mvn install:install-file -Dfile=stanford-corenlp-1.3.4.jar -DgroupId=edu.stanford.nlp -DartifactId=stanford-corenlp -Dversion=1.3.4 -Dpackaging=jar
-mvn install:install-file -Dfile=stanford-corenlp-1.3.4-models.jar -DgroupId=edu.stanford.nlp -DartifactId=stanford-corenlp-models -Dversion=1.3.4 -Dpackaging=jar
-mvn install:install-file -Dfile=stanford-corenlp-1.3.4-sources.jar -DgroupId=edu.stanford.nlp -DartifactId=stanford-corenlp-sources -Dversion=1.3.4 -Dpackaging=jar
+1. mvn install:install-file -Dfile=stanford-corenlp-1.3.4.jar -DgroupId=edu.stanford.nlp -DartifactId=stanford-corenlp -Dversion=1.3.4 -Dpackaging=jar
+2. mvn install:install-file -Dfile=stanford-corenlp-1.3.4-models.jar -DgroupId=edu.stanford.nlp -DartifactId=stanford-corenlp-models -Dversion=1.3.4 -Dpackaging=jar
+3. mvn install:install-file -Dfile=stanford-corenlp-1.3.4-sources.jar -DgroupId=edu.stanford.nlp -DartifactId=stanford-corenlp-sources -Dversion=1.3.4 -Dpackaging=jar
