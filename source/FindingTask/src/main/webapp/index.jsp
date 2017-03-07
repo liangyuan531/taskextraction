@@ -7,8 +7,11 @@
 <title>main page</title>
 </head>
 <body>
-<form action="FindingServlet" method="post">
-	<input name="text" type="text"/>
+<div style="color:#990033">
+  <p>To find tasks, input sentences below:</p>
+</div>
+<form action="finding" method="post">
+	<textarea name="text" rows="10" cols="30"></textarea>
 	<input type="submit" value="send"/>
 </form>
 </body>
