@@ -1,5 +1,5 @@
 # natural language process
-
+#Liang Yuan Siwen Ou
 #How to build the project
 1. go to the root directory of the project
 2. using command line, mvn package (if all codes are correct, it will show build success)
