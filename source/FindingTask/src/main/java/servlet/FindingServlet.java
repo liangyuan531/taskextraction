@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ import ca.mcgill.cs.swevo.taskextractor.model.Task;
 
 
 @WebServlet(
-        name = "FindingServlet", 
+        name = "tasks", 
         urlPatterns = {"/finding"}
     )
 public class FindingServlet extends HttpServlet {
@@ -35,27 +36,17 @@ public class FindingServlet extends HttpServlet {
 	     HttpServletResponse response) throws ServletException, IOException {
 		//content type
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		String title = "using post";
 		//get input from page
 		String name =new String(request.getParameter("text"));
 		TaskExtractor taskExtractor = new TaskExtractor();
+		List<String> tasks = new ArrayList<String>();
 		List<Sentence> sentencesWithTasks = taskExtractor.extractTasks(name);
 		for (Sentence sentenceWithTasks : sentencesWithTasks) {
 			for (Task task : sentenceWithTasks.getTasks()) {
-				System.out.println(task.toString().trim());
+				tasks.add(task.toString().trim());
 			}
 		}
-		String docType = "<!DOCTYPE html> \n";
-		out.println(docType +
-		    "<html>\n" +
-		    "<head><title>" + title + "</title></head>\n" +
-		    "<body bgcolor=\"#f0f0f0\">\n" +
-		    "<h1 align=\"center\">" + title + "</h1>\n" +
-		    "<ul>\n" +
-		    "  <li><b>input string</b>："
-		    + name + "\n" +
-		    "</ul>\n" +
-		    "</body></html>");    
+		request.setAttribute("tasks", tasks);
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}    
 }
