@@ -12,6 +12,7 @@ public class StringToTasks {
 	public static void main(String[] args) throws IOException {
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<Sentence> sentencesWithTasks = taskExtractor.extractTasks(args[0]);
+//		List<Sentence> sentencesWithTasks = taskExtractor.extractTasks("This page contains text. This widget adds text. Anything is added.");
 		for (Sentence sentenceWithTasks : sentencesWithTasks) {
 			for (Task task : sentenceWithTasks.getTasks()) {
 				System.out.println(task.toString().trim());

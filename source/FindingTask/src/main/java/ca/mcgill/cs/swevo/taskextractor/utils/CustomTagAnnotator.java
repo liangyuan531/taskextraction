@@ -73,7 +73,7 @@ public class CustomTagAnnotator implements Annotator
 		return lResult.get(0);
 	}
 
-	//@Override
+	@Override
 	public void annotate(Annotation pAnnotation)
 	{
 		for (CoreMap lSentence : pAnnotation.get(CoreAnnotations.SentencesAnnotation.class))
