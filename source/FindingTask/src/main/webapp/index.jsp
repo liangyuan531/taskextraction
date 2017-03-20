@@ -9,21 +9,27 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>main page</title>
+<style>
+  .jumbotron {
+      background-color: #4169E1;
+      color: #fff;
+  }
+  </style>
 </head>
 <body>
-<div style="color:#990033">
-  <p>To find tasks, input sentences below:</p>
+<div class="jumbotron text-center">
+  <h1>Extract Task Phrases</h1> 
 </div>
 <form action="finding" method="post">
-	<textarea name="text" rows="10" cols="30"></textarea>
+	<textarea class="form-control" name="text" rows="10"></textarea>
 	<button type="submit" class="btn btn-primary">send</button>
 	<!-- <input type="submit" value="send"/> -->
 </form>
-<% 
+	<% 
 	@SuppressWarnings("unchecked")
 	List<String> tasks = (List<String>)request.getAttribute("tasks");
 	if(tasks != null){ %>
-		<table> <!-- class="table" -->
+	<table> <!-- class="table" -->
 	<%	
 		String task = "";
 		for(int i=0;i<tasks.size();i++){
