@@ -18,13 +18,16 @@
 </head>
 <body>
 <div class="jumbotron text-center">
-  <h1>Extract Task Phrases</h1> 
+  <h1>Extract Task Phrases</h1>
+  <p>reduce your reading loads</p> 
 </div>
 <form action="finding" method="post">
 	<textarea class="form-control" name="text" rows="10"></textarea>
-	<button type="submit" class="btn btn-primary">send</button>
+	<button type="submit" class="btn btn-primary btn-block">send</button>
 	<!-- <input type="submit" value="send"/> -->
 </form>
+	<br/>
+	<br/>
 	<% 
 	@SuppressWarnings("unchecked")
 	List<String> tasks = (List<String>)request.getAttribute("tasks");
