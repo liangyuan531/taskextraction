@@ -22,23 +22,38 @@
   <p>reduce your reading loads</p> 
 </div>
 <form action="finding" method="post">
-	<textarea class="form-control" name="text" rows="10"></textarea>
-	<span class="label label-primary">programming</span><br>
-	<div class="radio">
-      <label><input type="radio" name="programming" value="yes">Yes</label>
-    </div>
-    <div class="radio">
-      <label><input type="radio" name="programming" value="no">No</label>
-    </div>
-  	<span class="label label-primary">generic</span><br>
-	<div class="radio">
-      <label><input type="radio" name="generic" value="yes">Yes</label>
-    </div>
-    <div class="radio">
-      <label><input type="radio" name="generic" value="no">No</label>
-    </div>
+	<textarea class="form-control" name="text" rows="10"></textarea>	
+	<div class="container">           
+  		<table class="table">
+    		<thead>
+      			<tr>
+        			<th><span class="label label-primary">programming</span></th>
+        			<th><span class="label label-primary">generic</span></th>
+      			</tr>
+    		</thead>
+    		<tbody>
+      			<tr>
+        		<td>
+        			<div class="radio">
+      					<label><input type="radio" name="programming" value="yes">Yes</label>
+    				</div>
+    				<div class="radio">
+      					<label><input type="radio" name="programming" value="no">No</label>
+    				</div>
+       			</td>
+        		<td>
+        			<div class="radio">
+      					<label><input type="radio" name="generic" value="yes">Yes</label>
+    				</div>
+    				<div class="radio">
+      					<label><input type="radio" name="generic" value="no">No</label>
+    				</div>
+        		</td>
+      			</tr>
+    		</tbody>
+  			</table>
+	</div>
 	<button type="submit" class="btn btn-primary btn-block">send</button>
-	<!-- <input type="submit" value="send"/> -->
 </form>
 	<br/>
 	<br/>
