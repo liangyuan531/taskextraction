@@ -11,7 +11,7 @@
 <title>main page</title>
 <style>
   .jumbotron {
-      background-color: #4169E1;
+      background-color: #000046;
       color: #fff;
   }
   </style>
