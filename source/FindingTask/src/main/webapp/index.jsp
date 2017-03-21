@@ -23,6 +23,20 @@
 </div>
 <form action="finding" method="post">
 	<textarea class="form-control" name="text" rows="10"></textarea>
+	<span class="label label-primary">programming</span><br>
+	<div class="radio">
+      <label><input type="radio" name="programming" value="yes">Yes</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="programming" value="no">No</label>
+    </div>
+  	<span class="label label-primary">generic</span><br>
+	<div class="radio">
+      <label><input type="radio" name="generic" value="yes">Yes</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="generic" value="no">No</label>
+    </div>
 	<button type="submit" class="btn btn-primary btn-block">send</button>
 	<!-- <input type="submit" value="send"/> -->
 </form>
