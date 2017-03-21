@@ -11,10 +11,18 @@
 <title>main page</title>
 <style>
   .jumbotron {
-      background-color: #000046;
-      color: #fff;
+  	background-color: #007991;
+  	color: #fff;
   }
-  </style>
+  .btn {
+  	width:120px;
+  	height:40px;
+  }
+  .position{ 
+  	position:relative;  
+  	left:600px;
+  }
+</style>
 </head>
 <body>
 <div class="jumbotron text-center">
@@ -22,13 +30,17 @@
   <p>reduce your reading loads</p> 
 </div>
 <form action="finding" method="post">
-	<textarea class="form-control" name="text" rows="10"></textarea>	
+	<textarea class="form-control" name="text" rows="10" 
+	onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input sentences within 300 words'; }" 
+    onfocus="if(this.value == 'input sentences within 300 words'){this.value =''; this.style.color = '#000000'; }" 
+                                style="color:#ACA899;">input sentences within 300 words</textarea>
 	<div class="container">           
   		<table class="table">
     		<thead>
       			<tr>
         			<th><span class="label label-primary">programming</span></th>
         			<th><span class="label label-primary">generic</span></th>
+        			<th><span class="label label-primary">customize</span></th>
       			</tr>
     		</thead>
     		<tbody>
@@ -49,11 +61,17 @@
       					<label><input type="radio" name="generic" value="no">No</label>
     				</div>
         		</td>
+        		<td>
+        			<textarea class="form-control" name="text" rows="5">
+        			</textarea>
+        		</td>
       			</tr>
     		</tbody>
   			</table>
 	</div>
-	<button type="submit" class="btn btn-primary btn-block">send</button>
+	<div class="position">
+		<button type="submit" class="btn btn-primary">send</button>
+	</div>
 </form>
 	<br/>
 	<br/>
