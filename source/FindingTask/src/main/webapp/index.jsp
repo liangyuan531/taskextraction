@@ -26,7 +26,7 @@
 			 	}else{
 			 		$('#numleft').html('0 word left');
 			 		$("#text").val('');
-			 		alert("you have to input words less than 60!!");
+			 		$("#oversize").modal();
 			 	}
 		 }).keyup();
 		 }); 
@@ -56,8 +56,8 @@
 	<table>
 		<thead>
       			<tr>
-        			<th><span class="label label-primary">Text:</span></th>
-        			<th><span class="label label-primary">Results:</span></th>
+        			<th><h4><span class="label label-primary">Text:</span></h4></th>
+        			<th><h4><span class="label label-primary">Results:</span></h4></th>
       			</tr>
     	</thead>
     	<tbody>
@@ -67,10 +67,10 @@
 					onkeyup="wordStatic(this);"
 					onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input sentences within 60 words'; }" 
     				onfocus="if(this.value == 'input sentences within 60 words'){this.value =''; this.style.color = '#000000'; }" 
-                                style="color:#ACA899;">input sentences within 60 words</textarea><br>
-                <span id ="numleft">60 left</span>                
+                                style="color:#ACA899;">input sentences within 60 words</textarea><br>                            
     		</td> 
     		<td>
+    			<textarea rows="10" cols="100" disabled="disabled" readonly="readonly">
     			<% 
 				@SuppressWarnings("unchecked")
 				List<String> tasks = (List<String>)request.getAttribute("tasks");
@@ -78,14 +78,20 @@
 					String task = "";
 					for(int i=0;i<tasks.size();i++){
 						task = tasks.get(i);%>
-						<%=task %><br>
+					<%=task %>
 				  <%}
 					if(task == ""){%>
-					<label>there is no tasks.</label>
+					there is no tasks.
 					<%}
 	 			}
 	 			%>
+	 			</textarea>
     		</td>                         
+    	</tr>
+    	<tr>
+    		<td>
+    			<span id ="numleft">60 left</span>
+    		</td>
     	</tr>
     	</tbody>
     </table>
@@ -93,16 +99,16 @@
   		<table class="table">
     		<thead>
       			<tr>
-        			<th><span class="label label-primary">programming</span></th>
-        			<th><span class="label label-primary">generic</span></th>
-        			<th><span class="label label-primary">customize</span></th>
+        			<th><h4><span class="label label-primary">programming</span></h4></th>
+        			<th><h4><span class="label label-primary">generic</span></h4></th>
+        			<th><h4><span class="label label-primary">customize</span></h4></th>
       			</tr>
     		</thead>
     		<tbody>
       			<tr>
         		<td>
         			<div class="radio">
-      					<label><input type="radio" name="programming" value="yes">Yes</label>
+      					<label><input type="radio" name="programming" value="yes" checked="checked">Yes</label>
     				</div>
     				<div class="radio">
       					<label><input type="radio" name="programming" value="no">No</label>
@@ -110,7 +116,7 @@
        			</td>
         		<td>
         			<div class="radio">
-      					<label><input type="radio" name="generic" value="yes">Yes</label>
+      					<label><input type="radio" name="generic" value="yes" checked="checked">Yes</label>
     				</div>
     				<div class="radio">
       					<label><input type="radio" name="generic" value="no">No</label>
@@ -130,5 +136,21 @@
 		<button type="submit" class="btn btn-primary">send</button>
 	</div>
 </form>	
+<div class="modal fade" id="oversize" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Warning</h4>
+        </div>
+        <div class="modal-body">
+          <p>You must input text less than 60 words.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div> 
+    </div>
+ </div>
 </body>
 </html>
