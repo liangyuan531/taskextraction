@@ -30,10 +30,41 @@
   <p>reduce your reading loads</p> 
 </div>
 <form action="finding" method="post">
-	<textarea class="form-control" name="text" rows="10" 
-	onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input sentences within 300 words'; }" 
-    onfocus="if(this.value == 'input sentences within 300 words'){this.value =''; this.style.color = '#000000'; }" 
+	<table>
+		<thead>
+      			<tr>
+        			<th><span class="label label-primary">Text:</span></th>
+        			<th><span class="label label-primary">Results:</span></th>
+      			</tr>
+    	</thead>
+    	<tbody>
+		<tr>
+			<td>
+				<textarea name="text" rows="10" cols="100"
+					onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input sentences within 300 words'; }" 
+    				onfocus="if(this.value == 'input sentences within 300 words'){this.value =''; this.style.color = '#000000'; }" 
                                 style="color:#ACA899;">input sentences within 300 words</textarea>
+    		</td> 
+    		<td>
+    			<% 
+	@SuppressWarnings("unchecked")
+	List<String> tasks = (List<String>)request.getAttribute("tasks");
+	if(tasks != null){	
+		String task = "";
+		for(int i=0;i<tasks.size();i++){
+			task = tasks.get(i);
+	%>
+			<%=task %><br>
+		<% 	} 
+		if(task == ""){
+			%>
+			<label>there is no tasks.</label>
+		<%}
+	 } %>
+    		</td>                         
+    	</tr>
+    	</tbody>
+    </table>
 	<div class="container">           
   		<table class="table">
     		<thead>
@@ -62,8 +93,10 @@
     				</div>
         		</td>
         		<td>
-        			<textarea class="form-control" name="text" rows="5">
-        			</textarea>
+        			<textarea class="form-control" name="text" rows="5"
+        			onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input verbs, divide by comma'; }" 
+    				onfocus="if(this.value == 'input verbs, divide by comma'){this.value =''; this.style.color = '#000000'; }" 
+                    style="color:#ACA899;">input verbs, divide by comma</textarea>
         		</td>
       			</tr>
     		</tbody>
@@ -72,30 +105,6 @@
 	<div class="position">
 		<button type="submit" class="btn btn-primary">send</button>
 	</div>
-</form>
-	<br/>
-	<br/>
-	<% 
-	@SuppressWarnings("unchecked")
-	List<String> tasks = (List<String>)request.getAttribute("tasks");
-	if(tasks != null){ %>
-	<table> <!-- class="table" -->
-	<%	
-		String task = "";
-		for(int i=0;i<tasks.size();i++){
-			task = tasks.get(i);
-	%>
-		<tr>
-			<td><%=task %></td>
-		</tr>
-		<% 	} %>
-		<% if(task == ""){
-			%>
-		<tr>
-			<td>there is no tasks.</td>
-		</tr>
-		<%} %>
-	<% } %>
-	</table>
+</form>	
 </body>
 </html>
