@@ -141,10 +141,11 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Warning</h4>
+          <h4 class="modal-title" style="color:red">Warning</h4>
         </div>
         <div class="modal-body">
-          <p>You must input text less than 60 words.</p>
+          <p>Every time, you are ONLY allowed to input text within 60 words. </p>
+          <p>Please re-input</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
