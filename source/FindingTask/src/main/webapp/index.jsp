@@ -8,6 +8,29 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+/* display words left */
+ $(document).ready(function()
+		 {
+		 var wordCounts = {};
+		 $("#text").keyup(function() {
+		     var matches = this.value.match(/\b/g);
+		     wordCounts[this.id] = matches ? matches.length / 2 : 0;
+		     var finalCount = 0;
+		     $.each(wordCounts, function(k, v) {
+		         finalCount += v;
+		     });
+		     var str = parseInt(60-finalCount);
+		     if(str > 0 ){
+			 		$('#numleft').html(str+' words left');
+			 	}else{
+			 		$('#numleft').html('0 word left');
+			 		$("#text").val('');
+			 		alert("you have to input words less than 60!!");
+			 	}
+		 }).keyup();
+		 }); 
+</script>
 <title>main page</title>
 <style>
   .jumbotron {
@@ -29,7 +52,7 @@
   <h1>Extract Task Phrases</h1>
   <p>reduce your reading loads</p> 
 </div>
-<form action="finding" method="post">
+<form name="myForm" action="finding" method="post">
 	<table>
 		<thead>
       			<tr>
@@ -40,27 +63,28 @@
     	<tbody>
 		<tr>
 			<td>
-				<textarea name="text" rows="10" cols="100"
-					onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input sentences within 300 words'; }" 
-    				onfocus="if(this.value == 'input sentences within 300 words'){this.value =''; this.style.color = '#000000'; }" 
-                                style="color:#ACA899;">input sentences within 300 words</textarea>
+				<textarea id="text" name="text" rows="10" cols="100"
+					onkeyup="wordStatic(this);"
+					onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input sentences within 60 words'; }" 
+    				onfocus="if(this.value == 'input sentences within 60 words'){this.value =''; this.style.color = '#000000'; }" 
+                                style="color:#ACA899;">input sentences within 60 words</textarea><br>
+                <span id ="numleft">60 left</span>                
     		</td> 
     		<td>
     			<% 
-	@SuppressWarnings("unchecked")
-	List<String> tasks = (List<String>)request.getAttribute("tasks");
-	if(tasks != null){	
-		String task = "";
-		for(int i=0;i<tasks.size();i++){
-			task = tasks.get(i);
-	%>
-			<%=task %><br>
-		<% 	} 
-		if(task == ""){
-			%>
-			<label>there is no tasks.</label>
-		<%}
-	 } %>
+				@SuppressWarnings("unchecked")
+				List<String> tasks = (List<String>)request.getAttribute("tasks");
+				if(tasks != null){	
+					String task = "";
+					for(int i=0;i<tasks.size();i++){
+						task = tasks.get(i);%>
+						<%=task %><br>
+				  <%}
+					if(task == ""){%>
+					<label>there is no tasks.</label>
+					<%}
+	 			}
+	 			%>
     		</td>                         
     	</tr>
     	</tbody>

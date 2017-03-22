@@ -35,10 +35,10 @@ public class FindingServlet extends HttpServlet {
 		//content type
 		response.setContentType("text/html;charset=UTF-8");
 		//get input from page
-		String name =new String(request.getParameter("text"));
+		String text =new String(request.getParameter("text"));
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<String> tasks = new ArrayList<String>();
-		List<Sentence> sentencesWithTasks = taskExtractor.extractTasks(name);
+		List<Sentence> sentencesWithTasks = taskExtractor.extractTasks(text);
 		for (Sentence sentenceWithTasks : sentencesWithTasks) {
 			for (Task task : sentenceWithTasks.getTasks()) {
 				tasks.add(task.toString().trim());
