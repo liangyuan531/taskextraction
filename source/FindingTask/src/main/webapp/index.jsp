@@ -70,7 +70,7 @@
                                 style="color:#ACA899;">input sentences within 60 words</textarea><br>                            
     		</td> 
     		<td>
-    			<textarea rows="10" cols="100" disabled="disabled" readonly="readonly">
+    			<textarea rows="10" cols="100" readonly="readonly">
     			<% 
 				@SuppressWarnings("unchecked")
 				List<String> tasks = (List<String>)request.getAttribute("tasks");
