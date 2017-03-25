@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import ca.mcgill.cs.swevo.taskextractor.analysis.TaskExtractor;
 import ca.mcgill.cs.swevo.taskextractor.model.Sentence;
 import ca.mcgill.cs.swevo.taskextractor.model.Task;
+import ca.mcgill.cs.swevo.taskextractor.utils.Configuration;
 
 
 
@@ -36,6 +37,12 @@ public class FindingServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		//get input from page
 		String text =new String(request.getParameter("text"));
+		
+		String pro_option=request.getParameter("programming");
+		String gen_option=request.getParameter("generic");
+		Configuration.pro_option=pro_option;
+		Configuration.gen_option=gen_option;
+		
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<String> tasks = new ArrayList<String>();
 		List<Sentence> sentencesWithTasks = taskExtractor.extractTasks(text);

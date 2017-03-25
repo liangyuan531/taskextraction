@@ -21,6 +21,8 @@ public final class Configuration
 {
 
 	private static Configuration instance = null;
+	public static String pro_option="";
+	public static String gen_option="";
 
 	private Set<String> aDomainTerms;
 	private String[] aExceptionalContains;
@@ -36,7 +38,20 @@ public final class Configuration
 	private Configuration()
 	{
 		Properties lProperties = new Properties();
-		File lFile = new File("config.properties");
+		File lFile=null;
+		if(pro_option.equals("yes") && gen_option.equals("yes")){
+			lFile = new File("config.properties");
+		}
+		else if(pro_option.equals("no") && gen_option.equals("no")){
+			lFile=new File("configwithoutboth.properties");
+		}
+		else if(pro_option.equals("yes") && gen_option.equals("no")){
+			lFile=new File("configwithoutgeneric.properties");
+		}
+		else if(pro_option.equals("no") && gen_option.equals("yes")){
+			lFile=new File("configwithoutprogramming.properties");
+		}
+		//System.out.println(lFile.getAbsolutePath());
 		BufferedReader lBufferedReader;
 		try
 		{
@@ -62,12 +77,12 @@ public final class Configuration
 				Arrays.asList(lProperties.getProperty("PUNCTUATION_LEMMAS").split(","))));
 		getPunctuationLemmas().add(",");
 	}
-
 	/**
 	 * @return singleton
 	 */
 	public static Configuration getInstance()
 	{
+		instance=null;
 		if (instance == null)
 		{
 			instance = new Configuration();
