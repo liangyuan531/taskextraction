@@ -38,10 +38,12 @@ public class FindingServlet extends HttpServlet {
 		//get input from page
 		String text =new String(request.getParameter("text"));
 		
+		//get selections
 		String pro_option=request.getParameter("programming");
 		String gen_option=request.getParameter("generic");
-		Configuration.pro_option=pro_option;
-		Configuration.gen_option=gen_option;
+		//set configuration file 
+		Configuration.setPro_option(pro_option);
+		Configuration.setGen_option(gen_option);
 		
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<String> tasks = new ArrayList<String>();

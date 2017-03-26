@@ -21,8 +21,8 @@ public final class Configuration
 {
 
 	private static Configuration instance = null;
-	public static String pro_option="";
-	public static String gen_option="";
+	private static String pro_option;
+	private static String gen_option;
 
 	private Set<String> aDomainTerms;
 	private String[] aExceptionalContains;
@@ -258,6 +258,19 @@ public final class Configuration
 	public void setDomainTerms(Set<String> pDomainTerms)
 	{
 		this.aDomainTerms = pDomainTerms;
+	}
+	
+	public static String getPro_option() {
+		return pro_option;
+	}
+	public static void setPro_option(String pro_option) {
+		Configuration.pro_option = pro_option;
+	}
+	public static String getGen_option() {
+		return gen_option;
+	}
+	public static void setGen_option(String gen_option) {
+		Configuration.gen_option = gen_option;
 	}
 
 }
