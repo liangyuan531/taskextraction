@@ -23,6 +23,7 @@ public final class Configuration
 	private static Configuration instance = null;
 	private static String pro_option;
 	private static String gen_option;
+	private static String customise;
 
 	private Set<String> aDomainTerms;
 	private String[] aExceptionalContains;
@@ -51,7 +52,12 @@ public final class Configuration
 		else if(pro_option.equals("no") && gen_option.equals("yes")){
 			lFile=new File("configwithoutprogramming.properties");
 		}
-		//System.out.println(lFile.getAbsolutePath());
+		else if(gen_option.equals("yes") && customise.equals("yes")){
+			lFile=new File("customizedconfigwithgeneric.properties");
+		}
+		else if(gen_option.equals("no") && customise.equals("yes")){
+			lFile=new File("customizedconfigwithoutgeneric.properties");
+		}
 		BufferedReader lBufferedReader;
 		try
 		{
@@ -272,5 +278,12 @@ public final class Configuration
 	public static void setGen_option(String gen_option) {
 		Configuration.gen_option = gen_option;
 	}
+	public static String getCustomise() {
+		return customise;
+	}
+	public static void setCustomise(String customise) {
+		Configuration.customise = customise;
+	}
+	
 
 }

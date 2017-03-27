@@ -29,7 +29,20 @@
 			 		$("#oversize").modal();
 			 	}
 		 }).keyup();
-		 }); 
+		 });
+
+ $(function(){
+     $("#send").click(function(){
+        var val=$('input:radio[name="customize"]:checked').val();
+        if(val=="yes"){
+            var verbs = $("#verbs").val();
+            /*  window.alert();*/
+        	if(verbs==""){
+        		$("#ownverbs").modal();
+        	} 	
+        }          
+     });
+ });
 </script>
 <title>main page</title>
 <style>
@@ -49,7 +62,7 @@
 </head>
 <body>
 <div class="jumbotron text-center">
-  <h1>Extract Task Phrases</h1>
+  <h2>Extract Task Phrases</h2>
   <p>reduce your reading loads</p> 
 </div>
 <form name="myForm" action="finding" method="post">
@@ -64,7 +77,6 @@
 		<tr>
 			<td>
 				<textarea id="text" name="text" rows="10" cols="100"
-					onkeyup="wordStatic(this);"
 					onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input sentences within 60 words'; }" 
     				onfocus="if(this.value == 'input sentences within 60 words'){this.value =''; this.style.color = '#000000'; }" 
                                 style="color:#ACA899;">input sentences within 60 words</textarea><br>                            
@@ -123,19 +135,21 @@
     				</div>
         		</td>
         		<td>
-        			<label>using your verb?</label>>
-        			<label><input type="radio" name="customize" value="yes">Yes</label>
-        			<textarea class="form-control" name="verbs" rows="5"
+        			<label>using your verb?(input verbs, divide by comma)</label><br>
+        			<input type="radio" name="customize" value="yes">Yes
+        			<input type="radio" name="customize" value="no" checked="checked">No
+        			<textarea class="form-control" id="verbs" name="verbs" rows="3"></textarea>
+        			<!-- <textarea class="form-control" id="verbs" name="verbs" rows="3"
         			onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input verbs, divide by comma'; }" 
     				onfocus="if(this.value == 'input verbs, divide by comma'){this.value =''; this.style.color = '#000000'; }" 
-                    style="color:#ACA899;">input verbs, divide by comma</textarea>
+                    style="color:#ACA899;">input verbs, divide by comma</textarea> -->
         		</td>
       			</tr>
     		</tbody>
   			</table>
 	</div>
 	<div class="position">
-		<button type="submit" class="btn btn-primary">send</button>
+		<button type="submit" id="send" class="btn btn-primary">send</button>
 	</div>
 </form>	
 <div class="modal fade" id="oversize" role="dialog">
@@ -150,10 +164,27 @@
           <p>Please re-input</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
         </div>
       </div> 
     </div>
- </div>
+</div>
+<div class="modal fade" id="ownverbs" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="color:red">Warning</h4>
+        </div>
+        <div class="modal-body">
+          <p>If you choose 'yes' for customization</p>
+          <p>you have to input your verbs</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+        </div>
+      </div> 
+    </div>
+</div>
 </body>
 </html>
