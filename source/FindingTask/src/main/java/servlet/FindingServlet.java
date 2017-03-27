@@ -37,13 +37,19 @@ public class FindingServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		//get input from page
 		String text =new String(request.getParameter("text"));
-		
-		//get selections
-		String pro_option=request.getParameter("programming");
 		String gen_option=request.getParameter("generic");
-		//set configuration file 
-		Configuration.setPro_option(pro_option);
 		Configuration.setGen_option(gen_option);
+		String customize = request.getParameter("customize");
+		if(customize.equals("yes")){
+			String verbs = request.getParameter("verbs");
+			//PROGRAMMING_ACTIONS =
+		}else{
+			//get selections
+			String pro_option=request.getParameter("programming");
+			
+			//set configuration file 
+			Configuration.setPro_option(pro_option);
+		}
 		
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<String> tasks = new ArrayList<String>();
@@ -55,5 +61,9 @@ public class FindingServlet extends HttpServlet {
 		}
 		request.setAttribute("tasks", tasks);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
-	}    
+	}
+	
+	public void writeProperties(String verbs){
+		
+	}
 }

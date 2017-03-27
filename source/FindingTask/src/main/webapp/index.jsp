@@ -99,9 +99,9 @@
   		<table class="table">
     		<thead>
       			<tr>
-        			<th><h4><span class="label label-primary">programming</span></h4></th>
-        			<th><h4><span class="label label-primary">generic</span></h4></th>
-        			<th><h4><span class="label label-primary">customize</span></h4></th>
+        			<th><h4><span class="label label-primary">Programming</span></h4></th>
+        			<th><h4><span class="label label-primary">Generic</span></h4></th>
+        			<th><h4><span class="label label-primary">Customize</span></h4></th>
       			</tr>
     		</thead>
     		<tbody>
@@ -123,7 +123,9 @@
     				</div>
         		</td>
         		<td>
-        			<textarea class="form-control" name="text" rows="5"
+        			<label>using your verb?</label>>
+        			<label><input type="radio" name="customize" value="yes">Yes</label>
+        			<textarea class="form-control" name="verbs" rows="5"
         			onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input verbs, divide by comma'; }" 
     				onfocus="if(this.value == 'input verbs, divide by comma'){this.value =''; this.style.color = '#000000'; }" 
                     style="color:#ACA899;">input verbs, divide by comma</textarea>
