@@ -5,9 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <script type="text/javascript">
 /* display words left */
  $(document).ready(function()
@@ -66,7 +69,7 @@
 <style>
   .jumbotron {
   	background-color: #007991;
-  	color: #fff;
+  	color: #fff; 
   }
   .btn {
   	width:120px;
@@ -76,6 +79,12 @@
   	position:relative;  
   	left:600px;
   }
+  .comments {  
+    width: 100%;
+    overflow: auto;  
+    word-break: break-all;  
+    resize:none;
+   }
 </style>
 </head>
 <body>
@@ -107,9 +116,9 @@
     <div class="col-sm-4"></div>
   </div>
   <div class="row">
-    <div class="col-sm-6">
-    	<textarea id="text" name="text" rows="10" cols="100" style="resize:none"></textarea>
-    </div>
+    <div class="col-sm-6">  
+    <textarea rows="10" id="text" name="text" class="comments"></textarea>  
+	</div> 
     <div class="col-sm-4">
     <table>
     	<% 
