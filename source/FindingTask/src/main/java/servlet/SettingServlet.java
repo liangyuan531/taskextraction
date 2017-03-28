@@ -24,8 +24,7 @@ public class SettingServlet extends HttpServlet {
         super();
         
     }
-
-	
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application=this.getServletContext(); 
 		String gen_option=request.getParameter("generic");
@@ -45,7 +44,7 @@ public class SettingServlet extends HttpServlet {
 			Configuration.setPro_option(pro_option);
 		}
 		application.setAttribute("isSetting", "1");
-		response.sendRedirect("/index.jsp");
+		response.sendRedirect("index.jsp");
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -84,5 +83,4 @@ public class SettingServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
 }
