@@ -94,6 +94,7 @@
     	<textarea id="text" name="text" rows="10" cols="100" style="resize:none"></textarea>
     </div>
     <div class="col-sm-4">
+    <table>
     	<% 
 				@SuppressWarnings("unchecked")
 				List<String> tasks = (List<String>)request.getAttribute("tasks");
@@ -101,13 +102,14 @@
 					String task = "";
 					for(int i=0;i<tasks.size();i++){
 						task = tasks.get(i);%>
-					<%=task%><br>
+					<tr><td><%=task%></td></tr>
 				  <%}
 					if(task == ""){%>
-					there is no task.
+					<tr><td>there is no task.</td></tr>
 					<%}
 	 			}
 	 			%>
+	 </table>
     </div>
   </div>
   <div class="row">
