@@ -20,17 +20,35 @@
 		     $.each(wordCounts, function(k, v) {
 		         finalCount += v;
 		     });
+		     //var UserInput="";
+		     //UserInput += this.value;
+		     //$("#userinput").html(UserInput);
 		     var str = parseInt(60-finalCount);
 		     if(str > 0 ){
-			 		$('#numleft').html(str+' words left');
-			 	}else{
-			 		$('#numleft').html('0 word left');
-			 		$("#text").val('');
-			 		$("#oversize").modal();
-			 	}
+			 	$('#numleft').html(str+' words left');
+			 }else{
+			 	$('#numleft').html('0 word left');
+			 	$("#text").val('');
+			 	$("#oversize").modal();
+			 }
 		 }).keyup();
+		 var field=document.getElementById("text");
+		 if(sessionStorage.getItem("text")){
+			 $('#text').html(sessionStorage.getItem("text"));
+		 }
+		 text.addEventListener("change",function(){
+			sessionStorage.setItem("text",field.value); 
 		 });
-
+		 });
+ /*$(function(){
+	 $("#Maintab").click(function(){
+		 var userinput=$("text").val();
+		 //if($.trim(userinput).length > 0 ){
+		//	 sessionStorage.setItem(userinput,userinput);
+			 $("#testmain").html(userinput);
+		 }
+	 });
+ });*/
  $(function(){
      $("#send").click(function(){
         var val=$('input:radio[name="customize"]:checked').val();
@@ -68,8 +86,8 @@
 <nav class="navbar navbar-inverse">
   <p class="navbar-text">Exetracting System</p>
   <ul class="nav navbar-nav">
-    <li><a href="index.jsp">Main</a></li>
-    <li><a href="setting.jsp">Setting</a></li>
+    <li><a href="index.jsp" id="Maintab">Main</a></li>
+    <li><a href="setting.jsp" id="Settingtab">Setting</a></li>
   </ul>
   
 </nav>
@@ -81,7 +99,6 @@
     <div class="col-sm-4">
     	<h4><span class="label label-primary">Results:</span></h4>
     </div>
-    
   </div>
   <div class="row">
     <div class="col-sm-6">
@@ -102,7 +119,7 @@
 					String task = "";
 					for(int i=0;i<tasks.size();i++){
 						task = tasks.get(i);%>
-					<tr><td><%=task%></td></tr>
+					<tr><td><%=(i+1)+"."+" "+ task%></td></tr>
 				  <%}
 					if(task == ""){%>
 					<tr><td>there is no task.</td></tr>
@@ -114,9 +131,9 @@
   </div>
   <div class="row">
     <div class="col-sm-6">
-    	<span id ="numleft">60 left</span>
+    	<span id ="numleft">60 words left</span>
     </div>
-    <div class="col-sm-4"></div>
+    <div class="col-sm-4" id="userinput"></div>
   </div>
 	<div class="position">
 		<button type="submit" id="send" class="btn btn-primary">send</button>

@@ -42,6 +42,7 @@ public final class Configuration
 		File lFile=null;
 		if(pro_option.equals("yes") && gen_option.equals("yes")){
 			lFile = new File("config.properties");
+			//System.out.println(lFile.getAbsolutePath());
 		}
 		else if(pro_option.equals("no") && gen_option.equals("no")){
 			lFile=new File("configwithoutboth.properties");
@@ -54,6 +55,7 @@ public final class Configuration
 		}
 		else if(gen_option.equals("yes") && customise.equals("yes")){
 			lFile=new File("customizedconfigwithgeneric.properties");
+			//System.out.println(lFile.getAbsolutePath());
 		}
 		else if(gen_option.equals("no") && customise.equals("yes")){
 			lFile=new File("customizedconfigwithoutgeneric.properties");

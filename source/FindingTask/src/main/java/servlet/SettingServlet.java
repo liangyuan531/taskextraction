@@ -45,7 +45,8 @@ public class SettingServlet extends HttpServlet {
 			Configuration.setPro_option(pro_option);
 		}
 		application.setAttribute("isSetting", "1");
-		response.sendRedirect("/index.jsp");
+		//request.getRequestDispatcher("index.jsp").forward(request, response);
+		response.sendRedirect("index.jsp");
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
