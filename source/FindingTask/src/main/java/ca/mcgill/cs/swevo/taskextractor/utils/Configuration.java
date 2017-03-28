@@ -88,10 +88,7 @@ public final class Configuration
 	 */
 	public static Configuration getInstance()
 	{
-		if (instance == null)
-		{
-			instance = new Configuration();
-		}
+		instance = new Configuration();
 		return instance;
 	}
 

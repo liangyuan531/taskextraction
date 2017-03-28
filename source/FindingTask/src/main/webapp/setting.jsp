@@ -71,7 +71,7 @@
   			</table>
 	</div>
 	<div class="position">
-		<button type="submit" id="send" class="btn btn-primary">OK</button>
+		<button type="submit" id="ok" class="btn btn-primary">OK</button>
 	</div>
 </form>	
 </body>

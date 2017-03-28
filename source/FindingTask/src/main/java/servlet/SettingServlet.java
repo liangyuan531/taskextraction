@@ -5,11 +5,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import ca.mcgill.cs.swevo.taskextractor.utils.Configuration;
 
@@ -24,27 +27,26 @@ public class SettingServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ServletContext application=this.getServletContext(); 
 		String gen_option=request.getParameter("generic");
 		Configuration.setGen_option(gen_option);
 		String customize = request.getParameter("customize");
 		if(customize.equals("yes")){
-			Configuration.setPro_option("");
 			String verbs = request.getParameter("verbs");
+			Configuration.setPro_option("");
 			if(gen_option.equals("yes"))
 				writeProperties(verbs, "customizedconfigwithgeneric.properties");
 			else if(gen_option.equals("no"))
 				writeProperties(verbs, "customizedconfigwithoutgeneric.properties");
 			Configuration.setCustomise(customize);
 		}else{
-			//get selections
 			String pro_option=request.getParameter("programming");
 			//set configuration file 
 			Configuration.setPro_option(pro_option);
 		}
-		request.setAttribute("isSetting", "1");
+		application.setAttribute("isSetting", "1");
 		response.sendRedirect("/index.jsp");
 	}
-
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
@@ -81,7 +83,6 @@ public class SettingServlet extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 }
