@@ -42,24 +42,29 @@ public class FindingServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		//get input from page
 		String text =new String(request.getParameter("text"));
-		String gen_option=request.getParameter("generic");
-		Configuration.setGen_option(gen_option);
-		String customize = request.getParameter("customize");
-		if(customize.equals("yes")){
-			Configuration.setPro_option("");
-			String verbs = request.getParameter("verbs");
-			if(gen_option.equals("yes"))
-				writeProperties(verbs, "customizedconfigwithgeneric.properties");
-			else if(gen_option.equals("no"))
-				writeProperties(verbs, "customizedconfigwithoutgeneric.properties");
-			Configuration.setCustomise(customize);
-		}else{
-			//get selections
-			String pro_option=request.getParameter("programming");
-			//set configuration file 
-			Configuration.setPro_option(pro_option);
+//		String gen_option=request.getParameter("generic");
+//		Configuration.setGen_option(gen_option);
+//		String customize = request.getParameter("customize");
+//		if(customize.equals("yes")){
+//			Configuration.setPro_option("");
+//			String verbs = request.getParameter("verbs");
+//			if(gen_option.equals("yes"))
+//				writeProperties(verbs, "customizedconfigwithgeneric.properties");
+//			else if(gen_option.equals("no"))
+//				writeProperties(verbs, "customizedconfigwithoutgeneric.properties");
+//			Configuration.setCustomise(customize);
+//		}else{
+//			//get selections
+//			String pro_option=request.getParameter("programming");
+//			//set configuration file 
+//			Configuration.setPro_option(pro_option);
+//		}
+		String setting = (String)request.getAttribute("isSetting");
+		System.out.println("ssss"+setting);
+		if(setting == null){
+			Configuration.setGen_option("yes");
+			Configuration.setPro_option("yes");
 		}
-		
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<String> tasks = new ArrayList<String>();
 		List<Sentence> sentencesWithTasks = taskExtractor.extractTasks(text);
@@ -70,39 +75,5 @@ public class FindingServlet extends HttpServlet {
 		}
 		request.setAttribute("tasks", tasks);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
-	}
-	
-	public void writeProperties(String verbs, String fileName){
-		String property = "PROGRAMMING_ACTIONS = " + verbs + System.getProperty("line.separator");
-		try {
-			File temp = new File("temp");
-			File origin = new File(fileName);
-			FileReader reader = new FileReader(origin);
-			FileWriter tempwriter = new FileWriter(temp,true);
-			BufferedReader br = new BufferedReader(reader);
-			String str = "";
-			boolean isProgramming = false;
-			while((str=br.readLine()) != null){
-				String[] s = str.split(" ");
-				for(int i=0;i<s.length;i++){
-					if(s[i].equals("PROGRAMMING_ACTIONS")){
-						isProgramming = true;
-					}		
-				}
-				if(!isProgramming){
-					tempwriter.write(str+System.getProperty("line.separator"));
-				}
-			}
-			br.close();
-			tempwriter.close();
-			origin.delete();
-			temp.renameTo(origin);
-			FileWriter writer = new FileWriter(fileName,true);
-			writer.write(property+System.getProperty("line.separator"));
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 	}
 }

@@ -65,89 +65,57 @@
   <h2>Extract Task Phrases</h2>
   <p>reduce your reading loads</p> 
 </div>
+<nav class="navbar navbar-inverse">
+  <p class="navbar-text">Exetracting System</p>
+  <ul class="nav navbar-nav">
+    <li><a href="index.jsp">Main</a></li>
+    <li><a href="setting.jsp">Setting</a></li>
+  </ul>
+  
+</nav>
 <form name="myForm" action="finding" method="post">
-	<table>
-		<thead>
-      			<tr>
-        			<th><h4><span class="label label-primary">Text:</span></h4></th>
-        			<th><h4><span class="label label-primary">Results:</span></h4></th>
-      			</tr>
-    	</thead>
-    	<tbody>
-		<tr>
-			<td>
-				<textarea id="text" name="text" rows="10" cols="100"
-					onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input sentences within 60 words'; }" 
-    				onfocus="if(this.value == 'input sentences within 60 words'){this.value =''; this.style.color = '#000000'; }" 
-                                style="color:#ACA899;">input sentences within 60 words</textarea><br>                            
-    		</td> 
-    		<td>
-    			<textarea rows="10" cols="100" readonly="readonly">
-    			<% 
+	<div class="row">
+    <div class="col-sm-6" >
+    	<h4><span class="label label-primary">Text:</span></h4>
+    </div>
+    <div class="col-sm-4">
+    	<h4><span class="label label-primary">Results:</span></h4>
+    </div>
+    
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+    	input sentences within 60 words
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+    	<textarea id="text" name="text" rows="10" cols="100" style="resize:none"></textarea>
+    </div>
+    <div class="col-sm-4">
+    	<% 
 				@SuppressWarnings("unchecked")
 				List<String> tasks = (List<String>)request.getAttribute("tasks");
 				if(tasks != null){	
 					String task = "";
 					for(int i=0;i<tasks.size();i++){
 						task = tasks.get(i);%>
-					<%=task %>
+					<%=task%><br>
 				  <%}
 					if(task == ""){%>
-					there is no tasks.
+					there is no task.
 					<%}
 	 			}
 	 			%>
-	 			</textarea>
-    		</td>                         
-    	</tr>
-    	<tr>
-    		<td>
-    			<span id ="numleft">60 left</span>
-    		</td>
-    	</tr>
-    	</tbody>
-    </table>
-	<div class="container">           
-  		<table class="table">
-    		<thead>
-      			<tr>
-        			<th><h4><span class="label label-primary">Programming</span></h4></th>
-        			<th><h4><span class="label label-primary">Generic</span></h4></th>
-        			<th><h4><span class="label label-primary">Customize</span></h4></th>
-      			</tr>
-    		</thead>
-    		<tbody>
-      			<tr>
-        		<td>
-        			<div class="radio">
-      					<label><input type="radio" name="programming" value="yes" checked="checked">Yes</label>
-    				</div>
-    				<div class="radio">
-      					<label><input type="radio" name="programming" value="no">No</label>
-    				</div>
-       			</td>
-        		<td>
-        			<div class="radio">
-      					<label><input type="radio" name="generic" value="yes" checked="checked">Yes</label>
-    				</div>
-    				<div class="radio">
-      					<label><input type="radio" name="generic" value="no">No</label>
-    				</div>
-        		</td>
-        		<td>
-        			<label>using your verb?(input verbs, divide by comma)</label><br>
-        			<input type="radio" name="customize" value="yes">Yes
-        			<input type="radio" name="customize" value="no" checked="checked">No
-        			<textarea class="form-control" id="verbs" name="verbs" rows="3"></textarea>
-        			<!-- <textarea class="form-control" id="verbs" name="verbs" rows="3"
-        			onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input verbs, divide by comma'; }" 
-    				onfocus="if(this.value == 'input verbs, divide by comma'){this.value =''; this.style.color = '#000000'; }" 
-                    style="color:#ACA899;">input verbs, divide by comma</textarea> -->
-        		</td>
-      			</tr>
-    		</tbody>
-  			</table>
-	</div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+    	<span id ="numleft">60 left</span>
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
 	<div class="position">
 		<button type="submit" id="send" class="btn btn-primary">send</button>
 	</div>
