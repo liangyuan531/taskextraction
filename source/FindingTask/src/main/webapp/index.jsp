@@ -64,6 +64,7 @@
         }          
      });
  });
+ 
 </script>
 <title>main page</title>
 <style>
@@ -100,7 +101,7 @@
   </ul>
   
 </nav>
-<form name="myForm" action="finding" method="post">
+<form name="myForm" action="finding" method="post" target="list">
 	<div class="row">
     <div class="col-sm-6" >
     	<h4><span class="label label-primary">Text:</span></h4>
@@ -147,7 +148,8 @@
 	<div class="position">
 		<button type="submit" id="send" class="btn btn-primary">send</button>
 	</div>
-</form>	
+</form>
+	
 <div class="modal fade" id="oversize" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
