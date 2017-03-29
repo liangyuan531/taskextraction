@@ -101,7 +101,7 @@
   </ul>
   
 </nav>
-<form name="myForm" action="finding" method="post" target="list">
+<form name="myForm" action="finding" method="post">
 	<div class="row">
     <div class="col-sm-6" >
     	<h4><span class="label label-primary">Text:</span></h4>
