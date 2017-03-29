@@ -33,9 +33,10 @@
   		<table class="table">
     		<thead>
       			<tr>
-        			<th><h4><span class="label label-primary">Programming</span></h4></th>
+        			<th><h4><span class="label label-primary">non-programming</span></h4></th>
         			<th><h4><span class="label label-primary">Generic</span></h4></th>
-        			<th><h4><span class="label label-primary">Customize</span></h4></th>
+        			<th><h4><span class="label label-primary">Customized non-programming action</span></h4></th>
+        			<th><h4><span class="label label-primary">Customize generic action</span></h4></th>
       			</tr>
     		</thead>
     		<tbody>
@@ -58,13 +59,19 @@
         		</td>
         		<td>
         			<label>using your verb?(input verbs, divide by comma)</label><br>
-        			<input type="radio" name="customize" value="yes">Yes
-        			<input type="radio" name="customize" value="no" checked="checked">No
+        			<input type="radio" name="customize1" value="yes">Yes
+        			<input type="radio" name="customize1" value="no" checked="checked">No
         			<textarea class="form-control" id="verbs" name="verbs" rows="3"></textarea>
         			<!-- <textarea class="form-control" id="verbs" name="verbs" rows="3"
         			onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input verbs, divide by comma'; }" 
     				onfocus="if(this.value == 'input verbs, divide by comma'){this.value =''; this.style.color = '#000000'; }" 
                     style="color:#ACA899;">input verbs, divide by comma</textarea> -->
+        		</td>
+        		<td>
+        			<label>using your generic?(input, divide by comma)</label><br>
+        			<input type="radio" name="customize2" value="yes">Yes
+        			<input type="radio" name="customize2" value="no" checked="checked">No
+        			<textarea class="form-control" id="selfgeneric" name="selfgeneric" rows="3"></textarea>
         		</td>
       			</tr>
     		</tbody>

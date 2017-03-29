@@ -47,12 +47,18 @@ public class FindingServlet extends HttpServlet {
 		if(setting == null){
 			Configuration.setGen_option("yes");
 			Configuration.setPro_option("yes");
+			Configuration.setCustomise1("no");
+			Configuration.setCustomise2("no");
 		}
 		//get input from page
 		String text =new String(request.getParameter("text"));
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<String> tasks = new ArrayList<String>();
-		List<Sentence> sentencesWithTasks = taskExtractor.extractTasks(text);
+		List<Sentence> sentencesWithTasks = null;
+		synchronized(this){
+			sentencesWithTasks = taskExtractor.extractTasks(text);
+		}
+		
 		for (Sentence sentenceWithTasks : sentencesWithTasks) {
 			for (Task task : sentenceWithTasks.getTasks()) {
 				tasks.add(task.toString().trim());
