@@ -6,6 +6,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +46,26 @@ public class FindingServlet extends HttpServlet {
 	@Override  
 	protected void doPost(HttpServletRequest request,  
 	     HttpServletResponse response) throws ServletException, IOException {
+		String createTableSql = "CREATE TABLE Extraction ("
+				+ "IP_Addr varchar(20), "
+				+ "Results varchar(500),"
+				+ "Text varchar(500)"
+				+ "isNonprogramming varchar(10)"
+				+ "isGenericAction varchar(10)"
+				+ "verbs varchar(100)"
+				+ "generic varchar(100))";
+		String itemSql = "INSERT INTO Extraction VALUES ('192.168.1.1','find','xxxxx','a','b','sss','ss')";
+		Connection conn = getConnection();
+		System.out.println(conn);
+		Statement state = null;
+		try {
+			state = conn.createStatement();
+			state.execute(createTableSql);
+			state.execute(itemSql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		//content type
 		response.setContentType("text/html;charset=UTF-8");
 		ServletContext application=this.getServletContext();
@@ -66,6 +92,19 @@ public class FindingServlet extends HttpServlet {
 		}
 		request.setAttribute("tasks", tasks);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
+	}
+	
+	private static Connection getConnection(){
+		System.out.println("connect...");
+	    String dbUrl = System.getenv("JDBC_DATABASE_URL");
+	    System.out.println("url: "+dbUrl);
+	    Connection conn = null;
+	    try {
+	    	conn = DriverManager.getConnection(dbUrl);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	    return conn;
 	}
 	
 	public void writeProperties(String verbs, String fileName){
