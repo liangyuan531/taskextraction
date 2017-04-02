@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -46,24 +47,28 @@ public class FindingServlet extends HttpServlet {
 	@Override  
 	protected void doPost(HttpServletRequest request,  
 	     HttpServletResponse response) throws ServletException, IOException {
+		InetAddress IP = InetAddress.getLocalHost();
+		String address = IP.getHostAddress(); 
 		String createTableSql = "CREATE TABLE Extraction ("
 				+ "IP_Addr varchar(20), "
 				+ "Results varchar(500),"
-				+ "Text varchar(500)"
-				+ "isNonprogramming varchar(10)"
-				+ "isGenericAction varchar(10)"
-				+ "verbs varchar(100)"
+				+ "Text varchar(500),"
+				+ "isNonprogramming varchar(10),"
+				+ "isGenericAction varchar(10),"
+				+ "verbs varchar(100),"
 				+ "generic varchar(100))";
-		String itemSql = "INSERT INTO Extraction VALUES ('192.168.1.1','find','xxxxx','a','b','sss','ss')";
-		Connection conn = getConnection();
-		System.out.println(conn);
+		String itemSql = "INSERT INTO Extraction VALUES ("+ address +",'find','xxxxx','a','b','sss','ss')";
+		Connection conn = null;
 		Statement state = null;
 		try {
+			conn = getConnection();
 			state = conn.createStatement();
 			state.execute(createTableSql);
 			state.execute(itemSql);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (URISyntaxException e1) {
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
 		
 		//content type
@@ -94,18 +99,29 @@ public class FindingServlet extends HttpServlet {
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 	
-	private static Connection getConnection(){
-		System.out.println("connect...");
-	    String dbUrl = System.getenv("JDBC_DATABASE_URL");
-	    System.out.println("url: "+dbUrl);
-	    Connection conn = null;
-	    try {
-	    	conn = DriverManager.getConnection(dbUrl);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	    return conn;
-	}
+	private static Connection getConnection() throws URISyntaxException, SQLException {
+//        URI dbUri = new URI(System.getenv("DATABASE_URL"));
+//        System.out.println("url: "+dbUri);
+        String username = "adgjkzpqxsbwqh";//dbUri.getUserInfo().split(":")[0];
+        String password = "0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d";//dbUri.getUserInfo().split(":")[1];
+        //postgres://adgjkzpqxsbwqh:0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d@ec2-54-221-255-153.compute-1.amazonaws.com:5432/ddteol71om45n4
+        //jdbc:postgresql://<host>:<port>/<dbname>?sslmode=require&user=<username>&password=<password>
+        String dbUrl = "jdbc:postgresql://ec2-54-221-255-153.compute-1.amazonaws.com:5432/ddteol71om45n4?sslmode=require&user=adgjkzpqxsbwqh&password=0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d";
+        return DriverManager.getConnection(dbUrl, username, password);
+    }
+	
+//	private static Connection getConnection(){
+//		System.out.println("connect...");
+//	    String dbUrl = System.getenv("JDBC_DATABASE_URL");
+//	    System.out.println("url: "+dbUrl);
+//	    Connection conn = null;
+//	    try {
+//	    	conn = DriverManager.getConnection(dbUrl);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	    return conn;
+//	}
 	
 	public void writeProperties(String verbs, String fileName){
 		String property = "PROGRAMMING_ACTIONS = " + verbs + System.getProperty("line.separator");
