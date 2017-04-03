@@ -57,13 +57,13 @@ public class FindingServlet extends HttpServlet {
 				+ "isGenericAction varchar(10),"
 				+ "verbs varchar(100),"
 				+ "generic varchar(100))";
-		String itemSql = "INSERT INTO Extraction VALUES ("+ address +",'find','xxxxx','a','b','sss','ss')";
+		String itemSql = "INSERT INTO Extraction VALUES ('"+ address +"','find','xxxxx','a','b','sss','ss')";
 		Connection conn = null;
 		Statement state = null;
 		try {
 			conn = getConnection();
 			state = conn.createStatement();
-			state.execute(createTableSql);
+			//state.execute(createTableSql);
 			state.execute(itemSql);
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
@@ -83,18 +83,22 @@ public class FindingServlet extends HttpServlet {
 		}
 		//get input from page
 		String text =new String(request.getParameter("text"));
+		System.out.println(text);
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<String> tasks = new ArrayList<String>();
 		List<Sentence> sentencesWithTasks = null;
-		synchronized(this){
-			sentencesWithTasks = taskExtractor.extractTasks(text);
-		}
+		sentencesWithTasks = taskExtractor.extractTasks(text);
 		
 		for (Sentence sentenceWithTasks : sentencesWithTasks) {
 			for (Task task : sentenceWithTasks.getTasks()) {
 				tasks.add(task.toString().trim());
 			}
 		}
+//		String result = "";
+//		for(int i=0;i<tasks.size();i++){
+//			result += tasks.get(i) + ",";
+//		}
+//		result = result.substring(0, result.length()-1);
 		request.setAttribute("tasks", tasks);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}

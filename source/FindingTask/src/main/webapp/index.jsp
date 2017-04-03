@@ -11,10 +11,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-<script type="text/javascript">
+<script type="text/javascript">    
 /* display words left */
  $(document).ready(function()
-		 {
+	{
 		 var wordCounts = {};
 		 $("#text").keyup(function() {
 		     var matches = this.value.match(/\b/g);
@@ -23,9 +23,6 @@
 		     $.each(wordCounts, function(k, v) {
 		         finalCount += v;
 		     });
-		     //var UserInput="";
-		     //UserInput += this.value;
-		     //$("#userinput").html(UserInput);
 		     var str = parseInt(60-finalCount);
 		     if(str > 0 ){
 			 	$('#numleft').html(str+' words left');
@@ -41,8 +38,8 @@
 		 }
 		 text.addEventListener("change",function(){
 			sessionStorage.setItem("text",field.value); 
-		 });
-		 });
+		 }); 
+	});
  /*$(function(){
 	 $("#Maintab").click(function(){
 		 var userinput=$("text").val();
@@ -120,7 +117,17 @@
     <div class="col-sm-6">  
     <textarea rows="10" id="text" name="text" class="comments"></textarea>  
 	</div> 
-    <div class="col-sm-4">
+    <div class="col-sm-4" id="result">
+    	<%-- <% 
+    		String result = (String)request.getAttribute("result");
+    		if(result != null && result != ""){%>
+    		<%= result %>	
+    		<%}
+    		else if(result == ""){%>
+    			there is no task.
+    		<%}
+    			
+    	%> --%>
     <table>
     	<% 
 				@SuppressWarnings("unchecked")
@@ -146,7 +153,7 @@
     <div class="col-sm-4" id="userinput"></div>
   </div>
 	<div class="position">
-		<button type="submit" id="send" class="btn btn-primary">send</button>
+		<button type="submit" id="send" class="btn btn-primary">submit</button>
 	</div>
 </form>
 	
@@ -184,5 +191,14 @@
       </div> 
     </div>
 </div>
+<div class="modal fade" id="loading">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body">
+          <p>loading....</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
