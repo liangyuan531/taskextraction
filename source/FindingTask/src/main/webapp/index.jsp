@@ -11,10 +11,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-<script type="text/javascript">    
+<script type="text/javascript">
 /* display words left */
  $(document).ready(function()
-	{
+		 {
 		 var wordCounts = {};
 		 $("#text").keyup(function() {
 		     var matches = this.value.match(/\b/g);
@@ -23,12 +23,36 @@
 		     $.each(wordCounts, function(k, v) {
 		         finalCount += v;
 		     });
+		     //var UserInput="";
+		     //UserInput += this.value;
+		     //$("#userinput").html(UserInput);
 		     var str = parseInt(60-finalCount);
 		     if(str > 0 ){
 			 	$('#numleft').html(str+' words left');
 			 }else{
 			 	$('#numleft').html('0 word left');
-			 	$("#text").val('');
+			 	//$("#text").val('');
+			 	//$("#text").html("you are oversieze")
+			 	//myfunction();
+			 	var gettext=document.getElementById("text");
+			 	//$("text").val("123456");
+			 	var temp_string=new Array();
+			 	temp_string=gettext.value.split(" ");
+			 	var display="";
+			 	//$("#text").val(temp_string);
+			 	//$('#text').val(' ');
+			 	for(var i=0;i< 60;i++){
+			 		temp_string[i] = (temp_string[i]+" ");
+			 		//$("#text").val(temp_string[i]);
+			 		display += temp_string[i];
+			 		$("#text").val(display);
+			 	}
+			 	/*val display="";
+			 	for(var j=0;j < 60;j++){
+			 		display += temp_string[j];
+			 	}
+			 	$("#text").val(display);*/
+			 	//$("#text").val("you are oversize oversize oversize");
 			 	$("#oversize").modal();
 			 }
 		 }).keyup();
@@ -38,16 +62,11 @@
 		 }
 		 text.addEventListener("change",function(){
 			sessionStorage.setItem("text",field.value); 
-		 }); 
-	});
+		 });
+		 //myfunction();
+		 });
  /*$(function(){
-	 $("#Maintab").click(function(){
-		 var userinput=$("text").val();
-		 //if($.trim(userinput).length > 0 ){
-		//	 sessionStorage.setItem(userinput,userinput);
-			 $("#testmain").html(userinput);
-		 }
-	 });
+	 $("text").html("you are over size");
  });*/
  $(function(){
      $("#send").click(function(){
@@ -117,17 +136,7 @@
     <div class="col-sm-6">  
     <textarea rows="10" id="text" name="text" class="comments"></textarea>  
 	</div> 
-    <div class="col-sm-4" id="result">
-    	<%-- <% 
-    		String result = (String)request.getAttribute("result");
-    		if(result != null && result != ""){%>
-    		<%= result %>	
-    		<%}
-    		else if(result == ""){%>
-    			there is no task.
-    		<%}
-    			
-    	%> --%>
+    <div class="col-sm-4">
     <table>
     	<% 
 				@SuppressWarnings("unchecked")
@@ -153,7 +162,7 @@
     <div class="col-sm-4" id="userinput"></div>
   </div>
 	<div class="position">
-		<button type="submit" id="send" class="btn btn-primary">submit</button>
+		<button type="submit" id="send" class="btn btn-primary">send</button>
 	</div>
 </form>
 	
@@ -169,7 +178,7 @@
           <p>Please re-input</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+          <button type="button" id="OKOverSize" class="btn btn-default" data-dismiss="modal">OK</button>
         </div>
       </div> 
     </div>
@@ -186,19 +195,10 @@
           <p>you have to input your verbs</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+          <button type="button" id="OKbutton" class="btn btn-default" data-dismiss="modal">OK</button>
         </div>
       </div> 
     </div>
 </div>
-<div class="modal fade" id="loading">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-body">
-          <p>loading....</p>
-        </div>
-      </div>
-    </div>
-  </div>
 </body>
 </html>
