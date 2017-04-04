@@ -28,6 +28,13 @@
   <h2>Extract Task Phrases</h2>
   <p>reduce your reading loads</p> 
 </div>
+<nav class="navbar navbar-inverse">
+  <p class="navbar-text">Exetracting System</p>
+  <ul class="nav navbar-nav">
+    <li><a href="index.jsp" id="Maintab">Main</a></li>
+    <li><a href="setting.jsp" id="Settingtab">Setting</a></li>
+  </ul>
+</nav>
 <form name="set" action="setting" method="get">
 <div class="container">           
   		<table class="table">
