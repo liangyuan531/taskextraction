@@ -41,12 +41,13 @@
 			 	var display="";
 			 	//$("#text").val(temp_string);
 			 	//$('#text').val(' ');
-			 	for(var i=0;i< 60;i++){
+			 	for(var i=0;i< 59;i++){
 			 		temp_string[i] = (temp_string[i]+" ");
 			 		//$("#text").val(temp_string[i]);
 			 		display += temp_string[i];
-			 		$("#text").val(display);
+			 		//$("#text").val(display);
 			 	}
+			 	$("#text").val(display);
 			 	/*val display="";
 			 	for(var j=0;j < 60;j++){
 			 		display += temp_string[j];
