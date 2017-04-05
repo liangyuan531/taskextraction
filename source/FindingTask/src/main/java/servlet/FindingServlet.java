@@ -96,7 +96,9 @@ public class FindingServlet extends HttpServlet {
 				tasks.add(task.toString().trim());
 			}
 		}
-		String result = formatResults(tasks);
+		String result = "";
+		if(tasks.size() != 0)
+			result = formatResults(tasks);
 		String itemSql = "INSERT INTO Extraction VALUES ('"+ address +"','"+ result +"','"+ text +"','a','b','sss','ss')";
 		try {
 			state.execute(itemSql);
