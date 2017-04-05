@@ -56,33 +56,18 @@ public class FindingServlet extends HttpServlet {
 				+ "isNonprogramming varchar(10),"
 				+ "isGenericAction varchar(10),"
 				+ "verbs varchar(100),"
-				+ "generic varchar(100))";
-		
-		Connection conn = null;
-		Statement state = null;
-		try {
-			conn = getConnection();
-			state = conn.createStatement();
-			//state.execute(createTableSql);
-			//state.execute(itemSql);
-		} catch (URISyntaxException e1) {
-			e1.printStackTrace();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-		
+				+ "generic varchar(100))";	
 		//content type
 		response.setContentType("text/html;charset=UTF-8");
 		ServletContext application=this.getServletContext();
 		String setting = (String)application.getAttribute("isSetting");
-		//if have not choose settings
-		
 		//get input from page
 		String text =new String(request.getParameter("text"));
 		String[] tempOptions = (String[])application.getAttribute("options");
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<String> tasks = new ArrayList<String>();
 		List<Sentence> sentencesWithTasks = null;
+		//if have not choose settings
 		if(setting == null){
 			Configuration.setGen_option("yeswithdefined");
 			Configuration.setPro_option("yeswithdefined");
@@ -100,9 +85,16 @@ public class FindingServlet extends HttpServlet {
 		if(tasks.size() != 0)
 			result = formatResults(tasks);
 		String itemSql = "INSERT INTO Extraction VALUES ('"+ address +"','"+ result +"','"+ text +"','a','b','sss','ss')";
+		Connection conn = null;
+		Statement state = null;
 		try {
+			conn = getConnection();
+			state = conn.createStatement();
+			//state.execute(createTableSql);
 			state.execute(itemSql);
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
 		request.setAttribute("tasks", tasks);
