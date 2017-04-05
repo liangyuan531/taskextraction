@@ -21,6 +21,12 @@
   	position:relative;  
   	left:600px;
   }
+  .comments {  
+    width: 100%;
+    overflow: auto;  
+    word-break: break-all;  
+    resize:none;
+   }
 </style>
 </head>
 <body>
@@ -40,45 +46,59 @@
   		<table class="table">
     		<thead>
       			<tr>
-        			<th><h4><span class="label label-primary">non-programming</span></h4></th>
-        			<th><h4><span class="label label-primary">Generic</span></h4></th>
-        			<th><h4><span class="label label-primary">Customized non-programming action</span></h4></th>
-        			<th><h4><span class="label label-primary">Customize generic action</span></h4></th>
+        			<th><h4><span class="label label-primary">Detect tasks that contain verbs from a pre-defined list?</span></h4></th>
+        			<th><h4><span class="label label-primary">Use generic actions?</span></h4></th>
+        			<th><h4><span class="label label-primary">Grammatical dependencies</span></h4></th>
+        			<th><h4><span class="label label-primary">Code</span></h4></th>
       			</tr>
     		</thead>
     		<tbody>
       			<tr>
         		<td>
         			<div class="radio">
-      					<label><input type="radio" name="programming" value="yes" checked="checked">Yes</label>
+      					<label><input type="radio" name="programming" value="no">No</label>
+    				</div>
+        			<div class="radio">
+      					<label><input type="radio" name="programming" value="yeswithdefined" checked="checked">Yes,use pre-defined verbs</label>
     				</div>
     				<div class="radio">
-      					<label><input type="radio" name="programming" value="no">No</label>
+        				<label><input type="radio" name="programming" value="yes">Yes,use own verbs</label>
+        				<textarea class="comments" id="verbs" name="verbs" rows="3"></textarea>
     				</div>
        			</td>
         		<td>
         			<div class="radio">
-      					<label><input type="radio" name="generic" value="yes" checked="checked">Yes</label>
-    				</div>
-    				<div class="radio">
       					<label><input type="radio" name="generic" value="no">No</label>
     				</div>
+        			<div class="radio">
+      					<label><input type="radio" name="generic" value="yeswithdefined" checked="checked">Yes,use pre-defined</label>
+    				</div>
+    				<div class="radio">
+    					<label><input type="radio" name="generic" value="yes">Yes,use own</label>
+        				<textarea class="comments" id="selfgeneric" name="selfgeneric" rows="3"></textarea>
+    				</div>
         		</td>
         		<td>
-        			<label>using your verb?(input verbs, divide by comma)</label><br>
-        			<input type="radio" name="customize1" value="yes">Yes
-        			<input type="radio" name="customize1" value="no" checked="checked">No
-        			<textarea class="form-control" id="verbs" name="verbs" rows="3"></textarea>
-        			<!-- <textarea class="form-control" id="verbs" name="verbs" rows="3"
-        			onblur="if(this.value == ''){this.style.color = '#ACA899'; this.value = 'input verbs, divide by comma'; }" 
-    				onfocus="if(this.value == 'input verbs, divide by comma'){this.value =''; this.style.color = '#000000'; }" 
-                    style="color:#ACA899;">input verbs, divide by comma</textarea> -->
+        			<div class="checkbox">
+      					<label><input type="checkbox" name="DO" value="direct_object">direct object</label>
+    				</div>
+    				<div class="checkbox">
+      					<label><input type="checkbox" name="PNS" value="passive_nominal_subject">passive nominal subject</label>
+    				</div>
+    				<div class="checkbox">
+      					<label><input type="checkbox" name="RCM" value="relative_clause_modifier">relative clause modifier</label>
+    				</div>
+    				<div class="checkbox">
+      					<label><input type="checkbox" name="PM" value="prepositional_modifier">prepositional modifier</label>
+    				</div>
         		</td>
         		<td>
-        			<label>using your generic?(input, divide by comma)</label><br>
-        			<input type="radio" name="customize2" value="yes">Yes
-        			<input type="radio" name="customize2" value="no" checked="checked">No
-        			<textarea class="form-control" id="selfgeneric" name="selfgeneric" rows="3"></textarea>
+        			<div class="checkbox">
+      					<label><input type="checkbox" name="RC" value="RegexedCode">RegexedCode</label>
+    				</div>
+    				<div class="checkbox">
+      					<label><input type="checkbox" name="TC" value="TaggedCode">TaggedCode</label>
+    				</div>
         		</td>
       			</tr>
     		</tbody>

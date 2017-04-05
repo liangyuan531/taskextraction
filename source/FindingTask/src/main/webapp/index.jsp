@@ -153,7 +153,7 @@
 					<%}
 	 			}
 	 			%>
-	 </table>
+	</table>
     </div>
   </div>
   <div class="row">
@@ -163,7 +163,7 @@
     <div class="col-sm-4" id="userinput"></div>
   </div>
 	<div class="position">
-		<button type="submit" id="send" class="btn btn-primary">send</button>
+		<button type="submit" id="send" class="btn btn-primary">Search</button>
 	</div>
 </form>
 	

@@ -76,19 +76,15 @@ public class FindingServlet extends HttpServlet {
 		ServletContext application=this.getServletContext();
 		String setting = (String)application.getAttribute("isSetting");
 		if(setting == null){
-			Configuration.setGen_option("yes");
-			Configuration.setPro_option("yes");
-			Configuration.setCustomise1("no");
-			Configuration.setCustomise2("no");
+			Configuration.setGen_option("yeswithdefined");
+			Configuration.setPro_option("yeswithdefined");
 		}
 		//get input from page
 		String text =new String(request.getParameter("text"));
-		System.out.println(text);
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<String> tasks = new ArrayList<String>();
 		List<Sentence> sentencesWithTasks = null;
-		sentencesWithTasks = taskExtractor.extractTasks(text);
-		
+		sentencesWithTasks = taskExtractor.extractTasks(text,true,true,true,true,true,true);
 		for (Sentence sentenceWithTasks : sentencesWithTasks) {
 			for (Task task : sentenceWithTasks.getTasks()) {
 				tasks.add(task.toString().trim());
@@ -113,19 +109,6 @@ public class FindingServlet extends HttpServlet {
         String dbUrl = "jdbc:postgresql://ec2-54-221-255-153.compute-1.amazonaws.com:5432/ddteol71om45n4?sslmode=require&user=adgjkzpqxsbwqh&password=0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d";
         return DriverManager.getConnection(dbUrl, username, password);
     }
-	
-//	private static Connection getConnection(){
-//		System.out.println("connect...");
-//	    String dbUrl = System.getenv("JDBC_DATABASE_URL");
-//	    System.out.println("url: "+dbUrl);
-//	    Connection conn = null;
-//	    try {
-//	    	conn = DriverManager.getConnection(dbUrl);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	    return conn;
-//	}
 	
 	public void writeProperties(String verbs, String fileName){
 		String property = "PROGRAMMING_ACTIONS = " + verbs + System.getProperty("line.separator");

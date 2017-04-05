@@ -27,13 +27,9 @@ public class SettingServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application=this.getServletContext();
-		//self-defined verbs
-		String customize1 = request.getParameter("customize1");
-		//self-defined generic action
-		String customize2 = request.getParameter("customize2");
-		setExtensions(customize1,customize2,request);
+		setExtensions(request);
 		application.setAttribute("isSetting", "1");
-		//request.getRequestDispatcher("index.jsp").forward(request, response);
+		
 		response.sendRedirect("index.jsp");
 	}
 	
@@ -41,41 +37,32 @@ public class SettingServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public void setExtensions(String customize1, String customize2, HttpServletRequest request){
-		Configuration.setCustomise1(customize1);
-		Configuration.setCustomise2(customize2);
-		if(customize1.equals("yes") && customize2.equals("no")){
+	public void setExtensions(HttpServletRequest request){
+		String pro_option=request.getParameter("programming");
+		String gen_option=request.getParameter("generic");
+		//no, yes, yeswithdefined
+		Configuration.setGen_option(gen_option);
+		//no, yes, yeswithdefined
+		Configuration.setPro_option(pro_option);
+		if(pro_option.equals("yes") && gen_option.equals("yes")){
 			String verbs = request.getParameter("verbs");
-			Configuration.setPro_option("");
-			String gen_option=request.getParameter("generic");
-			Configuration.setGen_option(gen_option);
-			if(gen_option.equals("yes"))
-				writeProperties("PROGRAMMING_ACTIONS", "", verbs, "", "customizedconfigwithgeneric.properties");
-			else if(gen_option.equals("no"))
-				writeProperties("PROGRAMMING_ACTIONS", "", verbs, "", "customizedconfigwithoutgeneric.properties");
-			Configuration.setCustomise1(customize1);
-		}else if(customize1.equals("yes") && customize2.equals("yes")){
-			String verbs = request.getParameter("verbs");
-			String generic = request.getParameter("generic");
-			Configuration.setGen_option("");
-			Configuration.setPro_option("");
-			writeProperties("PROGRAMMING_ACTIONS","GENERIC_ACCUSATIVES",verbs, generic, "customizedconfigwithboth.properties");
-		}else if(customize1.equals("no") && customize2.equals("yes")){
 			String selfgeneric = request.getParameter("selfgeneric");
-			Configuration.setGen_option("");
-			String pro_option=request.getParameter("programming");
-			Configuration.setGen_option(pro_option);
-			if(pro_option.equals("yes"))
-				writeProperties("", "GENERIC_ACCUSATIVES", "", selfgeneric, "customizedconfigwithprogramming.properties");
-			else if(pro_option.equals("no"))
-				writeProperties("", "GENERIC_ACCUSATIVES", "", selfgeneric, "customizedconfigwithoutprogramming.properties");
-			Configuration.setCustomise1(customize1);
-		}else if(customize1.equals("no") && customize2.equals("no")){
-			//do not use self-defined verbs and generic action
-			String gen_option=request.getParameter("generic");
-			String pro_option=request.getParameter("programming");
-			Configuration.setGen_option(gen_option);
-			Configuration.setPro_option(pro_option);
+			writeProperties("PROGRAMMING_ACTIONS","GENERIC_ACCUSATIVES",verbs, selfgeneric, "customizedconfigwithboth.properties");
+		}else if(pro_option.equals("yes") && gen_option.equals("no")){
+			String verbs = request.getParameter("verbs");
+			writeProperties("PROGRAMMING_ACTIONS", "", verbs, "", "customizedconfigwithoutgeneric.properties");
+		}else if(pro_option.equals("yes") && gen_option.equals("yeswithdefined")){
+			String verbs = request.getParameter("verbs");
+			writeProperties("PROGRAMMING_ACTIONS", "", verbs, "", "customizedconfigwithgeneric.properties");
+		}else if(pro_option.equals("no") && gen_option.equals("yes")){
+			String selfgeneric = request.getParameter("selfgeneric");
+			writeProperties("", "GENERIC_ACCUSATIVES", "", selfgeneric, "customizedconfigwithoutprogramming.properties");
+		}else if(pro_option.equals("yeswithdefined") && gen_option.equals("yes")){
+			String selfgeneric = request.getParameter("selfgeneric");
+			writeProperties("", "GENERIC_ACCUSATIVES", "", selfgeneric, "customizedconfigwithprogramming.properties");
+		}else if(pro_option.equals("yeswithdefined") && gen_option.equals("no")){
+			String selfgeneric = request.getParameter("selfgeneric");
+			writeProperties("", "GENERIC_ACCUSATIVES", "", selfgeneric, "customizedconfigwithprogramming.properties");
 		}
 	}
 	

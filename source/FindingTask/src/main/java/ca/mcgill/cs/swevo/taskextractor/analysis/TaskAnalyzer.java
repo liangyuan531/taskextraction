@@ -34,34 +34,46 @@ public class TaskAnalyzer {
 	 *            sentence map
 	 * @return list of tasks
 	 */
-	public List<Task> extractTasks(CoreMap pSentenceMap) {
+	public List<Task> extractTasks(CoreMap pSentenceMap, boolean pDobj,
+			boolean pNsubjpass, boolean pRcmod, boolean pPrep) {
 		// get dependencies
 		SemanticGraph lCollapsedDependenciesAnnotation = pSentenceMap
 				.get(CollapsedCCProcessedDependenciesAnnotation.class);
 
 		// find all dobj, prep, agent, nsubjpass, and rcmod dependencies
-		List<SemanticGraphEdge> lRelations = lCollapsedDependenciesAnnotation
-				.findAllRelns(GrammaticalRelation.valueOf("dobj"));
+		List<SemanticGraphEdge> lRelations;
+		if (pDobj) {
+			lRelations = lCollapsedDependenciesAnnotation
+					.findAllRelns(GrammaticalRelation.valueOf("dobj"));
+		} else {
+			lRelations = new ArrayList<SemanticGraphEdge>();
+		}
 		Collection<GrammaticalRelation> lPrepositionRelations = new ArrayList<GrammaticalRelation>();
-		for (TypedDependency lTypedDependency : lCollapsedDependenciesAnnotation
-				.typedDependencies()) {
-			GrammaticalRelation lGrammaticalRelation = lTypedDependency.reln();
-			if (lGrammaticalRelation.toString().startsWith("prep")
-					|| lGrammaticalRelation.toString().equals("agent")) {
-				lPrepositionRelations.add(lGrammaticalRelation);
-				lRelations.addAll(lCollapsedDependenciesAnnotation
-						.findAllRelns(lGrammaticalRelation));
+		if (pPrep) {
+			for (TypedDependency lTypedDependency : lCollapsedDependenciesAnnotation
+					.typedDependencies()) {
+				GrammaticalRelation lGrammaticalRelation = lTypedDependency
+						.reln();
+				if (lGrammaticalRelation.toString().startsWith("prep")
+						|| lGrammaticalRelation.toString().equals("agent")) {
+					lPrepositionRelations.add(lGrammaticalRelation);
+					lRelations.addAll(lCollapsedDependenciesAnnotation
+							.findAllRelns(lGrammaticalRelation));
+				}
 			}
 		}
-		lRelations.addAll(lCollapsedDependenciesAnnotation
-				.findAllRelns(GrammaticalRelation.valueOf("nsubjpass")));
-		List<SemanticGraphEdge> lRcModRelations = lCollapsedDependenciesAnnotation
-				.findAllRelns(GrammaticalRelation.valueOf("rcmod"));
-		for (SemanticGraphEdge lRcModRelation : lRcModRelations) {
-			lRelations.add(new SemanticGraphEdge(lRcModRelation.getTarget(),
-					null, null, 0));
+		if (pNsubjpass) {
+			lRelations.addAll(lCollapsedDependenciesAnnotation
+					.findAllRelns(GrammaticalRelation.valueOf("nsubjpass")));
 		}
-
+		if (pRcmod) {
+			List<SemanticGraphEdge> lRcModRelations = lCollapsedDependenciesAnnotation
+					.findAllRelns(GrammaticalRelation.valueOf("rcmod"));
+			for (SemanticGraphEdge lRcModRelation : lRcModRelations) {
+				lRelations.add(new SemanticGraphEdge(
+						lRcModRelation.getTarget(), null, null, 0));
+			}
+		}
 		return getTasks(lCollapsedDependenciesAnnotation, lRelations,
 				lPrepositionRelations);
 	}
@@ -138,7 +150,7 @@ public class TaskAnalyzer {
 			List<IndexedWord> lVerbs = new ArrayList<IndexedWord>();
 			lVerbs.add(lVerb);
 			lVerbalPhrase.setVerb(lVerbs, pCollapsedDependenciesAnnotation);
-			
+
 			// skip verbs that aren't programming actions
 			if (!(Configuration.getInstance().getProgrammingActions().size() == 1)
 					&& !Configuration.getInstance().getProgrammingActions()

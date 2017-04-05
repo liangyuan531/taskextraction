@@ -16,7 +16,7 @@ public class TaskExtractorTest
 	public final void test()
 	{
 		TaskExtractor lTaskExtractor = new TaskExtractor();
-		List<Sentence> lSentencesWithTasks = lTaskExtractor.extractTasks("This is a test. You can add a <tt>test</tt> to CodeElement. Adding a test.");
+		List<Sentence> lSentencesWithTasks = lTaskExtractor.extractTasks("This is a test. You can add a <tt>test</tt> to CodeElement. Adding a test.", true, true, true, true, true, true);
 		assertEquals(lSentencesWithTasks.get(1).getTasks().get(0).toString().trim(), "add <tt>test</tt> to CodeElement");
 		assertEquals(lSentencesWithTasks.get(2).getTasks().get(0).toString().trim(), "add test");
 
