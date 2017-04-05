@@ -68,6 +68,7 @@ public class SettingServlet extends HttpServlet {
 			String verbs = request.getParameter("verbs");
 			verbs = formatString(verbs);
 			String selfgeneric = request.getParameter("selfgeneric");
+			selfgeneric = formatString(selfgeneric);
 			writeProperties("PROGRAMMING_ACTIONS","GENERIC_ACCUSATIVES",verbs, selfgeneric, "customizedconfigwithboth.properties");
 		}else if(pro_option.equals("yes") && gen_option.equals("no")){
 			String verbs = request.getParameter("verbs");
