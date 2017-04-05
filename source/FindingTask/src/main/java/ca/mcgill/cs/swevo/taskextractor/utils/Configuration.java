@@ -67,49 +67,6 @@ public final class Configuration
 			lFile=new File("customizedconfigwithboth.properties");
 		}
 		
-		
-		
-//		else if(gen_option.equals("yes") && customise1.equals("yes")){
-//			lFile=new File("customizedconfigwithgeneric.properties");
-//			//System.out.println(lFile.getAbsolutePath());
-//		}
-//		else if(gen_option.equals("no") && customise1.equals("yes")){
-//			lFile=new File("customizedconfigwithoutgeneric.properties");
-//		}
-		//System.out.println("customise1: " + customise1);
-		//System.out.println("customise2: " + customise2);
-//		if(customise1.equals("yes") && customise2.equals("yes")){
-//			lFile=new File("customizedconfigwithboth.properties");
-//		}else if(customise1.equals("no") && customise2.equals("no")){
-//			if(pro_option.equals("yes") && gen_option.equals("yes")){
-//				lFile = new File("config.properties");
-//			}
-//			else if(pro_option.equals("no") && gen_option.equals("no")){
-//				lFile=new File("configwithoutboth.properties");
-//			}
-//			else if(pro_option.equals("yes") && gen_option.equals("no")){
-//				lFile=new File("configwithoutgeneric.properties");
-//			}
-//			else if(pro_option.equals("no") && gen_option.equals("yes")){
-//				lFile=new File("configwithoutprogramming.properties");
-//			}
-//		}else if(customise1.equals("yes") && customise2.equals("no")){
-//			//System.out.println(gen_option);
-//			if(gen_option.equals("yes")){
-//				lFile=new File("customizedconfigwithgeneric.properties");
-//			}
-//			else if(gen_option.equals("no")){
-//				lFile=new File("customizedconfigwithoutgeneric.properties");
-//			}
-//		}else if(customise1.equals("no") && customise2.equals("yes")){
-//			if(pro_option.equals("yes")){
-//				lFile=new File("customizedconfigwithprogramming.properties");
-//			}
-//			else if(pro_option.equals("no")){
-//				lFile=new File("customizedconfigwithoutprogramming.properties");
-//			}
-//		}
-		
 		BufferedReader lBufferedReader;
 		try
 		{

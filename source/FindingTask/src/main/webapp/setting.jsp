@@ -80,24 +80,24 @@
         		</td>
         		<td>
         			<div class="checkbox">
-      					<label><input type="checkbox" name="DO" value="direct_object">direct object</label>
+      					<label><input type="checkbox" name="direct_object" value="yes" checked="checked">direct object</label>
     				</div>
     				<div class="checkbox">
-      					<label><input type="checkbox" name="PNS" value="passive_nominal_subject">passive nominal subject</label>
+      					<label><input type="checkbox" name="passive_nominal_subject" value="yes" checked="checked">passive nominal subject</label>
     				</div>
     				<div class="checkbox">
-      					<label><input type="checkbox" name="RCM" value="relative_clause_modifier">relative clause modifier</label>
+      					<label><input type="checkbox" name="relative_clause_modifier" value="yes" checked="checked">relative clause modifier</label>
     				</div>
     				<div class="checkbox">
-      					<label><input type="checkbox" name="PM" value="prepositional_modifier">prepositional modifier</label>
+      					<label><input type="checkbox" name="prepositional_modifier" value="yes" checked="checked">prepositional modifier</label>
     				</div>
         		</td>
         		<td>
         			<div class="checkbox">
-      					<label><input type="checkbox" name="RC" value="RegexedCode">RegexedCode</label>
+      					<label><input type="checkbox" name="RegexedCode" value="yes" checked="checked">RegexedCode</label>
     				</div>
     				<div class="checkbox">
-      					<label><input type="checkbox" name="TC" value="TaggedCode">TaggedCode</label>
+      					<label><input type="checkbox" name="TaggedCode" value="yes" checked="checked">TaggedCode</label>
     				</div>
         		</td>
       			</tr>

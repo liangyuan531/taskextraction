@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -28,8 +30,9 @@ public class SettingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletContext application=this.getServletContext();
 		setExtensions(request);
+		String[] options = setCheckbox(request);
 		application.setAttribute("isSetting", "1");
-		
+		application.setAttribute("options", options);
 		response.sendRedirect("index.jsp");
 	}
 	
@@ -37,7 +40,24 @@ public class SettingServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public void setExtensions(HttpServletRequest request){
+	private String[] setCheckbox(HttpServletRequest request){
+		String[] checkbox = new String[6];
+		String direct_object = request.getParameter("direct_object");
+		String passive_nominal_subject = request.getParameter("passive_nominal_subject");
+		String relative_clause_modifier = request.getParameter("relative_clause_modifier");
+		String prepositional_modifier = request.getParameter("prepositional_modifier");
+		String RegexedCode = request.getParameter("RegexedCode");
+		String TaggedCode = request.getParameter("TaggedCode");
+		checkbox[0] = direct_object;
+		checkbox[1] = passive_nominal_subject;
+		checkbox[2] = relative_clause_modifier;
+		checkbox[3] = prepositional_modifier;
+		checkbox[4] = RegexedCode;
+		checkbox[5] = TaggedCode;
+		return checkbox;
+	}
+	
+	private void setExtensions(HttpServletRequest request){
 		String pro_option=request.getParameter("programming");
 		String gen_option=request.getParameter("generic");
 		//no, yes, yeswithdefined

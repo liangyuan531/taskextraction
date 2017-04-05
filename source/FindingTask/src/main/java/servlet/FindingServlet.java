@@ -57,14 +57,14 @@ public class FindingServlet extends HttpServlet {
 				+ "isGenericAction varchar(10),"
 				+ "verbs varchar(100),"
 				+ "generic varchar(100))";
-		String itemSql = "INSERT INTO Extraction VALUES ('"+ address +"','find','xxxxx','a','b','sss','ss')";
+		
 		Connection conn = null;
 		Statement state = null;
 		try {
 			conn = getConnection();
 			state = conn.createStatement();
 			//state.execute(createTableSql);
-			state.execute(itemSql);
+			//state.execute(itemSql);
 		} catch (URISyntaxException e1) {
 			e1.printStackTrace();
 		} catch (SQLException e1) {
@@ -75,26 +75,34 @@ public class FindingServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		ServletContext application=this.getServletContext();
 		String setting = (String)application.getAttribute("isSetting");
-		if(setting == null){
-			Configuration.setGen_option("yeswithdefined");
-			Configuration.setPro_option("yeswithdefined");
-		}
+		//if have not choose settings
+		
 		//get input from page
 		String text =new String(request.getParameter("text"));
+		String[] tempOptions = (String[])application.getAttribute("options");
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<String> tasks = new ArrayList<String>();
 		List<Sentence> sentencesWithTasks = null;
-		sentencesWithTasks = taskExtractor.extractTasks(text,true,true,true,true,true,true);
+		if(setting == null){
+			Configuration.setGen_option("yeswithdefined");
+			Configuration.setPro_option("yeswithdefined");
+			sentencesWithTasks = taskExtractor.extractTasks(text,true,true,true,true,true,true);
+		}else{
+			List<Boolean> options = checkOptions(tempOptions);
+			sentencesWithTasks = taskExtractor.extractTasks(text,options.get(0),options.get(1),options.get(2),options.get(3),options.get(4),options.get(5));
+		}
 		for (Sentence sentenceWithTasks : sentencesWithTasks) {
 			for (Task task : sentenceWithTasks.getTasks()) {
 				tasks.add(task.toString().trim());
 			}
 		}
-//		String result = "";
-//		for(int i=0;i<tasks.size();i++){
-//			result += tasks.get(i) + ",";
-//		}
-//		result = result.substring(0, result.length()-1);
+		String result = formatResults(tasks);
+		String itemSql = "INSERT INTO Extraction VALUES ('"+ address +"','"+ result +"','"+ text +"','a','b','sss','ss')";
+		try {
+			state.execute(itemSql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		request.setAttribute("tasks", tasks);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
@@ -110,37 +118,28 @@ public class FindingServlet extends HttpServlet {
         return DriverManager.getConnection(dbUrl, username, password);
     }
 	
-	public void writeProperties(String verbs, String fileName){
-		String property = "PROGRAMMING_ACTIONS = " + verbs + System.getProperty("line.separator");
-		try {
-			File temp = new File("temp");
-			File origin = new File(fileName);
-			FileReader reader = new FileReader(origin);
-			FileWriter tempwriter = new FileWriter(temp,true);
-			BufferedReader br = new BufferedReader(reader);
-			String str = "";
-			boolean isProgramming = false;
-			while((str=br.readLine()) != null){
-				String[] s = str.split(" ");
-				for(int i=0;i<s.length;i++){
-					if(s[i].equals("PROGRAMMING_ACTIONS")){
-						isProgramming = true;
-					}		
-				}
-				if(!isProgramming){
-					tempwriter.write(str+System.getProperty("line.separator"));
-				}
-			}
-			br.close();
-			tempwriter.close();
-			origin.delete();
-			temp.renameTo(origin);
-			FileWriter writer = new FileWriter(fileName,true);
-			writer.write(property+System.getProperty("line.separator"));
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+	private String formatResults(List<String> tasks){
+		String result = "";
+		for(int i=0;i<tasks.size();i++){
+			result += tasks.get(i) + ",";
 		}
-		
+		result = result.substring(0, result.length()-1);
+		return result;
+	}
+	
+	private List<Boolean> checkOptions(String[] options){
+		List<Boolean> ops = new ArrayList<Boolean>();
+		for(int i=0;i<options.length;i++){
+			if(options[i] == null){
+				options[i] = "no";
+			}
+		}
+		for(int i=0;i<options.length;i++){
+			if(options[i].equals("yes"))
+				ops.add(true);
+			else
+				ops.add(false);
+		}
+		return ops;
 	}
 }
