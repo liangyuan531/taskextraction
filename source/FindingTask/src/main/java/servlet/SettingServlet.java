@@ -28,11 +28,12 @@ public class SettingServlet extends HttpServlet {
     }
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext application=this.getServletContext();
+		HttpSession session = request.getSession();
+		//ServletContext application=this.getServletContext();
 		setExtensions(request);
 		String[] options = setCheckbox(request);
-		application.setAttribute("isSetting", "1");
-		application.setAttribute("options", options);
+		session.setAttribute("isSetting", "1");
+		session.setAttribute("options", options);
 		response.sendRedirect("index.jsp");
 	}
 	

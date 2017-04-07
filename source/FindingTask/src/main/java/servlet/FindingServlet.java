@@ -1,10 +1,5 @@
 package servlet;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URI;
@@ -59,11 +54,12 @@ public class FindingServlet extends HttpServlet {
 				+ "generic varchar(100))";	
 		//content type
 		response.setContentType("text/html;charset=UTF-8");
-		ServletContext application=this.getServletContext();
-		String setting = (String)application.getAttribute("isSetting");
+		//ServletContext application=this.getServletContext();
+		HttpSession session = request.getSession();
+		String setting = (String)session.getAttribute("isSetting");
 		//get input from page
 		String text =new String(request.getParameter("text"));
-		String[] tempOptions = (String[])application.getAttribute("options");
+		String[] tempOptions = (String[])session.getAttribute("options");
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<String> tasks = new ArrayList<String>();
 		List<Sentence> sentencesWithTasks = null;
