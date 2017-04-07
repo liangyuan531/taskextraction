@@ -54,7 +54,6 @@ public class FindingServlet extends HttpServlet {
 				+ "generic varchar(100))";	
 		//content type
 		response.setContentType("text/html;charset=UTF-8");
-		//ServletContext application=this.getServletContext();
 		HttpSession session = request.getSession();
 		String setting = (String)session.getAttribute("isSetting");
 		//get input from page

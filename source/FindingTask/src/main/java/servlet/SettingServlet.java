@@ -29,7 +29,6 @@ public class SettingServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		//ServletContext application=this.getServletContext();
 		setExtensions(request);
 		String[] options = setCheckbox(request);
 		session.setAttribute("isSetting", "1");

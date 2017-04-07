@@ -9,7 +9,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
-	$("#yesownverbs").html("this is yesownverbs");
+	/* $("#yesownverbs").html("this is yesownverbs"); */
 	if(sessionStorage.getItem("noprogramming")=="no"){
 		//$("#yesownverbs").html(sessionStorage.getItem("noprogramming"));
 		$("#noprogramming").attr("checked",true);
@@ -20,13 +20,13 @@ $(document).ready(function(){
 		$("#nogeneric").attr("checked",true);
 		sessionStorage.removeItem("nogeneric");
 	}
-	if(sessionStorage.getItem("yesselfprogramming")=="yesown"){
-		$("#yesownverbs").html("yesown");
+	if(sessionStorage.getItem("yesselfprogramming")=="yes"){
+		$("#yesownverbs").html("yes");
 		$("#yesselfprogramming").attr("checked",true);
 		sessionStorage.removeItem("yesselfprogramming");
 	}
 	if(sessionStorage.getItem("yesselfgeneric")=="yes"){
-		$("#yesownverbs").html("yesown");
+		$("#yesownverbs").html("yes");
 		$("#yesselfgeneric").attr("checked",true);
 		sessionStorage.removeItem("yesselfgeneric");
 	}
@@ -134,10 +134,10 @@ function reload(){
       					<label><input type="radio" id="noprogramming" name="programming" value="no">No</label>
     				</div>
         			<div class="radio">
-      					<label><input type="radio" id="yesprogramming" name="programming" value="yes" checked="checked">Yes,use pre-defined verbs</label>
+      					<label><input type="radio" id="yesprogramming" name="programming" value="yeswithdefined" checked="checked">Yes,use pre-defined verbs</label>
     				</div>
     				<div class="radio">
-        				<label><input type="radio" id="yesselfprogramming" name="yesownprogramming" value="yesown">Yes,use own verbs</label>
+        				<label><input type="radio" id="yesselfprogramming" name="programming" value="yes">Yes,use own verbs</label>
         				<textarea class="comments" id="yesownverbs" name="verbs" rows="3"></textarea>
     				</div>
        			</td>
@@ -146,7 +146,7 @@ function reload(){
       					<label><input type="radio" id="nogeneric" name="generic" value="no">No</label>
     				</div>
         			<div class="radio">
-      					<label><input type="radio" id="yesgeneric" name="generic" value="yes" checked="checked">Yes,use pre-defined</label>
+      					<label><input type="radio" id="yesgeneric" name="generic" value="yeswithdefined" checked="checked">Yes,use pre-defined</label>
     				</div>
     				<div class="radio">
     					<label><input type="radio" id="yesselfgeneric" name="generic" value="yes">Yes,use own</label>
