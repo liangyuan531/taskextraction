@@ -9,7 +9,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
-	/* $("#yesownverbs").html("this is yesownverbs"); */
+	$("#yesownverbs").html("this is yesownverbs");
 	if(sessionStorage.getItem("noprogramming")=="no"){
 		//$("#yesownverbs").html(sessionStorage.getItem("noprogramming"));
 		$("#noprogramming").attr("checked",true);
@@ -122,7 +122,7 @@ function reload(){
     		<thead>
       			<tr>
         			<th><h4><span class="label label-primary">Detect tasks that contain verbs from a pre-defined list?</span></h4></th>
-        			<th><h4><span class="label label-primary">Use generic actions?</span></h4></th>
+        			<th><h4><span class="label label-primary">Use generic accusative?</span></h4></th>
         			<th><h4><span class="label label-primary">Grammatical dependencies</span></h4></th>
         			<th><h4><span class="label label-primary">Code</span></h4></th>
       			</tr>
@@ -135,6 +135,7 @@ function reload(){
     				</div>
         			<div class="radio">
       					<label><input type="radio" id="yesprogramming" name="programming" value="yeswithdefined" checked="checked">Yes,use pre-defined verbs</label>
+    					<a href="programlist">[see details]</a>
     				</div>
     				<div class="radio">
         				<label><input type="radio" id="yesselfprogramming" name="programming" value="yes">Yes,use own verbs</label>
@@ -147,6 +148,7 @@ function reload(){
     				</div>
         			<div class="radio">
       					<label><input type="radio" id="yesgeneric" name="generic" value="yeswithdefined" checked="checked">Yes,use pre-defined</label>
+      					<a href="genericlist">[see details]</a>
     				</div>
     				<div class="radio">
     					<label><input type="radio" id="yesselfgeneric" name="generic" value="yes">Yes,use own</label>
