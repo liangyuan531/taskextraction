@@ -27,7 +27,7 @@ import ca.mcgill.cs.swevo.taskextractor.utils.Configuration;
 
 
 @WebServlet(
-        name = "tasks", 
+        name = "tasks",
         urlPatterns = {"/finding"}
     )
 public class FindingServlet extends HttpServlet {
@@ -38,20 +38,10 @@ public class FindingServlet extends HttpServlet {
             throws ServletException, IOException {
 		this.doPost(req, resp);
     }
-	
-	@Override  
-	protected void doPost(HttpServletRequest request,  
+
+	@Override
+	protected void doPost(HttpServletRequest request,
 	     HttpServletResponse response) throws ServletException, IOException {
-		InetAddress IP = InetAddress.getLocalHost();
-		String address = IP.getHostAddress(); 
-		String createTableSql = "CREATE TABLE Extraction ("
-				+ "IP_Addr varchar(20), "
-				+ "Results varchar(500),"
-				+ "Text varchar(500),"
-				+ "isNonprogramming varchar(10),"
-				+ "isGenericAction varchar(10),"
-				+ "verbs varchar(100),"
-				+ "generic varchar(100))";	
 		//content type
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
@@ -79,34 +69,50 @@ public class FindingServlet extends HttpServlet {
 		String result = "";
 		if(tasks.size() != 0)
 			result = formatResults(tasks);
-		String itemSql = "INSERT INTO Extraction VALUES ('"+ address +"','"+ result +"','"+ text +"','a','b','sss','ss')";
-		Connection conn = null;
-		Statement state = null;
-		try {
-			conn = getConnection();
-			state = conn.createStatement();
-			//state.execute(createTableSql);
-			state.execute(itemSql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
+		//get IP address
+		String address = InetAddress.getLocalHost().getHostAddress();
+		String itemSql = "INSERT INTO Extraction VALUES ('"+ address +"','"+ result +"','"+ text +"','a','b','sss','ss')";	
+		createTable();
+		//insertItem(itemSql);
+		
 		request.setAttribute("tasks", tasks);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 	
-	private static Connection getConnection() throws URISyntaxException, SQLException {
-//        URI dbUri = new URI(System.getenv("DATABASE_URL"));
-//        System.out.println("url: "+dbUri);
-        String username = "adgjkzpqxsbwqh";//dbUri.getUserInfo().split(":")[0];
-        String password = "0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d";//dbUri.getUserInfo().split(":")[1];
-        //postgres://adgjkzpqxsbwqh:0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d@ec2-54-221-255-153.compute-1.amazonaws.com:5432/ddteol71om45n4
-        //jdbc:postgresql://<host>:<port>/<dbname>?sslmode=require&user=<username>&password=<password>
-        String dbUrl = "jdbc:postgresql://ec2-54-221-255-153.compute-1.amazonaws.com:5432/ddteol71om45n4?sslmode=require&user=adgjkzpqxsbwqh&password=0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d";
-        return DriverManager.getConnection(dbUrl, username, password);
-    }
+	private void insertItem(String itemSql){
+	    try {
+	    	Connection conn = getConnection();
+	    	Statement state = conn.createStatement();
+	    	state.execute(itemSql);
+	    } catch (URISyntaxException e1) {
+	    	e1.printStackTrace();
+	    } catch (SQLException e1) {
+	    	e1.printStackTrace();
+	    }
+	}
 	
+	private void createTable(){
+	    String createTableSql = "CREATE TABLE extraction ("
+	     		+ "IP_Addr varchar(20), "
+	     		+ "Results varchar(500),"
+	            + "isNonprogramming varchar(100),"
+	            + "isGenericAction varchar(10),"
+	            + "PROGRAMMING_ACTIONS varchar(100),"
+	     		+ "GENERIC_ACCUSATIVES varchar(100),"
+	            + "GRAMMATICAL_DEPENDENCIES varchar(50),"
+	            + "CODE varchar(50),"
+	     		+ "TEXT varchar(500))";
+	    try {
+	    	Connection conn = getConnection();
+	    	Statement state = conn.createStatement();
+	    	state.execute(createTableSql);
+	    } catch (URISyntaxException e1) {
+	    	e1.printStackTrace();
+	    } catch (SQLException e1) {
+	    	e1.printStackTrace();
+	    }
+	}
+
 	private String formatResults(List<String> tasks){
 		String result = "";
 		for(int i=0;i<tasks.size();i++){
@@ -115,7 +121,7 @@ public class FindingServlet extends HttpServlet {
 		result = result.substring(0, result.length()-1);
 		return result;
 	}
-	
+
 	private List<Boolean> checkOptions(String[] options){
 		List<Boolean> ops = new ArrayList<Boolean>();
 		for(int i=0;i<options.length;i++){
@@ -131,4 +137,15 @@ public class FindingServlet extends HttpServlet {
 		}
 		return ops;
 	}
+	
+	private static Connection getConnection() throws URISyntaxException, SQLException {
+//      URI dbUri = new URI(System.getenv("DATABASE_URL"));
+//      System.out.println("url: "+dbUri);
+      String username = "adgjkzpqxsbwqh";//dbUri.getUserInfo().split(":")[0];
+      String password = "0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d";//dbUri.getUserInfo().split(":")[1];
+      //postgres://adgjkzpqxsbwqh:0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d@ec2-54-221-255-153.compute-1.amazonaws.com:5432/ddteol71om45n4
+      //jdbc:postgresql://<host>:<port>/<dbname>?sslmode=require&user=<username>&password=<password>
+      String dbUrl = "jdbc:postgresql://ec2-54-221-255-153.compute-1.amazonaws.com:5432/ddteol71om45n4?sslmode=require&user=adgjkzpqxsbwqh&password=0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d";
+      return DriverManager.getConnection(dbUrl, username, password);
+  }
 }
