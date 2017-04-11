@@ -10,7 +10,7 @@
 <title>programming verbs</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse" style="width:100%">
+<nav class="navbar navbar-inverse" id="header">
   <ul class="nav navbar-nav">
     <li><a href="setting.jsp">back</a></li>
   </ul>
