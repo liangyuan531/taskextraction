@@ -1,0 +1,26 @@
+.jumbotron {
+  	background-color: #007991;
+  	color: #fff;
+  	 
+}
+.btn {
+  	width:120px;
+  	height:40px;
+}
+.position{ 
+ 	margin:0 auto;
+    width:200px;
+}
+.comments {  
+    width: 100%;
+    overflow: auto;  
+    word-break: break-all;  
+    resize:none;
+}
+#header{
+	width:100%;
+}
+
+#divsize{
+	width:50%;
+}

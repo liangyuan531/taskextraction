@@ -6,111 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-<script type="text/javascript">
-/* display words left */
- $(document).ready(function()
-		 {
-		 var wordCounts = {};
-		 $("#text").keyup(function() {
-		     var matches = this.value.match(/\b/g);
-		     wordCounts[this.id] = matches ? matches.length / 2 : 0;
-		     var finalCount = 0;
-		     $.each(wordCounts, function(k, v) {
-		         finalCount += v;
-		     });
-		     //var UserInput="";
-		     //UserInput += this.value;
-		     //$("#userinput").html(UserInput);
-		     var str = parseInt(60-finalCount);
-		     if(str > 0 ){
-			 	$('#numleft').html(str+' words left');
-			 }else{
-			 	$('#numleft').html('0 word left');
-			 	//$("#text").val('');
-			 	//$("#text").html("you are oversieze")
-			 	//myfunction();
-			 	var gettext=document.getElementById("text");
-			 	//$("text").val("123456");
-			 	var temp_string=new Array();
-			 	temp_string=gettext.value.split(" ");
-			 	var display="";
-			 	//$("#text").val(temp_string);
-			 	//$('#text').val(' ');
-			 	for(var i=0;i< 59;i++){
-			 		temp_string[i] = (temp_string[i]+" ");
-			 		//$("#text").val(temp_string[i]);
-			 		display += temp_string[i];
-			 		//$("#text").val(display);
-			 	}
-			 	$("#text").val(display);
-			 	/*val display="";
-			 	for(var j=0;j < 60;j++){
-			 		display += temp_string[j];
-			 	}
-			 	$("#text").val(display);*/
-			 	//$("#text").val("you are oversize oversize oversize");
-			 	$("#oversize").modal();
-			 }
-		 }).keyup();
-		 var field=document.getElementById("text");
-		 if(sessionStorage.getItem("text")){
-			 $('#text').html(sessionStorage.getItem("text"));
-		 }
-		 text.addEventListener("change",function(){
-			sessionStorage.setItem("text",field.value); 
-		 });
-		 //myfunction();
-		 });
- /*$(function(){
-	 $("text").html("you are over size");
- });*/
- $(function(){
-     $("#send").click(function(){
-        var val=$('input:radio[name="customize"]:checked').val();
-        if(val=="yes"){
-            var verbs = $("#verbs").val();
-            /*  window.alert();*/
-        	if(verbs==""){
-        		$("#ownverbs").modal();
-        	} 	
-        }          
-     });
- });
- 
-</script>
+
+<script src="js/main.js"></script>
+<link rel="stylesheet" href="css/main.css" />
+
 <title>main page</title>
-<style>
-  .jumbotron {
-  	background-color: #007991;
-  	color: #fff; 
-  }
-  .btn {
-  	width:120px;
-  	height:40px;
-  }
-  .position{ 
-  	margin:0 auto;
-    width:200px;
-  }
-  .comments {  
-    width: 100%;
-    overflow: auto;  
-    word-break: break-all;  
-    resize:none;
-   }
-</style>
 </head>
 <body>
-<div class="jumbotron text-center" style="width:100%">
+<div class="jumbotron text-center" id="header">
   <h2>Extract Task Phrases</h2>
   <p>reduce your reading loads</p> 
 </div>
-<nav class="navbar navbar-inverse" style="width:100%">
+<nav class="navbar navbar-inverse" id="header">
   <p class="navbar-text">Exetracting System</p>
   <ul class="nav navbar-nav">
     <li><a href="index.jsp" id="Maintab">Main</a></li>
@@ -121,24 +32,24 @@
 <form name="myForm" action="finding" method="post">
 	<div style="margin-left:10px">
 	<div class="row">
-    <div class="col-sm-6" style="width:50%">
+    <div class="col-sm-6" id="divsize">
     	<h4><span class="label label-primary">Text:</span></h4>
     </div>
-    <div class="col-sm-4" style="width:50%">
+    <div class="col-sm-4" id="divsize">
     	<h4><span class="label label-primary">Results:</span></h4>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6" style="width:50%">
+    <div class="col-sm-6" id="divsize">
     	input sentences within 60 words
     </div>
-    <div class="col-sm-4" style="width:50%"></div>
+    <div class="col-sm-4" id="divsize"></div>
   </div>
   <div class="row">
-    <div class="col-sm-6" style="width:50%">  
+    <div class="col-sm-6" id="divsize">  
     <textarea rows="10" id="text" name="text" class="comments"></textarea>  
 	</div> 
-    <div class="col-sm-4" style="width:50%">
+    <div class="col-sm-4" id="divsize">
     <table>
     	<% 
 				@SuppressWarnings("unchecked")
@@ -158,10 +69,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6" style="width:50%">
+    <div class="col-sm-6" id="divsize">
     	<span id ="numleft">60 words left</span>
     </div>
-    <div class="col-sm-4" id="userinput" style="width:50%"></div>
+    <!-- <div class="col-sm-4" id="userinput" id="divsize"></div> -->
   </div>
   </div>
 	<div class="position">

@@ -82,34 +82,15 @@ function reload(){
 	}
 }*/
 </script>
+<link rel="stylesheet" href="css/main.css" />
 <title>Setting</title>
-<style>
-  .jumbotron {
-  	background-color: #007991;
-  	color: #fff;
-  }
-  .btn {
-  	width:120px;
-  	height:40px;
-  }
-  .position{ 
-  	margin:0 auto;
-    width:200px;
-  }
-  .comments {  
-    width: 100%;
-    overflow: auto;  
-    word-break: break-all;  
-    resize:none;
-   }
-</style>
 </head>
 <body>
-<div class="jumbotron text-center" style="width:100%">
+<div class="jumbotron text-center" id="header">
   <h2>Extract Task Phrases</h2>
   <p>reduce your reading loads</p> 
 </div>
-<nav class="navbar navbar-inverse" style="width:100%">
+<nav class="navbar navbar-inverse" id="header">
   <p class="navbar-text">Exetracting System</p>
   <ul class="nav navbar-nav">
     <li><a href="index.jsp" id="Maintab">Main</a></li>
