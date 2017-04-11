@@ -93,8 +93,8 @@ function reload(){
   	height:40px;
   }
   .position{ 
-  	position:relative;  
-  	left:600px;
+  	margin:0 auto;
+    width:200px;
   }
   .comments {  
     width: 100%;
@@ -105,11 +105,11 @@ function reload(){
 </style>
 </head>
 <body>
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" style="width:100%">
   <h2>Extract Task Phrases</h2>
   <p>reduce your reading loads</p> 
 </div>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" style="width:100%">
   <p class="navbar-text">Exetracting System</p>
   <ul class="nav navbar-nav">
     <li><a href="index.jsp" id="Maintab">Main</a></li>

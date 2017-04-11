@@ -94,8 +94,8 @@
   	height:40px;
   }
   .position{ 
-  	position:relative;  
-  	left:600px;
+  	margin:0 auto;
+    width:200px;
   }
   .comments {  
     width: 100%;
@@ -106,11 +106,11 @@
 </style>
 </head>
 <body>
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" style="width:100%">
   <h2>Extract Task Phrases</h2>
   <p>reduce your reading loads</p> 
 </div>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" style="width:100%">
   <p class="navbar-text">Exetracting System</p>
   <ul class="nav navbar-nav">
     <li><a href="index.jsp" id="Maintab">Main</a></li>
@@ -119,25 +119,26 @@
   
 </nav>
 <form name="myForm" action="finding" method="post">
+	<div style="margin-left:10px">
 	<div class="row">
-    <div class="col-sm-6" >
+    <div class="col-sm-6" style="width:50%">
     	<h4><span class="label label-primary">Text:</span></h4>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-4" style="width:50%">
     	<h4><span class="label label-primary">Results:</span></h4>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6" style="width:50%">
     	input sentences within 60 words
     </div>
-    <div class="col-sm-4"></div>
+    <div class="col-sm-4" style="width:50%"></div>
   </div>
   <div class="row">
-    <div class="col-sm-6">  
+    <div class="col-sm-6" style="width:50%">  
     <textarea rows="10" id="text" name="text" class="comments"></textarea>  
 	</div> 
-    <div class="col-sm-4">
+    <div class="col-sm-4" style="width:50%">
     <table>
     	<% 
 				@SuppressWarnings("unchecked")
@@ -157,10 +158,11 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6" style="width:50%">
     	<span id ="numleft">60 words left</span>
     </div>
-    <div class="col-sm-4" id="userinput"></div>
+    <div class="col-sm-4" id="userinput" style="width:50%"></div>
+  </div>
   </div>
 	<div class="position">
 		<button type="submit" id="send" class="btn btn-primary">Search</button>
