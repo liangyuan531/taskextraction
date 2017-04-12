@@ -72,7 +72,7 @@ public class FindingServlet extends HttpServlet {
 		//get IP address
 		String address = InetAddress.getLocalHost().getHostAddress();
 		String itemSql = "INSERT INTO Extraction VALUES ('"+ address +"','"+ result +"','"+ text +"','a','b','sss','ss')";	
-		createTable();
+		//createTable();
 		//insertItem(itemSql);
 		
 		request.setAttribute("tasks", tasks);

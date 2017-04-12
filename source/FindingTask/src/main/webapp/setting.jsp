@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,7 +9,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
-	$("#yesownverbs").html("this is yesownverbs");
+	/* $("#yesownverbs").html("this is yesownverbs"); */
 	if(sessionStorage.getItem("noprogramming")=="no"){
 		//$("#yesownverbs").html(sessionStorage.getItem("noprogramming"));
 		$("#noprogramming").attr("checked",true);
@@ -120,7 +120,7 @@ function reload(){
     				</div>
     				<div class="radio">
         				<label><input type="radio" id="yesselfprogramming" name="programming" value="yes">Yes,use own verbs</label>
-        				<textarea class="comments" id="yesownverbs" name="verbs" rows="3"></textarea>
+        				<textarea class="comments" id="yesownverbs" name="verbs" rows="3" placeholder="input your verbs"></textarea>
     				</div>
        			</td>
         		<td>
@@ -133,7 +133,7 @@ function reload(){
     				</div>
     				<div class="radio">
     					<label><input type="radio" id="yesselfgeneric" name="generic" value="yes">Yes,use own</label>
-        				<textarea class="comments" id="owngeneric" name="selfgeneric" rows="3"></textarea>
+        				<textarea class="comments" id="owngeneric" name="selfgeneric" rows="3" placeholder="input your accusatives"></textarea>
     				</div>
         		</td>
         		<td>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.*" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -40,14 +40,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6" id="divsize">
-    	input sentences within 60 words
-    </div>
-    <div class="col-sm-4" id="divsize"></div>
-  </div>
-  <div class="row">
     <div class="col-sm-6" id="divsize">  
-    <textarea rows="10" id="text" name="text" class="comments"></textarea>  
+    <textarea rows="10" id="text" name="text" class="comments" placeholder="input sentences within 60 words"></textarea>  
 	</div> 
     <div class="col-sm-4" id="divsize">
     <table>
