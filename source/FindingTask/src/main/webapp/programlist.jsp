@@ -15,11 +15,22 @@
     <li><a href="setting.jsp">back</a></li>
   </ul>
 </nav>
-<%
-	String[] verbs = (String[])session.getAttribute("programminglist");
-	for(int i=0;i<verbs.length;i++){%>
-		<%=verbs[i]%><br/>
-	<%}
-%>
+<div style="margin-left:20px">
+<table>
+	<%String[] verbs = (String[])session.getAttribute("programminglist");%>
+	<tr>
+	<td>
+	<%for(int i=0;i<verbs.length/2;i++){%>
+		<%=verbs[i] + " "%><br>
+	<%}%>
+	</td>
+	<td>
+	<%for(int i=verbs.length/2;i<verbs.length;i++){%>
+		<%=verbs[i] + " "%><br>
+	<%}%>
+	</td>
+	</tr>
+</table>
+</div>
 </body>
 </html>

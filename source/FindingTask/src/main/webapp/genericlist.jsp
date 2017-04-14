@@ -15,11 +15,22 @@
     <li><a href="setting.jsp">back</a></li>
   </ul>
 </nav>
-<%
-	String[] generic = (String[])session.getAttribute("genericlist");
-	for(int i=0;i<generic.length;i++){%>
-		<%=generic[i]%><br/>
-	<%}
-%>
+<div style="margin-left:20px">
+<table>
+	<%String[] generic = (String[])session.getAttribute("genericlist");%>
+	<tr>
+	<td>
+	<%for(int i=0;i<generic.length/2;i++){%>
+		<%=generic[i]+ " "%><br>
+	<%}%>
+	</td>
+	<td>
+	<%for(int i=generic.length/2;i<generic.length;i++){%>
+		<%=generic[i]+ " "%><br>
+	<%}%>
+	</td>
+	</tr>
+</table>
+</div>
 </body>
 </html>
