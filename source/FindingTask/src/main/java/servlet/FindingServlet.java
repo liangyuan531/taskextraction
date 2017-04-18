@@ -45,6 +45,12 @@ public class FindingServlet extends HttpServlet {
 		//content type
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
+		String generic = (String)session.getAttribute("gen_option");
+		String programming = (String)session.getAttribute("pro_option");
+		String myVerbs = (String)session.getAttribute("myVerbs");
+		String myAccusatives = (String)session.getAttribute("myAccusatives");
+		String otherOptions = "";
+		
 		String setting = (String)session.getAttribute("isSetting");
 		//get input from page
 		String text =new String(request.getParameter("text"));
@@ -56,9 +62,12 @@ public class FindingServlet extends HttpServlet {
 		if(setting == null){
 			Configuration.setGen_option("yeswithdefined");
 			Configuration.setPro_option("yeswithdefined");
+			generic = "yeswithdefined";
+			programming = "yeswithdefined";
 			sentencesWithTasks = taskExtractor.extractTasks(text,true,true,true,true,true,true);
 		}else{
 			List<Boolean> options = checkOptions(tempOptions);
+			otherOptions = otherOptions(options);
 			sentencesWithTasks = taskExtractor.extractTasks(text,options.get(0),options.get(1),options.get(2),options.get(3),options.get(4),options.get(5));
 		}
 		for (Sentence sentenceWithTasks : sentencesWithTasks) {
@@ -69,14 +78,51 @@ public class FindingServlet extends HttpServlet {
 		String result = "";
 		if(tasks.size() != 0)
 			result = formatResults(tasks);
+		
+		//System.out.println("g: "+otherOptions);
+		//System.out.println("p:" +programming);
+		
 		//get IP address
 		String address = InetAddress.getLocalHost().getHostAddress();
-		String itemSql = "INSERT INTO Extraction VALUES ('"+ address +"','"+ result +"','"+ text +"','a','b','sss','ss')";	
+		
+		String itemSql = "INSERT INTO Extraction VALUES ('"
+				+ address +"','"
+				+ result +"','"
+				+ programming +"','"
+				+ generic +"','"
+				+ myVerbs +"','"
+				+ myAccusatives +"','"
+				+ otherOptions +"','"
+				+ text +"')";	
 		//createTable();
 		//insertItem(itemSql);
 		
 		request.setAttribute("tasks", tasks);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
+	}
+	
+	private String otherOptions(List<Boolean> options){
+		String option = "";
+		if(options.get(0) == true){
+			option += "direct object,";
+		}
+		if(options.get(1) == true){
+			option += "passive nominal subject,";
+		}
+		if(options.get(2) == true){
+			option += "relative clause modifier,";
+		}
+		if(options.get(3) == true){
+			option += "prepositional modifier,";
+		}
+		if(options.get(4) == true){
+			option += "RegexedCode,";
+		}
+		if(options.get(5) == true){
+			option += "TaggedCode,";
+		}
+		option = option.substring(0, option.length()-1);
+		return option;
 	}
 	
 	private void insertItem(String itemSql){
@@ -99,8 +145,7 @@ public class FindingServlet extends HttpServlet {
 	            + "isGenericAction varchar(10),"
 	            + "PROGRAMMING_ACTIONS varchar(100),"
 	     		+ "GENERIC_ACCUSATIVES varchar(100),"
-	            + "GRAMMATICAL_DEPENDENCIES varchar(50),"
-	            + "CODE varchar(50),"
+	            + "GRAMMATICAL_DEPENDENCIES and CODE varchar(50),"
 	     		+ "TEXT varchar(500))";
 	    try {
 	    	Connection conn = getConnection();
