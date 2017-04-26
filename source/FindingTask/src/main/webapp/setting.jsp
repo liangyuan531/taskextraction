@@ -116,11 +116,11 @@ function reload(){
     				</div>
         			<div class="radio">
       					<label><input type="radio" id="yesprogramming" name="programming" value="yeswithdefined" checked="checked">Yes,use pre-defined verbs</label>
-    					<a href="programlist">[see details]</a>
+    					<a href="programlist" target="view_window">[see details]</a>
     				</div>
     				<div class="radio">
         				<label><input type="radio" id="yesselfprogramming" name="programming" value="yes">Yes,use own verbs</label>
-        				<textarea class="comments" id="yesownverbs" name="verbs" rows="3" placeholder="input your verbs"></textarea>
+        				<textarea class="comments" id="yesownverbs" name="verbs" rows="3" placeholder="input your verbs, divided by comma"></textarea>
     				</div>
        			</td>
         		<td>
@@ -129,11 +129,11 @@ function reload(){
     				</div>
         			<div class="radio">
       					<label><input type="radio" id="yesgeneric" name="generic" value="yeswithdefined" checked="checked">Yes,use pre-defined</label>
-      					<a href="genericlist">[see details]</a>
+      					<a href="genericlist" target="view_window">[see details]</a>
     				</div>
     				<div class="radio">
     					<label><input type="radio" id="yesselfgeneric" name="generic" value="yes">Yes,use own</label>
-        				<textarea class="comments" id="owngeneric" name="selfgeneric" rows="3" placeholder="input your accusatives"></textarea>
+        				<textarea class="comments" id="owngeneric" name="selfgeneric" rows="3" placeholder="input your accusatives, divided by comma"></textarea>
     				</div>
         		</td>
         		<td>
@@ -153,6 +153,7 @@ function reload(){
         		<td>
         			<div class="checkbox">
       					<label><input type="checkbox" id="yesregexed"name="RegexedCode" value="yes" checked="checked">RegexedCode</label>
+      					<a href="regularexpression.html" target="view_window">[see details]</a>
     				</div>
     				<div class="checkbox">
       					<label><input type="checkbox" id="yestagged"name="TaggedCode" value="yes" checked="checked">TaggedCode</label>

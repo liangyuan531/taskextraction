@@ -150,10 +150,9 @@ public class TaskAnalyzer {
 			List<IndexedWord> lVerbs = new ArrayList<IndexedWord>();
 			lVerbs.add(lVerb);
 			lVerbalPhrase.setVerb(lVerbs, pCollapsedDependenciesAnnotation);
-
 			// skip verbs that aren't programming actions
-			if (!(Configuration.getInstance().getProgrammingActions().size() == 1)
-					&& !Configuration.getInstance().getProgrammingActions()
+			if (/*!(Configuration.getInstance().getProgrammingActions().size() == 1)
+					&&*/ !Configuration.getInstance().getProgrammingActions()
 							.contains(lVerbalPhrase.getVerbString())) {
 				continue;
 			}
@@ -166,6 +165,7 @@ public class TaskAnalyzer {
 					if (lConjVerb.tag().startsWith("VB")
 							&& lConjVerb.word().toLowerCase()
 									.matches("[a-z ]+")) {
+						System.out.println("1st: "+lConjVerb);
 						lVerbs.add(lConjVerb);
 					}
 				}
@@ -210,7 +210,7 @@ public class TaskAnalyzer {
 					}
 				}
 			}
-
+			
 			lVerbalPhrase.setVerb(lVerbs, pCollapsedDependenciesAnnotation);
 
 			// get accusatives

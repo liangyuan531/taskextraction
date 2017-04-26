@@ -10,12 +10,7 @@
 <title>generic accusative</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse" id="header">
-  <ul class="nav navbar-nav">
-    <li><a href="setting.jsp">back</a></li>
-  </ul>
-</nav>
-<div style="margin-left:20px">
+<div style="margin-left:20px;">
 <table>
 	<%String[] generic = (String[])session.getAttribute("genericlist");%>
 	<tr>
