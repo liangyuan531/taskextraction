@@ -23,8 +23,8 @@ public class SettingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private String programming;
     private String generic;
-    private String myVerbs;
-    private String myAccusatives;
+    private String myVerbs = "";
+    private String myAccusatives = "";
     public SettingServlet() {
         super();
         

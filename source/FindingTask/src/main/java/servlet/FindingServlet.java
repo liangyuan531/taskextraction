@@ -11,7 +11,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,6 +64,8 @@ public class FindingServlet extends HttpServlet {
 			generic = "yeswithdefined";
 			programming = "yeswithdefined";
 			sentencesWithTasks = taskExtractor.extractTasks(text,true,true,true,true,true,true);
+			otherOptions = "direct object, passive nominal subject, relative clause modifier, "
+					+ "prepositional modifier, RegexedCode, TaggedCode";
 		}else{
 			List<Boolean> options = checkOptions(tempOptions);
 			otherOptions = otherOptions(options);
@@ -95,7 +96,7 @@ public class FindingServlet extends HttpServlet {
 				+ otherOptions +"','"
 				+ text +"')";	
 		//createTable();
-		//insertItem(itemSql);
+		insertItem(itemSql);
 		
 		request.setAttribute("tasks", tasks);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -121,7 +122,8 @@ public class FindingServlet extends HttpServlet {
 		if(options.get(5) == true){
 			option += "TaggedCode,";
 		}
-		option = option.substring(0, option.length()-1);
+		if(option.length() > 0)
+			option = option.substring(0, option.length()-1);
 		return option;
 	}
 	
@@ -130,6 +132,7 @@ public class FindingServlet extends HttpServlet {
 	    	Connection conn = getConnection();
 	    	Statement state = conn.createStatement();
 	    	state.execute(itemSql);
+	    	conn.close();
 	    } catch (URISyntaxException e1) {
 	    	e1.printStackTrace();
 	    } catch (SQLException e1) {
@@ -140,17 +143,18 @@ public class FindingServlet extends HttpServlet {
 	private void createTable(){
 	    String createTableSql = "CREATE TABLE extraction ("
 	     		+ "IP_Addr varchar(20),"
-	     		+ "Results varchar(500),"
-	            + "isNonprogramming varchar(100),"
-	            + "isGenericAction varchar(10),"
-	            + "PROGRAMMING_ACTIONS varchar(100),"
-	     		+ "GENERIC_ACCUSATIVES varchar(100),"
-	            + "GRAMMATICAL_DEPENDENCIES and CODE varchar(50),"
-	     		+ "TEXT varchar(500))";
+	     		+ "Results varchar(1000),"
+	            + "isNonprogramming varchar(1000),"
+	            + "isGenericAction varchar(1000),"
+	            + "PROGRAMMING_ACTIONS varchar(1000),"
+	     		+ "GENERIC_ACCUSATIVES varchar(1000),"
+	            + "GRAMMATICAL_DEPENDENCIES_and_CODE varchar(1000),"
+	     		+ "TEXT varchar(1000))";
 	    try {
 	    	Connection conn = getConnection();
 	    	Statement state = conn.createStatement();
 	    	state.execute(createTableSql);
+	    	conn.close();
 	    } catch (URISyntaxException e1) {
 	    	e1.printStackTrace();
 	    } catch (SQLException e1) {
