@@ -1,0 +1,171 @@
+$(document).ready(function(){
+	/* $("#yesownverbs").html("this is yesownverbs"); */
+	if(sessionStorage.getItem("noprogramming")=="no"){
+		//$("#yesownverbs").html(sessionStorage.getItem("noprogramming"));
+		$("#noprogramming").attr("checked",true);
+		sessionStorage.removeItem("noprogramming");
+	}
+	if(sessionStorage.getItem("nogeneric")=="no"){
+		//$("#yesownverbs").html(sessionStorage.getItem("noprogramming"));
+		$("#nogeneric").attr("checked",true);
+		sessionStorage.removeItem("nogeneric");
+	}
+	if(sessionStorage.getItem("yesselfprogramming")=="yes"){
+		//$("#yesownverbs").html("yes");
+		$("#yesselfprogramming").attr("checked",true);
+		sessionStorage.removeItem("yesselfprogramming");
+	}
+	if(sessionStorage.getItem("yesselfgeneric")=="yes"){
+		//$("#yesownverbs").html("yes");
+		$("#yesselfgeneric").attr("checked",true);
+		sessionStorage.removeItem("yesselfgeneric");
+	}
+	if(sessionStorage.getItem("yesdirectobj") == "yes"){
+		$("#yesdirectobj").attr("checked",true);
+		sessionStorage.removeItem("yesdirectobj");
+	}
+	if(sessionStorage.getItem("yesownverbs")){
+		$("#yesownverbs").html(sessionStorage.getItem("yesownverbs"));
+		sessionStorage.removeItem("yesownverbs");
+	}
+	if(sessionStorage.getItem("owngeneric")){
+		$("#owngeneric").html(sessionStorage.getItem("owngeneric"));
+		sessionStorage.removeItem("owngeneric");
+	}
+	if(sessionStorage.getItem("yesdirectobj") == -1){
+		$("#yesdirectobj").attr("checked",false);
+		sessionStorage.removeItem("yesdirectobj");
+	}
+	if(sessionStorage.getItem("yespassive") == -1){
+		$("#yespassive").attr("checked",false);
+		sessionStorage.removeItem("yespassive");
+	}
+	if(sessionStorage.getItem("yesrelative") == -1){
+		$("#yesrelative").attr("checked",false);
+		sessionStorage.removeItem("yesrelative");
+	}
+	if(sessionStorage.getItem("yesprepositional") == -1){
+		$("#yesprepositional").attr("checked",false);
+		sessionStorage.removeItem("yesprepositional");
+	}
+	if(sessionStorage.getItem("yesregexed") == -1 ){
+		$("#yesregexed").attr("checked",false);
+		sessionStorage.removeItem("yesregexed");
+	}
+	if(sessionStorage.getItem("yestagged") == -1 ){
+		$("#yestagged").attr("checked",false);
+		sessionStorage.removeItem("yestagged");
+	}
+	
+});
+$(function(){
+	$("#Maintab").click(function(){
+		if($("#noprogramming").prop("checked")){
+			sessionStorage.setItem("noprogramming",$("#noprogramming").val());
+		}
+		if($("#nogeneric").prop("checked")){
+			sessionStorage.setItem("nogeneric",$("#nogeneric").val());
+		}
+		if($("#yesselfprogramming").prop("checked")){
+			sessionStorage.setItem("yesselfprogramming",$("#yesselfprogramming").val());
+		}
+		if($("#yesselfgeneric").prop("checked")){
+			sessionStorage.setItem("yesselfgeneric",$("#yesselfgeneric").val());
+		}
+		if(!$("#yesdirectobj").prop("checked")){
+			sessionStorage.setItem("yesdirectobj",-1);
+		}
+		if(!$("#yespassive").prop("checked")){
+			sessionStorage.setItem("yespassive",-1);
+		}
+		if(!$("#yesrelative").prop("checked")){
+			sessionStorage.setItem("yesrelative",-1);
+		}
+		if(!$("#yesprepositional").prop("checked")){
+			sessionStorage.setItem("yesprepositional",-1);
+		}
+		if(!$("#yesregexed").prop("checked")){
+			sessionStorage.setItem("yesregexed",-1);
+		}
+		if(!$("#yestagged").prop("checked")){
+			sessionStorage.setItem("yestagged",-1);
+		}
+		sessionStorage.setItem("yesownverbs",$("#yesownverbs").val());
+		sessionStorage.setItem("owngeneric",$("#owngeneric").val());
+	});
+});
+$(function(){
+	$("#Settingtab").click(function(){
+		if($("#noprogramming").prop("checked")){
+			sessionStorage.setItem("noprogramming",$("#noprogramming").val());
+		}
+		if($("#nogeneric").prop("checked")){
+			sessionStorage.setItem("nogeneric",$("#nogeneric").val());
+		}
+		if($("#yesselfprogramming").prop("checked")){
+			sessionStorage.setItem("yesselfprogramming",$("#yesselfprogramming").val());
+		}
+		if($("#yesselfgeneric").prop("checked")){
+			sessionStorage.setItem("yesselfgeneric",$("#yesselfgeneric").val());
+		}
+		if(!$("#yesdirectobj").prop("checked")){
+			sessionStorage.setItem("yesdirectobj",-1);
+		}
+		if(!$("#yespassive").prop("checked")){
+			sessionStorage.setItem("yespassive",-1);
+		}
+		if(!$("#yesrelative").prop("checked")){
+			sessionStorage.setItem("yesrelative",-1);
+		}
+		if(!$("#yesprepositional").prop("checked")){
+			sessionStorage.setItem("yesprepositional",-1);
+		}
+		if(!$("#yesregexed").prop("checked")){
+			sessionStorage.setItem("yesregexed",-1);
+		}
+		if(!$("#yestagged").prop("checked")){
+			sessionStorage.setItem("yestagged",-1);
+		}
+		sessionStorage.setItem("yesownverbs",$("#yesownverbs").val());
+		sessionStorage.setItem("owngeneric",$("#owngeneric").val());
+	});
+});
+$(function(){
+	$("#ok").click(function(){
+		if($("#noprogramming").prop("checked")){
+			sessionStorage.setItem("noprogramming",$("#noprogramming").val());
+		}
+		if($("#nogeneric").prop("checked")){
+			sessionStorage.setItem("nogeneric",$("#nogeneric").val());
+		}
+		if($("#yesselfprogramming").prop("checked")){
+			sessionStorage.setItem("yesselfprogramming",$("#yesselfprogramming").val());
+		}
+		if($("#yesselfgeneric").prop("checked")){
+			sessionStorage.setItem("yesselfgeneric",$("#yesselfgeneric").val());
+		}
+		if(!$("#yesdirectobj").prop("checked")){
+			sessionStorage.setItem("yesdirectobj",-1);
+		}
+		if(!$("#yespassive").prop("checked")){
+			sessionStorage.setItem("yespassive",-1);
+		}
+		if(!$("#yesrelative").prop("checked")){
+			sessionStorage.setItem("yesrelative",-1);
+		}
+		if(!$("#yesprepositional").prop("checked")){
+			sessionStorage.setItem("yesprepositional",-1);
+		}
+		if(!$("#yesregexed").prop("checked")){
+			sessionStorage.setItem("yesregexed",-1);
+		}
+		if(!$("#yestagged").prop("checked")){
+			sessionStorage.setItem("yestagged",-1);
+		}
+		sessionStorage.setItem("yesownverbs",$("#yesownverbs").val());
+		sessionStorage.setItem("owngeneric",$("#owngeneric").val());
+	});
+});
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});

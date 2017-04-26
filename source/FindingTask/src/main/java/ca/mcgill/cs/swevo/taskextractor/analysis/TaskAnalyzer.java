@@ -151,9 +151,10 @@ public class TaskAnalyzer {
 			lVerbs.add(lVerb);
 			lVerbalPhrase.setVerb(lVerbs, pCollapsedDependenciesAnnotation);
 			// skip verbs that aren't programming actions
-			if (/*!(Configuration.getInstance().getProgrammingActions().size() == 1)
-					&&*/ !Configuration.getInstance().getProgrammingActions()
+			if (!(Configuration.getInstance().getProgrammingActions().size() == 1)
+					&& !Configuration.getInstance().getProgrammingActions()
 							.contains(lVerbalPhrase.getVerbString())) {
+				System.out.println("continue");
 				continue;
 			}
 
@@ -165,7 +166,6 @@ public class TaskAnalyzer {
 					if (lConjVerb.tag().startsWith("VB")
 							&& lConjVerb.word().toLowerCase()
 									.matches("[a-z ]+")) {
-						System.out.println("1st: "+lConjVerb);
 						lVerbs.add(lConjVerb);
 					}
 				}
