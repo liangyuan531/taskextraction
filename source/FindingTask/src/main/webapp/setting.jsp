@@ -9,6 +9,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
+    $('[data-toggle="popover"]').popover(); 
+});
+$(document).ready(function(){
 	/* $("#yesownverbs").html("this is yesownverbs"); */
 	if(sessionStorage.getItem("noprogramming")=="no"){
 		//$("#yesownverbs").html(sessionStorage.getItem("noprogramming"));
@@ -204,15 +207,15 @@ function reload(){
   		<table class="table">
     		<thead>
       			<tr>
-        			<th><h4><span class="label label-primary">Detect tasks that contain verbs from a pre-defined list?</span></h4></th>
-        			<th><h4><span class="label label-primary">Use generic accusative?</span></h4></th>
+        			<th><h4><span class="label label-primary">Use pre-defined list?</span></h4></th>
+        			<th><h4><span class="label label-primary">Use pre-defined generic accusative list?</span></h4></th>
         			<th><h4><span class="label label-primary">Grammatical dependencies</span></h4></th>
         			<th><h4><span class="label label-primary">Code</span></h4></th>
       			</tr>
     		</thead>
     		<tbody>
       			<tr>
-        		<td>
+        		<td width="25%">
         			<div class="radio">
       					<label><input type="radio" id="noprogramming" name="programming" value="no">No</label>
     				</div>
@@ -225,7 +228,7 @@ function reload(){
         				<textarea class="comments" id="yesownverbs" name="verbs" rows="3" placeholder="input your verbs, divided by comma"></textarea>
     				</div>
        			</td>
-        		<td>
+        		<td width="25%">
         			<div class="radio">
       					<label><input type="radio" id="nogeneric" name="generic" value="no">No</label>
     				</div>
@@ -238,21 +241,25 @@ function reload(){
         				<textarea class="comments" id="owngeneric" name="selfgeneric" rows="3" placeholder="input your accusatives, divided by comma"></textarea>
     				</div>
         		</td>
-        		<td>
+        		<td width="25%">
         			<div class="checkbox">
       					<label><input type="checkbox" id="yesdirectobj" name="direct_object" value="yes" checked="checked">direct object</label>
+      					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.creates a task"/>
     				</div>
     				<div class="checkbox">
       					<label><input type="checkbox" id="yespassive"name="passive_nominal_subject" value="yes" checked="checked">passive nominal subject</label>
+    					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.task is created"/>
     				</div>
     				<div class="checkbox">
       					<label><input type="checkbox" id="yesrelative" name="relative_clause_modifier" value="yes" checked="checked">relative clause modifier</label>
+    					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.create from text"/>
     				</div>
     				<div class="checkbox">
       					<label><input type="checkbox" id="yesprepositional"name="prepositional_modifier" value="yes" checked="checked">prepositional modifier</label>
+    					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.text inCludes camel case"/>
     				</div>
         		</td>
-        		<td>
+        		<td width="25%">
         			<div class="checkbox">
       					<label><input type="checkbox" id="yesregexed"name="RegexedCode" value="yes" checked="checked">RegexedCode</label>
       					<a href="regularexpression.html" target="view_window">[see details]</a>
@@ -266,7 +273,7 @@ function reload(){
   			</table>
 	</div>
 	<div class="position">
-		<button type="submit" id="ok" class="btn btn-primary">OK</button>
+		<button type="submit" id="ok" class="btn btn-primary">SAVE</button>
 	</div>
 </form>	
 </body>

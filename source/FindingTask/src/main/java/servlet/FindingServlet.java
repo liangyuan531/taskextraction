@@ -139,7 +139,7 @@ public class FindingServlet extends HttpServlet {
 	
 	private void createTable(){
 	    String createTableSql = "CREATE TABLE extraction ("
-	     		+ "IP_Addr varchar(20), "
+	     		+ "IP_Addr varchar(20),"
 	     		+ "Results varchar(500),"
 	            + "isNonprogramming varchar(100),"
 	            + "isGenericAction varchar(10),"
