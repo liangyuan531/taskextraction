@@ -28,7 +28,7 @@ function reload(){
 <nav class="navbar navbar-inverse" id="header">
   <p class="navbar-text">Exetracting System</p>
   <ul class="nav navbar-nav">
-    <li><a href="index.jsp" id="Maintab">Main</a></li>
+    <li><a href="" id="Maintab" data-toggle="modal" data-target="#saveoptions">Main</a></li>
     <li><a href="setting.jsp" id="Settingtab">Setting</a></li>
   </ul>
 </nav>
@@ -105,6 +105,22 @@ function reload(){
 	<div class="position">
 		<button type="submit" id="ok" class="btn btn-primary">SAVE</button>
 	</div>
-</form>	
+</form>
+<div class="modal fade" id="saveoptions" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="color:red">Warning</h4>
+        </div>
+        <div class="modal-body">
+          <p>you did not save your options</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="OKbutton" class="btn btn-default" data-dismiss="modal">OK</button>
+        </div>
+      </div> 
+    </div>
+</div>	
 </body>
 </html>
