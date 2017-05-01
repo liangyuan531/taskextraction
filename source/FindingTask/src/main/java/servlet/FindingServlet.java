@@ -63,6 +63,8 @@ public class FindingServlet extends HttpServlet {
 			Configuration.setPro_option("yeswithdefined");
 			generic = "yeswithdefined";
 			programming = "yeswithdefined";
+			myVerbs = "";
+			myAccusatives = "";
 			sentencesWithTasks = taskExtractor.extractTasks(text,true,true,true,true,true,true);
 			otherOptions = "direct object, passive nominal subject, relative clause modifier, "
 					+ "prepositional modifier, RegexedCode, TaggedCode";
