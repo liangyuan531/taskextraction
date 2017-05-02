@@ -8,7 +8,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -49,7 +51,7 @@ public class FindingServlet extends HttpServlet {
 		String myVerbs = (String)session.getAttribute("myVerbs");
 		String myAccusatives = (String)session.getAttribute("myAccusatives");
 		String otherOptions = "";
-		
+
 		String setting = (String)session.getAttribute("isSetting");
 		//get input from page
 		String text =new String(request.getParameter("text"));
@@ -63,8 +65,8 @@ public class FindingServlet extends HttpServlet {
 			Configuration.setPro_option("yeswithdefined");
 			generic = "yeswithdefined";
 			programming = "yeswithdefined";
-			myVerbs = "";
-			myAccusatives = "";
+      myVerbs = "";
+      myAccusatives = "";
 			sentencesWithTasks = taskExtractor.extractTasks(text,true,true,true,true,true,true);
 			otherOptions = "direct object, passive nominal subject, relative clause modifier, "
 					+ "prepositional modifier, RegexedCode, TaggedCode";
@@ -81,29 +83,40 @@ public class FindingServlet extends HttpServlet {
 		String result = "";
 		if(tasks.size() != 0)
 			result = formatResults(tasks);
-		
+
 		//System.out.println("g: "+otherOptions);
 		//System.out.println("p:" +programming);
-		
+
 		//get IP address
-		String address = InetAddress.getLocalHost().getHostAddress();
-		
-		String itemSql = "INSERT INTO Extraction VALUES ('"
-				+ address +"','"
+		//String address = InetAddress.getLocalHost().getHostAddress();
+		String time = getTime();
+		String country = request.getLocale().getCountry();
+		//text = text.replaceAll("\\s", " ");
+		//System.out.println(text);
+		String itemSql = "INSERT INTO extraction VALUES ('"
+				+ time +"','"
+				+ country +"','"
 				+ result +"','"
 				+ programming +"','"
 				+ generic +"','"
 				+ myVerbs +"','"
 				+ myAccusatives +"','"
 				+ otherOptions +"','"
-				+ text +"')";	
+				+ text +"')";
 		//createTable();
 		insertItem(itemSql);
-		
+		//System.out.println(request.getLocale().getCountry());
 		request.setAttribute("tasks", tasks);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 	
+	private String getTime(){
+		Date now = new Date(); 
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		String time = dateFormat.format(now); 
+		return time;
+	}
+
 	private String otherOptions(List<Boolean> options){
 		String option = "";
 		if(options.get(0) == true){
@@ -128,7 +141,7 @@ public class FindingServlet extends HttpServlet {
 			option = option.substring(0, option.length()-1);
 		return option;
 	}
-	
+
 	private void insertItem(String itemSql){
 	    try {
 	    	Connection conn = getConnection();
@@ -141,17 +154,18 @@ public class FindingServlet extends HttpServlet {
 	    	e1.printStackTrace();
 	    }
 	}
-	
+
 	private void createTable(){
 	    String createTableSql = "CREATE TABLE extraction ("
-	     		+ "IP_Addr varchar(20),"
-	     		+ "Results varchar(1000),"
+	    		+ "Time varchar(20),"
+	     		+ "Country varchar(20),"
+	     		+ "Results varchar(5000),"
 	            + "isNonprogramming varchar(1000),"
 	            + "isGenericAction varchar(1000),"
 	            + "PROGRAMMING_ACTIONS varchar(1000),"
 	     		+ "GENERIC_ACCUSATIVES varchar(1000),"
 	            + "GRAMMATICAL_DEPENDENCIES_and_CODE varchar(1000),"
-	     		+ "TEXT varchar(1000))";
+	     		+ "TEXT varchar(5000))";
 	    try {
 	    	Connection conn = getConnection();
 	    	Statement state = conn.createStatement();
