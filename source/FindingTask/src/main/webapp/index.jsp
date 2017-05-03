@@ -26,7 +26,7 @@
   <ul class="nav navbar-nav">
     <li><a href="index.jsp" id="Maintab">Main</a></li>
     <li><a href="setting.jsp" id="Settingtab">Setting</a></li>
-    <li><a href="login.jsp">Database</a></li>
+    <li><a href="login.jsp" target="view_window">Database</a></li>
   </ul>
   
 </nav>

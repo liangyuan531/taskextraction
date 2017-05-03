@@ -9,6 +9,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Database</title>
+<%  
+    if(session.getAttribute("userinfo") == null) {  
+%>  
+        <script type="text/javascript"> 
+        	//$("#login").modal();
+        	alert("Must login");
+            window.document.location.href="login.jsp";  
+        </script>   
+<%  
+    }else{
+    	session.removeAttribute("userinfo");
+    }
+%> 
 </head>
 <body>
 <table class="table table-striped">
@@ -47,5 +60,21 @@
 		<%}
 		}%>
 </table>
+<div class="modal fade" id="login" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="color:red">Warning</h4>
+        </div>
+        <div class="modal-body">
+          <p>Must login</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="OKbutton" class="btn btn-default" data-dismiss="modal">OK</button>
+        </div>
+      </div> 
+    </div>
+  </div>
 </body>
 </html>

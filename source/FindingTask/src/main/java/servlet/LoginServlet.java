@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
 		String userName = request.getParameter("username").trim();  
 	    String userPwd = request.getParameter("password").trim();  
 	    HttpSession session = request.getSession();
+	    session.setAttribute("userinfo", "OK");
 	    Map<String,String> account = getAccount();
 	    if(account.containsKey(userName)){
 	    	String pwd = account.get(userName);
