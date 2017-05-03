@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -42,11 +43,12 @@ public class LoginServlet extends HttpServlet {
 		    	String sql = "SELECT * FROM extraction";
 		    	ResultSet tempData = state.executeQuery(sql);
 		    	while(tempData.next()){
-		    		String data = "";
+		    		//String data = "";
 		    		for(int i=1;i<10;i++){
-		    			data += tempData.getString(i) + " ";
+		    			//data += tempData.getString(i) + " ";
+		    			database.add(tempData.getString(i));
 		    		}
-		    		database.add(data);
+		    		//database.add(data);
 		    	}
 		    	conn.close();
 			} catch (URISyntaxException e) {
@@ -54,12 +56,14 @@ public class LoginServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-	        System.out.println("data: "+database);
+	        //System.out.println("data: "+database);
 	        session.setAttribute("data", database);
 	        response.sendRedirect("database.jsp");
 	    } 
 	    else {  
-	        response.sendRedirect("login.jsp");     
+	        //response.sendRedirect("login.jsp");   
+	    	PrintWriter out = response.getWriter();
+	    	out.println("username or password error");
 	    }
 	}
 	

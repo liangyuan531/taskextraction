@@ -89,13 +89,15 @@ function reload(){
     					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.text inCludes camel case"/>
     				</div>
         		</td>
-        		<td width="30%">
+        		<td >
         			<div class="checkbox">
       					<label><input type="checkbox" id="yesregexed"name="RegexedCode" value="yes" checked="checked">RegexedCode</label>
       					<a href="regularexpression.html" target="view_window">[see details]</a>
+      					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="regular expression"/>
     				</div>
     				<div class="checkbox">
       					<label><input type="checkbox" id="yestagged"name="TaggedCode" value="yes" checked="checked">TaggedCode</label>
+      					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="<tt></tt>"/>
     				</div>
         		</td>
       			</tr>
