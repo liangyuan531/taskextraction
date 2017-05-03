@@ -47,15 +47,17 @@ $(document).ready(function()
 		 if(sessionStorage.getItem("text")){
 			 $('#text').html(sessionStorage.getItem("text"));
 		 }
-		 text.addEventListener("change",function(){
-			sessionStorage.setItem("text",field.value); 
-		 });
+		 //text.addEventListener("change",function(){
+		//	sessionStorage.setItem("text",field.value); 
+		// });
+		 //myfunction();
+		 //myfunction();
 		 //myfunction();
 		 });
-
 //keep text
 $(function(){
      $("#send").click(function(){
+    	sessionStorage.setItem("text",$("#text").val());
         var val=$('input:radio[name="customize"]:checked').val();
         if(val=="yes"){
             var verbs = $("#verbs").val();
@@ -63,7 +65,8 @@ $(function(){
         	if(verbs==""){
         		$("#ownverbs").modal();
         	} 	
-        }          
+        }
      });
+     
  });
 
