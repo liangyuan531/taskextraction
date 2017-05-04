@@ -19,7 +19,8 @@
         </script>   
 <%  
     }else{
-    	session.removeAttribute("userinfo");
+    	//session.removeAttribute("userinfo");
+    	session.setMaxInactiveInterval(60);
     }
 %> 
 </head>

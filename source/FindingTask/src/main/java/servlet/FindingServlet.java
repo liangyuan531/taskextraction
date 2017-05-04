@@ -84,15 +84,14 @@ public class FindingServlet extends HttpServlet {
 		if(tasks.size() != 0)
 			result = formatResults(tasks);
 
-		//System.out.println("g: "+otherOptions);
-		//System.out.println("p:" +programming);
-
 		//get IP address
 		//String address = InetAddress.getLocalHost().getHostAddress();
 		String time = getTime();
-		String country = request.getLocale().getCountry();
-		//text = text.replaceAll("\\s", " ");
-		//System.out.println(text);
+		//request.getLocale().getLanguage()
+		String country = request.getLocale().getLanguage();//getCountry();
+		if(text.length() > 1000){
+			text = text.substring(0,1000);
+		}
 		String itemSql = "INSERT INTO extraction VALUES ('"
 				+ time +"','"
 				+ country +"','"
