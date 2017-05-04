@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 <script src="js/setting.js"></script>
 <script>
 /*
@@ -28,7 +28,7 @@ function reload(){
 <nav class="navbar navbar-inverse" id="header">
   <p class="navbar-text">Exetracting System</p>
   <ul class="nav navbar-nav">
-    <li><a href="" id="Maintab" data-toggle="modal" data-target="#saveoptions">Main</a></li>
+    <li><a href="" id="Maintab" data-toggle="modal">Main</a></li>
     <li><a href="setting.jsp" id="Settingtab">Setting</a></li>
   </ul>
 </nav>

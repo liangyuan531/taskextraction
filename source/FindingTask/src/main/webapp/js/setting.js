@@ -92,6 +92,15 @@ $(function(){
 		}
 		sessionStorage.setItem("yesownverbs",$("#yesownverbs").val());
 		sessionStorage.setItem("owngeneric",$("#owngeneric").val());
+		if($("#noprogramming").prop("checked") || $("#nogeneric").prop("checked") ||
+			$("#yesselfprogramming").prop("checked") || $("#yesselfgeneric").prop("checked") ||
+			!$("#yesdirectobj").prop("checked") || !$("#yespassive").prop("checked") ||
+			!$("#yesrelative").prop("checked") || !$("#yesprepositional").prop("checked") ||
+			!$("#yesregexed").prop("checked") || !$("#yestagged").prop("checked")){
+					$("#saveoptions").modal();
+		}else{
+			$(location).attr('href','index.jsp');
+		}
 	});
 });
 $(function(){
