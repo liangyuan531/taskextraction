@@ -17,6 +17,14 @@
 <title>main page</title>
 </head>
 <body>
+<div id="dataload" style="display:none"><!--processing data-->
+<table width=100% height=100% border=0 align=center valign=middle>
+<tr height=50%><td align="center">&nbsp;</td></tr>
+<tr><td align=center><img src="<%=request.getContextPath()%>/loading3.gif"/></td></tr>
+<tr><td align=center>processing......</td></tr>
+<tr height=50%><td align=center>&nbsp;</td></tr>
+</table>
+</div>
 <div class="jumbotron text-center" id="header">
   <h2>Extract Task Phrases</h2>
   <p>reduce your reading loads</p> 

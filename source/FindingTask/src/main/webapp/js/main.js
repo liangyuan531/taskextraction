@@ -57,6 +57,7 @@ $(document).ready(function()
 //keep text
 $(function(){
      $("#send").click(function(){
+    	 $("#dataload").show();
     	sessionStorage.setItem("text",$("#text").val());
         var val=$('input:radio[name="customize"]:checked').val();
         if(val=="yes"){
@@ -66,6 +67,7 @@ $(function(){
         		$("#ownverbs").modal();
         	} 	
         }
+        
      });
      
  });
