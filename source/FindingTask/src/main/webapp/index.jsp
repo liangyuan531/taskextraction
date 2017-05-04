@@ -13,16 +13,37 @@
 
 <script src="js/main.js"></script>
 <link rel="stylesheet" href="css/main.css" />
+<style>
+
+.center{
+    position: relative;
+}
+.center .loading{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index:10;
+}
+
+</style>
 
 <title>main page</title>
 </head>
-<body>
+<body class="center">
 <div id="dataload" style="display:none"><!--processing data-->
-<table width=100% height=100% border=0 align=center valign=middle>
-<tr height=50%><td align="center">&nbsp;</td></tr>
-<tr><td align=center><img src="<%=request.getContextPath()%>/loading3.gif"/></td></tr>
+<table width=50% height=50% border=0 align=center valign=middle>
+<tr height=30%><td align="center">&nbsp;</td></tr>
+<tr>
+<td>
+<div class="loading">
+<img src="<%=request.getContextPath()%>/loading.gif" style="width:200px;height:200px;"/>
+</div>
+</td>
+</tr>
 <tr><td align=center>processing......</td></tr>
-<tr height=50%><td align=center>&nbsp;</td></tr>
+<tr height=30%><td align=center>&nbsp;</td></tr>
 </table>
 </div>
 <div class="jumbotron text-center" id="header">
