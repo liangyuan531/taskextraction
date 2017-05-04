@@ -30,7 +30,7 @@
       <tr>
         <th>Time</th>
         <th>Country</th>
-        <th>Results</th>
+        <th width="50%">Results</th>
         <th>isNonprogramming</th>
         <th>isGenericAction</th>
         <th>PROGRAMMING_ACTIONS</th>
@@ -50,13 +50,13 @@
 				<% }%> --%>	
 				<td><%=data.get(i) %></td>
 				<td><%=data.get(i+1) %></td>
-				<td><%=data.get(i+2) %></td>
+				<td width="50%"><%=data.get(i+2) %></td>
 				<td width="10%"><%=data.get(i+3) %></td>
 				<td width="10%"><%=data.get(i+4) %></td>
 				<td><%=data.get(i+5) %></td>
 				<td><%=data.get(i+6) %></td>
 				<td><%=data.get(i+7) %></td>
-				<td width="30%"><%=data.get(i+8) %></td>
+				<td><%=data.get(i+8) %></td>
 			</tr>
 		<%}
 		}%>
