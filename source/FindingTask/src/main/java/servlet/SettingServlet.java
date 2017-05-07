@@ -77,16 +77,25 @@ public class SettingServlet extends HttpServlet {
 		Configuration.setPro_option(pro_option);
 		if(pro_option.equals("yes") && gen_option.equals("yes")){
 			verbs = request.getParameter("verbs");
+			if(!verbs.contains(",")){
+				verbs = verbs + "," + "temp";
+			}
 			verbs = formatString(verbs);
 			selfgeneric = request.getParameter("selfgeneric");
 			selfgeneric = formatString(selfgeneric);
 			writeProperties("PROGRAMMING_ACTIONS","GENERIC_ACCUSATIVES",verbs, selfgeneric, "customizedconfigwithboth.properties");
 		}else if(pro_option.equals("yes") && gen_option.equals("no")){
 			verbs = request.getParameter("verbs");
+			if(!verbs.contains(",")){
+				verbs = verbs + "," + "temp";
+			}
 			verbs = formatString(verbs);
 			writeProperties("PROGRAMMING_ACTIONS", "", verbs, "", "customizedconfigwithoutgeneric.properties");
 		}else if(pro_option.equals("yes") && gen_option.equals("yeswithdefined")){
 			verbs = request.getParameter("verbs");
+			if(!verbs.contains(",")){
+				verbs = verbs + "," + "temp";
+			}
 			verbs = formatString(verbs);
 			writeProperties("PROGRAMMING_ACTIONS", "", verbs, "", "customizedconfigwithgeneric.properties");
 		}else if(pro_option.equals("no") && gen_option.equals("yes")){
