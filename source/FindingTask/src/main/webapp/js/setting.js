@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
 	/* $("#yesownverbs").html("this is yesownverbs"); */
 	if(sessionStorage.getItem("noprogramming")=="no"){
@@ -56,6 +57,11 @@ $(document).ready(function(){
 		$("#yestagged").attr("checked",false);
 		sessionStorage.removeItem("yestagged");
 	}
+	if(sessionStorage.getItem('alloptions') == null ){
+		var group=[0,1,0,0,1,0,1,1,1,1,1,1];
+		//$("#yesownverbs").val(group);
+		sessionStorage.setItem("alloptions",group);
+	}
 	
 });
 $(function(){
@@ -92,15 +98,74 @@ $(function(){
 		}
 		sessionStorage.setItem("yesownverbs",$("#yesownverbs").val());
 		sessionStorage.setItem("owngeneric",$("#owngeneric").val());
-		if($("#noprogramming").prop("checked") || $("#nogeneric").prop("checked") ||
-			$("#yesselfprogramming").prop("checked") || $("#yesselfgeneric").prop("checked") ||
-			!$("#yesdirectobj").prop("checked") || !$("#yespassive").prop("checked") ||
-			!$("#yesrelative").prop("checked") || !$("#yesprepositional").prop("checked") ||
-			!$("#yesregexed").prop("checked") || !$("#yestagged").prop("checked")){
-					$("#saveoptions").modal();
-		}else{
+		var nogen=$("#nogeneric");
+		var nopro=$("#noprogramming");
+		var yespro=$("#yesprogramming");
+		var yesgen=$("#yesgeneric");
+		var yesselfpro=$("#yesselfprogramming");
+		var yesselfgen=$("#yesselfgeneric");
+		var yesdir=$("#yesdirectobj");
+		var yespas=$("#yespassive");
+		var yesrel=$("#yesrelative");
+		var yespre=$("#yesprepositional");
+		var yesreg=$("#yesregexed");
+		var yestag=$("#yestagged");
+		var temp=sessionStorage.getItem("alloptions");
+		var selected=[0,0,0,0,0,0,0,0,0,0,0,0];
+		if(nopro.is(':checked')){
+			selected[0]=1;
+		}else if(yespro.is(':checked')){
+			selected[1]=1;
+		}else if(yesselfpro.is(':checked')){
+			selected[2]=1;
+		}
+		
+		if(nogen.is(':checked')){
+			selected[3]=1;
+		}else if(yesgen.is(':checked')){
+			selected[4]=1;
+		}else if(yesselfgen.is(':checked')){
+			selected[5]=1;
+		}
+		
+		if(yesdir.is(':checked')){
+			selected[6]=1;
+		}
+		if(yespas.is(':checked')){
+			selected[7]=1;
+		}
+		if(yesrel.is(':checked')){
+			selected[8]=1;
+		}
+		if(yespre.is(':checked')){
+			selected[9]=1;
+		}
+		if(yesreg.is(':checked')){
+			selected[10]=1;
+		}
+		if(yestag.is(':checked')){
+			selected[11]=1;
+		}
+		var k=0;
+		var change=0;
+		for(var i=0;i<12;i++){
+			if(temp[k] != selected[i]){
+				change=1;
+				console.log("difference at "+i);
+				console.log("this is temp: "+temp[i]+"\n");
+				console.log("this is selected "+selected[i]+"\n");
+			}
+			k=k+2;
+		}
+		if(change == 1){
+			//$("#yesownverbs").val("this is selected "+selected+"\n"+"this is previous "+temp);
+			$("#saveoptions").modal();
+		}else if(change == 0){
+			//$("#yesownverbs").val("this is change =0");
+			sessionStorage.setItem("alloptions",selected);
 			$(location).attr('href','index.jsp');
 		}
+		
 	});
 });
 $(function(){
@@ -173,6 +238,57 @@ $(function(){
 		}
 		sessionStorage.setItem("yesownverbs",$("#yesownverbs").val());
 		sessionStorage.setItem("owngeneric",$("#owngeneric").val());
+		
+		var nogen=$("#nogeneric");
+		var nopro=$("#noprogramming");
+		var yespro=$("#yesprogramming");
+		var yesgen=$("#yesgeneric");
+		var yesselfpro=$("#yesselfprogramming");
+		var yesselfgen=$("#yesselfgeneric");
+		var yesdir=$("#yesdirectobj");
+		var yespas=$("#yespassive");
+		var yesrel=$("#yesrelative");
+		var yespre=$("#yesprepositional");
+		var yesreg=$("#yesregexed");
+		var yestag=$("#yestagged");
+		
+		var selected=[0,0,0,0,0,0,0,0,0,0,0,0];
+		if(nopro.is(':checked')){
+			selected[0]=1;
+		}else if(yespro.is(':checked')){
+			selected[1]=1;
+		}else if(yesselfpro.is(':checked')){
+			selected[2]=1;
+		}
+		
+		if(nogen.is(':checked')){
+			selected[3]=1;
+		}else if(yesgen.is(':checked')){
+			selected[4]=1;
+		}else if(yesselfgen.is(':checked')){
+			selected[5]=1;
+		}
+		
+		if(yesdir.is(':checked')){
+			selected[6]=1;
+		}
+		if(yespas.is(':checked')){
+			selected[7]=1;
+		}
+		if(yesrel.is(':checked')){
+			selected[8]=1;
+		}
+		if(yespre.is(':checked')){
+			selected[9]=1;
+		}
+		if(yesreg.is(':checked')){
+			selected[10]=1;
+		}
+		if(yestag.is(':checked')){
+			selected[11]=1;
+		}
+		
+		sessionStorage.setItem("alloptions",selected);
 	});
 });
 $(document).ready(function(){
