@@ -11,7 +11,7 @@
 
 <link rel="stylesheet" href="css/login.css" />
 
-<title>Login</title>
+<title>Task Phrase Extraction</title>
 </head>
 <body>
 <form action="login" method="post">

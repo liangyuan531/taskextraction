@@ -18,7 +18,7 @@ function reload(){
 }*/
 </script>
 <link rel="stylesheet" href="css/main.css" />
-<title>Setting</title>
+<title>Task Phrase Extraction</title>
 </head>
 <body>
 <div class="jumbotron text-center" id="header">
@@ -37,10 +37,10 @@ function reload(){
   		<table class="table">
     		<thead>
       			<tr>
-        			<th><h4><span class="label label-primary">Use pre-defined list?</span></h4></th>
-        			<th><h4><span class="label label-primary">Use pre-defined generic accusative list?</span></h4></th>
-        			<th><h4><span class="label label-primary">Grammatical dependencies</span></h4></th>
-        			<th><h4><span class="label label-primary">Code</span></h4></th>
+        			<th><h4><span class="label label-primary">Only extract task phrases that contain certain verbs?</span></h4></th>
+        			<th><h4><span class="label label-primary">Ignore task phrases that contain certain objects?</span></h4></th>
+        			<th><h4><span class="label label-primary">Extract task phrases using the following grammatical dependencies:</span></h4></th>
+        			<th><h4><span class="label label-primary">Treatment code elements as nouns:</span></h4></th>
       			</tr>
     		</thead>
     		<tbody>
@@ -50,12 +50,12 @@ function reload(){
       					<label><input type="radio" id="noprogramming" name="programming" value="no">No</label>
     				</div>
         			<div class="radio">
-      					<label><input type="radio" id="yesprogramming" name="programming" value="yeswithdefined" checked="checked">Yes,use pre-defined verbs</label>
+      					<label><input type="radio" id="yesprogramming" name="programming" value="yeswithdefined" checked="checked">Yes, use pre-defined list</label>
     					<a href="programlist" target="view_window">[see details]</a>
     				</div>
     				<div class="radio">
-        				<label><input type="radio" id="yesselfprogramming" name="programming" value="yes">Yes,use own verbs</label>
-        				<textarea class="comments" id="yesownverbs" name="verbs" rows="3" placeholder="input your verbs, divided by comma"></textarea>
+        				<label><input type="radio" id="yesselfprogramming" name="programming" value="yes">Yes, use custom list</label>
+        				<textarea class="comments" id="yesownverbs" name="verbs" rows="3" placeholder="Input verbs, divided by comma"></textarea>
     				</div>
        			</td>
         		<td width="30%">
@@ -63,41 +63,41 @@ function reload(){
       					<label><input type="radio" id="nogeneric" name="generic" value="no">No</label>
     				</div>
         			<div class="radio">
-      					<label><input type="radio" id="yesgeneric" name="generic" value="yeswithdefined" checked="checked">Yes,use pre-defined</label>
+      					<label><input type="radio" id="yesgeneric" name="generic" value="yeswithdefined" checked="checked">Yes, use pre-defined list</label>
       					<a href="genericlist" target="view_window">[see details]</a>
     				</div>
     				<div class="radio">
-    					<label><input type="radio" id="yesselfgeneric" name="generic" value="yes">Yes,use own</label>
-        				<textarea class="comments" id="owngeneric" name="selfgeneric" rows="3" placeholder="input your accusatives, divided by comma"></textarea>
+    					<label><input type="radio" id="yesselfgeneric" name="generic" value="yes">Yes, use custom list</label>
+        				<textarea class="comments" id="owngeneric" name="selfgeneric" rows="3" placeholder="Input objects, divided by comma"></textarea>
     				</div>
         		</td>
         		<td width="30%">
         			<div class="checkbox">
       					<label><input type="checkbox" id="yesdirectobj" name="direct_object" value="yes" checked="checked">direct object</label>
-      					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.creates a task"/>
+      					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.This sentence tests the extraction of task phrases."/>
     				</div>
     				<div class="checkbox">
       					<label><input type="checkbox" id="yespassive"name="passive_nominal_subject" value="yes" checked="checked">passive nominal subject</label>
-    					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.task is created"/>
+    					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.The extraction of task phrases is tested"/>
     				</div>
     				<div class="checkbox">
       					<label><input type="checkbox" id="yesrelative" name="relative_clause_modifier" value="yes" checked="checked">relative clause modifier</label>
-    					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.create from text"/>
+    					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.I saw the task phrase extraction you test."/>
     				</div>
     				<div class="checkbox">
       					<label><input type="checkbox" id="yesprepositional"name="prepositional_modifier" value="yes" checked="checked">prepositional modifier</label>
-    					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.text inCludes camel case"/>
+    					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.There are ways to test in this task phrase extraction application."/>
     				</div>
         		</td>
         		<td >
         			<div class="checkbox">
-      					<label><input type="checkbox" id="yesregexed"name="RegexedCode" value="yes" checked="checked">RegexedCode</label>
+      					<label><input type="checkbox" id="yesregexed"name="RegexedCode" value="yes" checked="checked">if they match a regular expression</label>
       					<a href="regularexpression.html" target="view_window">[see details]</a>
-      					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="regular expression"/>
+      					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="Words matching a regular expression (e.g., CamelCase) are defined as nouns."/>
     				</div>
     				<div class="checkbox">
-      					<label><input type="checkbox" id="yestagged"name="TaggedCode" value="yes" checked="checked">TaggedCode</label>
-      					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="<tt></tt>"/>
+      					<label><input type="checkbox" id="yestagged"name="TaggedCode" value="yes" checked="checked">if they are enclosed in <tt> tags</label>
+      					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="Words between <tt> tags (e.g., <tt>code</tt>) are defined as nouns."/>
     				</div>
         		</td>
       			</tr>

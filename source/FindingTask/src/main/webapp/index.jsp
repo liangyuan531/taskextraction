@@ -29,7 +29,7 @@
 
 </style>
 
-<title>main page</title>
+<title>Task Phrase Extraction</title>
 </head>
 <body class="center">
 <div id="dataload" style="display:none"><!--processing data-->
@@ -48,14 +48,14 @@
 </div>
 <div class="jumbotron text-center" id="header">
   <h2>Extract Task Phrases</h2>
-  <p>reduce your reading loads</p> 
+  <p>from natural language sentences</p> 
 </div>
 <nav class="navbar navbar-inverse" id="header">
-  <p class="navbar-text">Exetracting System</p>
   <ul class="nav navbar-nav">
-    <li><a href="index.jsp" id="Maintab">Main</a></li>
-    <li><a href="setting.jsp" id="Settingtab">Setting</a></li>
-    <li><a href="login.jsp" target="view_window">Database</a></li>
+    <li><a href="index.jsp" id="Maintab">Home</a></li>
+    <li><a href="setting.jsp" id="Settingtab">Settings</a></li>
+    <li><a href="login.jsp" target="view_window">Admin</a></li>
+     <li><a href="About.jsp">About</a></li>
   </ul>
   
 </nav>
@@ -63,15 +63,15 @@
 	<div style="margin-left:10px">
 	<div class="row">
     <div class="col-sm-6" id="divsize">
-    	<h4><span class="label label-primary">Text:</span></h4>
+    	<h4><span class="label label-primary">Input:</span></h4>
     </div>
     <div class="col-sm-4" id="divsize">
-    	<h4><span class="label label-primary">Results:</span></h4>
+    	<h4><span class="label label-primary">Extracted Task Phrases:</span></h4>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-6" id="divsize">  
-    <textarea rows="10" id="text" name="text" class="comments" placeholder="input sentences within 60 words"></textarea>  
+    <textarea rows="10" id="text" name="text" class="comments" placeholder="Input natural language sentences (max. 60 words). Example: This sentence tests the extraction of task phrases."></textarea>  
 	</div> 
     <div class="col-sm-4" id="divsize">
     <table>
@@ -100,7 +100,7 @@
   </div>
   </div>
 	<div class="position">
-		<button type="submit" id="send" class="btn btn-primary">Search</button>
+		<button type="submit" id="send" class="btn btn-primary">Extract Task Phrases</button>
 	</div>
 </form>
 	
