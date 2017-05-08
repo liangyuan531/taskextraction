@@ -51,11 +51,12 @@
   <p>from natural language sentences</p> 
 </div>
 <nav class="navbar navbar-inverse" id="header">
+<p class="navbar-text">Exetracting System</p>
   <ul class="nav navbar-nav">
     <li><a href="index.jsp" id="Maintab">Home</a></li>
     <li><a href="setting.jsp" id="Settingtab">Settings</a></li>
     <li><a href="login.jsp" target="view_window">Admin</a></li>
-     <li><a href="About.jsp">About</a></li>
+     <li><a href="About.html" target="view_window">About</a></li>
   </ul>
   
 </nav>

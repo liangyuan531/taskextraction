@@ -28,12 +28,14 @@ function reload(){
 <nav class="navbar navbar-inverse" id="header">
   <p class="navbar-text">Exetracting System</p>
   <ul class="nav navbar-nav">
-    <li><a href="" id="Maintab" data-toggle="modal">Main</a></li>
-    <li><a href="setting.jsp" id="Settingtab">Setting</a></li>
+    <li><a href="" id="Maintab" data-toggle="modal">Home</a></li>
+    <li><a href="setting.jsp" id="Settingtab">Settings</a></li>
+    <li><a href="login.jsp" target="view_window">Admin</a></li>
+     <li><a href="About.html" target="view_window">About</a></li>
   </ul>
 </nav>
 <form name="set" action="setting" method="get">
-<div class="container">           
+<!-- <div class="container">   -->         
   		<table class="table">
     		<thead>
       			<tr>
@@ -45,7 +47,7 @@ function reload(){
     		</thead>
     		<tbody>
       			<tr>
-        		<td width="30%">
+        		<td>
         			<div class="radio">
       					<label><input type="radio" id="noprogramming" name="programming" value="no">No</label>
     				</div>
@@ -58,7 +60,7 @@ function reload(){
         				<textarea class="comments" id="yesownverbs" name="verbs" rows="3" placeholder="Input verbs, divided by comma"></textarea>
     				</div>
        			</td>
-        		<td width="30%">
+        		<td>
         			<div class="radio">
       					<label><input type="radio" id="nogeneric" name="generic" value="no">No</label>
     				</div>
@@ -71,7 +73,7 @@ function reload(){
         				<textarea class="comments" id="owngeneric" name="selfgeneric" rows="3" placeholder="Input objects, divided by comma"></textarea>
     				</div>
         		</td>
-        		<td width="30%">
+        		<td>
         			<div class="checkbox">
       					<label><input type="checkbox" id="yesdirectobj" name="direct_object" value="yes" checked="checked">direct object</label>
       					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="eg.This sentence tests the extraction of task phrases."/>
@@ -103,7 +105,7 @@ function reload(){
       			</tr>
     		</tbody>
   			</table>
-	</div>
+	<!-- </div> -->
 	<div class="position">
 		<button type="submit" id="ok" class="btn btn-primary">SAVE</button>
 	</div>
