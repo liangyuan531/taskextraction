@@ -154,6 +154,7 @@ public class TaskAnalyzer {
 			if (!(Configuration.getInstance().getProgrammingActions().size() == 1)
 					&& !Configuration.getInstance().getProgrammingActions()
 							.contains(lVerbalPhrase.getVerbString())) {
+				System.out.println("continue");
 				continue;
 			}
 

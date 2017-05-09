@@ -47,7 +47,7 @@ public class TaskExtractor {
 	 */
 	public List<Sentence> extractTasks(String pString, boolean pDobj,
 			boolean pNsubjpass, boolean pRcmod, boolean pPrep,
-			boolean pRegexedCode, boolean pTaggedCode) {
+			boolean pRegexedCode, boolean pTaggedCode) throws OutOfMemoryError{
 		List<Sentence> lSentences = new ArrayList<Sentence>();
 
 		// remove linebreaks

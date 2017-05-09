@@ -59,54 +59,80 @@ public class FindingServlet extends HttpServlet {
 		TaskExtractor taskExtractor = new TaskExtractor();
 		List<String> tasks = new ArrayList<String>();
 		List<Sentence> sentencesWithTasks = null;
+        int OutMemory=1;
 		//if have not choose settings
 		if(setting == null){
 			Configuration.setGen_option("yeswithdefined");
 			Configuration.setPro_option("yeswithdefined");
 			generic = "yeswithdefined";
 			programming = "yeswithdefined";
-      myVerbs = "";
-      myAccusatives = "";
-			sentencesWithTasks = taskExtractor.extractTasks(text,true,true,true,true,true,true);
+			myVerbs = "";
+			myAccusatives = "";
+			try {
+				sentencesWithTasks = taskExtractor.extractTasks(text,true,true,true,true,true,true);
+			} catch (OutOfMemoryError E) {
+				// TODO Auto-generated catch block
+				//E.printStackTrace();
+                //HttpServletResponse.sendRedirect("index.jsp");
+                System.err.println("Catch the error of OutOfMemory in if statement");
+                //response.sendRedirect("index.jsp");
+                String errormessage="memoryerror";
+                request.setAttribute("error",errormessage);
+                request.getRequestDispatcher("index.jsp").forward(request,response);
+                OutMemory=0;
+                //System.exit(1);
+			}
 			otherOptions = "direct object, passive nominal subject, relative clause modifier, "
 					+ "prepositional modifier, RegexedCode, TaggedCode";
 		}else{
 			List<Boolean> options = checkOptions(tempOptions);
 			otherOptions = otherOptions(options);
-			sentencesWithTasks = taskExtractor.extractTasks(text,options.get(0),options.get(1),options.get(2),options.get(3),options.get(4),options.get(5));
+            try{
+                sentencesWithTasks = taskExtractor.extractTasks(text,options.get(0),options.get(1),options.get(2),options.get(3),options.get(4),options.get(5));
+            }catch(OutOfMemoryError E){
+                System.err.println("Catch the error of OutOfMemory in if statement");
+                //response.sendRedirect("index.jsp");
+                String errormessage="memoryerror";
+                request.setAttribute("error",errormessage);
+                request.getRequestDispatcher("index.jsp").forward(request,response);
+                OutMemory=0;
+            }
 		}
-		for (Sentence sentenceWithTasks : sentencesWithTasks) {
-			for (Task task : sentenceWithTasks.getTasks()) {
-				tasks.add(task.toString().trim());
-			}
-		}
-		String result = "";
-		if(tasks.size() != 0)
-			result = formatResults(tasks);
+        if(OutMemory == 1){
+            System.err.println("still execute if statement");
+            for (Sentence sentenceWithTasks : sentencesWithTasks) {
+                for (Task task : sentenceWithTasks.getTasks()) {
+                    tasks.add(task.toString().trim());
+                }
+            }
+            String result = "";
+            if(tasks.size() != 0)
+                result = formatResults(tasks);
 
-		//get IP address
-		//String address = InetAddress.getLocalHost().getHostAddress();
-		String time = getTime();
-		//request.getLocale().getLanguage()
-		String country = request.getLocale().getLanguage();//getCountry();
-		if(text.length() > 1000){
-			text = text.substring(0,1000);
-		}
-		String itemSql = "INSERT INTO extraction VALUES ('"
-				+ time +"','"
-				+ country +"','"
-				+ result +"','"
-				+ programming +"','"
-				+ generic +"','"
-				+ myVerbs +"','"
-				+ myAccusatives +"','"
-				+ otherOptions +"','"
-				+ text +"')";
-		//createTable();
-		insertItem(itemSql);
-		//System.out.println(request.getLocale().getCountry());
-		request.setAttribute("tasks", tasks);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+            //get IP address
+            //String address = InetAddress.getLocalHost().getHostAddress();
+            String time = getTime();
+            //request.getLocale().getLanguage()
+            String country = request.getLocale().getLanguage();//getCountry();
+            if(text.length() > 1000){
+                text = text.substring(0,1000);
+            }
+            String itemSql = "INSERT INTO extraction VALUES ('"
+                    + time +"','"
+                    + country +"','"
+                    + result +"','"
+                    + programming +"','"
+                    + generic +"','"
+                    + myVerbs +"','"
+                    + myAccusatives +"','"
+                    + otherOptions +"','"
+                    + text +"')";
+            //createTable();
+            insertItem(itemSql);
+            //System.out.println(request.getLocale().getCountry());
+            request.setAttribute("tasks", tasks);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
 	}
 	
 	private String getTime(){

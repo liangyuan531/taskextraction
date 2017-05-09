@@ -10,8 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-
-<script src="js/main.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 <link rel="stylesheet" href="css/main.css" />
 <style>
 
@@ -117,6 +116,23 @@
           <button type="button" id="OKOverSize" class="btn btn-default" data-dismiss="modal">OK</button>
         </div>
       </div> 
+    </div>
+</div>
+<div class="modal fade" id="outofmemory" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" style="color:red">Warning</h4>
+        </div>
+        <div class="modal-body">
+            <p>out of memory. </p>
+            <p>Please re-input</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="OKOverSize" class="btn btn-default" data-dismiss="modal">OK</button>
+        </div>
+      </div>
     </div>
 </div>
 </body>

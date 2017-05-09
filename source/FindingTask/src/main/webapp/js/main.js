@@ -1,6 +1,11 @@
 //word count
 $(document).ready(function()
 		 {
+         //var s="<%=request.getAttribute("error")%>";
+         //if(s.equals("memoryerror")){
+           //       $("#text").val("out of memory");
+                 // $("#outofmemory").modal();
+         //}
 		 var wordCounts = {};
 		 $("#text").keyup(function() {
 		     var matches = this.value.match(/\b/g);
