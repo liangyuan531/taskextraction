@@ -23,10 +23,9 @@ function reload(){
 <body>
 <div class="jumbotron text-center" id="header">
   <h2>Extract Task Phrases</h2>
-  <p>reduce your reading loads</p> 
+  <p>from natural language sentences</p>
 </div>
 <nav class="navbar navbar-inverse" id="header">
-  <p class="navbar-text">Exetracting System</p>
   <ul class="nav navbar-nav">
     <li><a href="" id="Maintab" data-toggle="modal">Home</a></li>
     <li><a href="setting.jsp" id="Settingtab">Settings</a></li>
@@ -42,7 +41,7 @@ function reload(){
         			<th><h4><span class="label label-primary">Only extract task phrases that contain certain verbs?</span></h4></th>
         			<th><h4><span class="label label-primary">Ignore task phrases that contain certain objects?</span></h4></th>
         			<th><h4><span class="label label-primary">Extract task phrases using the following grammatical dependencies:</span></h4></th>
-        			<th><h4><span class="label label-primary">Treatment code elements as nouns:</span></h4></th>
+        			<th><h4><span class="label label-primary">Treat code elements as nouns:</span></h4></th>
       			</tr>
     		</thead>
     		<tbody>
@@ -98,7 +97,7 @@ function reload(){
       					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="Words matching a regular expression (e.g., CamelCase) are defined as nouns."/>
     				</div>
     				<div class="checkbox">
-      					<label><input type="checkbox" id="yestagged"name="TaggedCode" value="yes" checked="checked">if they are enclosed in <tt> tags</label>
+      					<label><input type="checkbox" id="yestagged"name="TaggedCode" value="yes" checked="checked">if they are enclosed in &lt;tt&gt; tags</label>
       					<img src="explain.png" height="15px" width="15px" data-toggle="popover" data-trigger="hover" data-content="Words between <tt> tags (e.g., <tt>code</tt>) are defined as nouns."/>
     				</div>
         		</td>

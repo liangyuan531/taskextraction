@@ -42,7 +42,6 @@
 </div>
 </td>
 </tr>
-<tr><td align=center>processing......</td></tr>
 <tr height=30%><td align=center>&nbsp;</td></tr>
 </table>
 </div>
@@ -51,7 +50,6 @@
   <p>from natural language sentences</p> 
 </div>
 <nav class="navbar navbar-inverse" id="header">
-<p class="navbar-text">Exetracting System</p>
   <ul class="nav navbar-nav">
     <li><a href="index.jsp" id="Maintab">Home</a></li>
     <li><a href="setting.jsp" id="Settingtab">Settings</a></li>
@@ -101,7 +99,7 @@
   </div>
   </div>
 	<div class="position">
-		<button type="submit" id="send" class="btn btn-primary">Extract Task Phrases</button>
+		<button type="submit" id="send" class="btn btn-primary" style="width:200px;">Extract Task Phrases</button>
 	</div>
 </form>
 	
