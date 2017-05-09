@@ -95,7 +95,6 @@
     <div class="col-sm-6" id="divsize">
     	<span id ="numleft">60 words left</span>
     </div>
-    <!-- <div class="col-sm-4" id="userinput" id="divsize"></div> -->
   </div>
   </div>
 	<div class="position">

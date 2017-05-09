@@ -40,7 +40,7 @@ function reload(){
       			<tr>
         			<th><h4><span class="label label-primary">Only extract task phrases that contain certain verbs?</span></h4></th>
         			<th><h4><span class="label label-primary">Ignore task phrases that contain certain objects?</span></h4></th>
-        			<th><h4><span class="label label-primary">Extract task phrases using the following grammatical dependencies:</span></h4></th>
+        			<th><h4><span class="label label-primary">Extract task phrases using grammatical dependencies:</span></h4></th>
         			<th><h4><span class="label label-primary">Treat code elements as nouns:</span></h4></th>
       			</tr>
     		</thead>
