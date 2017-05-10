@@ -1,14 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+pageEncoding="UTF-8"%>
+<%@page import="java.util.*" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<link rel="stylesheet" href="css/main.css" />
 <title>Task Phrase Extraction</title>
 </head>
 <body>
+<div class="jumbotron text-center" id="header">
+<h2>Extract Task Phrases</h2>
+<p>from natural language sentences</p>
+</div>
+<nav class="navbar navbar-inverse" id="header">
+<ul class="nav navbar-nav">
+<li><a href="index.jsp" id="Maintab">Home</a></li>
+<li><a href="setting.jsp" id="Settingtab">Settings</a></li>
+<li><a href="login.jsp" target="view_window">Admin</a></li>
+<li><a href="About.jsp" id="Abouttab">About</a></li>
+</ul>
+</nav>
+<div>
 <h3>About</h3>
-<p>This Task Phrase Extraction web application extracts task phrases from natural language sentences. 
+<p>This Task Phrase Extraction web application extracts task phrases from natural language sentences.
 Task phrases are conceptualized as verbs associated with a direct object and/or a prepositional phrase, 
 such as "get iterator", "get iterator for collection", or "add to collection". To extract task phrases, the application makes use of 
 grammatical dependencies between words, as detected by the 
@@ -36,7 +57,7 @@ Siwen Ou, University of Adelaide<br>
 <a href="http://ctreude.ca/" target="_blank">Christoph Treude</a>, <a href="http://www.adelaide.edu.au/" target="_blank">University of Adelaide</a><br>
 <a href="http://www.cs.mcgill.ca/~martin/" target="_blank">Martin Robillard</a>, <a href="http://www.mcgill.ca/" target="_blank">McGill University</a>
 </p>
-
+</div>
 
 </body>
 </html>

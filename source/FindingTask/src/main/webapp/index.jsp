@@ -25,15 +25,12 @@
     transform: translate(-50%, -50%);
     z-index:10;
 }
-
 </style>
-
 <title>Task Phrase Extraction</title>
 </head>
 <body class="center">
 <div id="dataload" style="display:none"><!--processing data-->
 <table width=50% height=50% border=0 align=center valign=middle>
-<tr height=30%><td align="center">&nbsp;</td></tr>
 <tr>
 <td>
 <div class="loading">
@@ -41,7 +38,6 @@
 </div>
 </td>
 </tr>
-<tr height=30%><td align=center>&nbsp;</td></tr>
 </table>
 </div>
 <div class="jumbotron text-center" id="header">
@@ -53,7 +49,7 @@
     <li><a href="index.jsp" id="Maintab">Home</a></li>
     <li><a href="setting.jsp" id="Settingtab">Settings</a></li>
     <li><a href="login.jsp" target="view_window">Admin</a></li>
-     <li><a href="About.html" target="view_window">About</a></li>
+    <li><a href="About.jsp" id="Abouttab">About</a></li>
   </ul>
   
 </nav>

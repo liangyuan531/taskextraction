@@ -30,7 +30,7 @@ function reload(){
     <li><a href="" id="Maintab" data-toggle="modal">Home</a></li>
     <li><a href="setting.jsp" id="Settingtab">Settings</a></li>
     <li><a href="login.jsp" target="view_window">Admin</a></li>
-     <li><a href="About.html" target="view_window">About</a></li>
+     <li><a href="About.jsp">About</a></li>
   </ul>
 </nav>
 <form name="set" action="setting" method="get">
