@@ -13,7 +13,7 @@
 <script type="text/javascript" src="js/main.js"></script>
 <script type="text/javascript">
 function alertmemory(){
-	alert("Out of memory, please re-input");
+	alert("Invalid input, please re-input");
 }
 </script>
 <link rel="stylesheet" href="css/main.css" />
