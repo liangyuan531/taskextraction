@@ -11,6 +11,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript">
+function alertmemory(){
+	alert("Out of memory, please re-input");
+}
+</script>
 <link rel="stylesheet" href="css/main.css" />
 <style>
 
@@ -29,6 +34,15 @@
 <title>Task Phrase Extraction</title>
 </head>
 <body class="center">
+<div>
+<%--<h3>This is error: <%=request.getAttribute("error")%></p>--%>
+<%! String test="";%>
+<%--test=(String)request.getAttribute("error"); --%>
+<% if(request.getAttribute("error") == null){ %>
+	<%}else{ %>
+		<script type="text/javascript"> window.onload = alertmemory; </script>
+	<%} %>
+</div>
 <div id="dataload" style="display:none"><!--processing data-->
 <table width=50% height=50% border=0 align=center valign=middle>
 <tr>
@@ -51,7 +65,6 @@
     <li><a href="login.jsp" target="view_window">Admin</a></li>
     <li><a href="About.jsp" id="Abouttab">About</a></li>
   </ul>
-  
 </nav>
 <form name="myForm" action="finding" method="post">
 	<div style="margin-left:10px">
