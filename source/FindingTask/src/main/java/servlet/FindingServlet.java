@@ -1,7 +1,11 @@
 package servlet;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.InetAddress;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
@@ -107,16 +111,14 @@ public class FindingServlet extends HttpServlet {
             }
             String result = "";
             if(tasks.size() != 0)
-                result = formatResults(tasks);
-
-            //get IP address
-            //String address = InetAddress.getLocalHost().getHostAddress();
+                result = formatResults(tasks);          
             String time = getTime();
-            //request.getLocale().getLanguage()
-            String country = request.getLocale().getLanguage();//getCountry();
+            String country = request.getLocale().getLanguage();
             if(text.length() > 1000){
                 text = text.substring(0,1000);
             }
+            text = text.replaceAll("\'", "");
+            
             String itemSql = "INSERT INTO extraction VALUES ('"
                     + time +"','"
                     + country +"','"
@@ -126,15 +128,62 @@ public class FindingServlet extends HttpServlet {
                     + myVerbs +"','"
                     + myAccusatives +"','"
                     + otherOptions +"','"
-                    + text +"')";
+                    + text +"')";           
             //createTable();
+            
+            //add users for viewing database (first use or add another account)
+            //List<String> accounts = getAccounts();
+            //insertAccounts(accounts);
+            
+            //add searching items
             insertItem(itemSql);
-            //System.out.println(request.getLocale().getCountry());
             request.setAttribute("tasks", tasks);
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 	}
 	
+	private void insertAccounts(List<String> accounts){
+		try {
+	    	Connection conn = getConnection();
+	    	Statement state = conn.createStatement();
+	    	String delete = "DELETE FROM account";
+	    	state.execute(delete);
+	    	for(int i=0;i<accounts.size();i+=2){
+				String accountSql = "INSERT INTO account VALUES ('"+ accounts.get(i)+"','"+accounts.get(i+1)+"')";
+				//System.out.println(accountSql);
+				state.execute(accountSql);
+			}
+	    	conn.close();
+	    } catch (URISyntaxException e1) {
+	    	e1.printStackTrace();
+	    } catch (SQLException e1) {
+	    	e1.printStackTrace();
+	    }
+		
+	}
+	
+	private List<String> getAccounts(){
+		List<String> accounts = new ArrayList<String>();
+		BufferedReader bf;
+		try {
+			bf = new BufferedReader(new InputStreamReader(new FileInputStream(new File("accounts")), "UTF8"));
+			String str = "";
+			while((str=bf.readLine()) != null){
+				String[] s = str.split(" ");
+				//username
+				accounts.add(s[0]);
+				//password
+				accounts.add(s[1]);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return accounts;
+	}
+
 	private String getTime(){
 		Date now = new Date(); 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -181,7 +230,7 @@ public class FindingServlet extends HttpServlet {
 	}
 
 	private void createTable(){
-	    String createTableSql = "CREATE TABLE extraction ("
+	    String infoTable = "CREATE TABLE extraction ("
 	    		+ "Time varchar(20),"
 	     		+ "Country varchar(20),"
 	     		+ "Results varchar(5000),"
@@ -191,10 +240,12 @@ public class FindingServlet extends HttpServlet {
 	     		+ "GENERIC_ACCUSATIVES varchar(1000),"
 	            + "GRAMMATICAL_DEPENDENCIES_and_CODE varchar(1000),"
 	     		+ "TEXT varchar(5000))";
+	    String accountTable = "CREATE TABLE account (username varchar(20), password varchar(20))";
 	    try {
 	    	Connection conn = getConnection();
 	    	Statement state = conn.createStatement();
-	    	state.execute(createTableSql);
+	    	state.execute(infoTable);
+	    	state.execute(accountTable);
 	    	conn.close();
 	    } catch (URISyntaxException e1) {
 	    	e1.printStackTrace();
@@ -229,13 +280,10 @@ public class FindingServlet extends HttpServlet {
 	}
 	
 	private static Connection getConnection() throws URISyntaxException, SQLException {
-//      URI dbUri = new URI(System.getenv("DATABASE_URL"));
-//      System.out.println("url: "+dbUri);
-      String username = "adgjkzpqxsbwqh";//dbUri.getUserInfo().split(":")[0];
-      String password = "0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d";//dbUri.getUserInfo().split(":")[1];
-      //postgres://adgjkzpqxsbwqh:0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d@ec2-54-221-255-153.compute-1.amazonaws.com:5432/ddteol71om45n4
-      //jdbc:postgresql://<host>:<port>/<dbname>?sslmode=require&user=<username>&password=<password>
-      String dbUrl = "jdbc:postgresql://ec2-54-221-255-153.compute-1.amazonaws.com:5432/ddteol71om45n4?sslmode=require&user=adgjkzpqxsbwqh&password=0c697f9b508a9a750572bee945d95478251615208313d8be8ddf521ca90e680d";
-      return DriverManager.getConnection(dbUrl, username, password);
+		URI dbUri = new URI(System.getenv("DATABASE_URL"));
+		String username = dbUri.getUserInfo().split(":")[0];
+		String password = dbUri.getUserInfo().split(":")[1];
+		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
+		return DriverManager.getConnection(dbUrl, username, password);
   }
 }
