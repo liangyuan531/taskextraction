@@ -20,7 +20,7 @@
 <%  
     }else{
     	//session.removeAttribute("userinfo");
-    	session.setMaxInactiveInterval(60);
+    	session.setMaxInactiveInterval(180);
     }
 %> 
 </head>
