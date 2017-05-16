@@ -53,8 +53,8 @@ $(document).ready(function()
 			 $('#text').html(sessionStorage.getItem("text"));
 		 }
 		 //text.addEventListener("change",function(){
-		//	sessionStorage.setItem("text",field.value); 
-		// });
+		 //	sessionStorage.setItem("text",field.value); 
+		 // });
 		 //myfunction();
 		 //myfunction();
 		 //myfunction();
@@ -76,4 +76,7 @@ $(function(){
      });
      
  });
+function alertmemory(){
+	alert("Invalid input, please re-input");
+}
 

@@ -10,27 +10,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
-<script type="text/javascript">
-function alertmemory(){
-	alert("Invalid input, please re-input");
-}
-</script>
-<link rel="stylesheet" href="css/main.css" />
-<style>
 
-.center{
-    position: relative;
-}
-.center .loading{
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index:10;
-}
-</style>
+<script type="text/javascript" src="js/main.js"></script>
+<link rel="stylesheet" href="css/main.css" />
+
 <title>Task Phrase Extraction</title>
 </head>
 <body class="center">

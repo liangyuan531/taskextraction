@@ -28,3 +28,14 @@
 #bgcolor{
 	background: #36d1dc;
 }
+.center{
+    position: relative;
+}
+.center .loading{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index:10;
+}
