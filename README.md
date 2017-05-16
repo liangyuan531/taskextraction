@@ -20,3 +20,8 @@ install heroku command line first. (https://devcenter.heroku.com/articles/heroku
 
 #Database configuration
 https://devcenter.heroku.com/articles/heroku-postgresql
+
+#For first using
+You need to create table when you first use the system.
+You need to modify source code, find function createTable() in FindingServlet.java, use this function to create two tables (items saving table and account table).
+If you need to add more users, please modify accounts file with new lines, username and password should be divide by a space. And using function insertAccounts() in FindingServlet.java
