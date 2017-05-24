@@ -57,7 +57,6 @@ public class LoginServlet extends HttpServlet {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-		        //System.out.println("data: "+database);
 		        session.setAttribute("data", database);
 		        response.sendRedirect("database.jsp");
 		    }
@@ -97,7 +96,6 @@ public class LoginServlet extends HttpServlet {
 		String password = dbUri.getUserInfo().split(":")[1];
 		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
 		return DriverManager.getConnection(dbUrl, username, password);
-
 	}
 
 }

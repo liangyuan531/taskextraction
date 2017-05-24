@@ -29,8 +29,6 @@ import ca.mcgill.cs.swevo.taskextractor.model.Sentence;
 import ca.mcgill.cs.swevo.taskextractor.model.Task;
 import ca.mcgill.cs.swevo.taskextractor.utils.Configuration;
 
-
-
 @WebServlet(
         name = "tasks",
         urlPatterns = {"/finding"}
@@ -75,16 +73,11 @@ public class FindingServlet extends HttpServlet {
 			try {
 				sentencesWithTasks = taskExtractor.extractTasks(text,true,true,true,true,true,true);
 			} catch (OutOfMemoryError E) {
-				// TODO Auto-generated catch block
-				//E.printStackTrace();
-                //HttpServletResponse.sendRedirect("index.jsp");
                 System.err.println("Catch the error of OutOfMemory in if statement");
-                //response.sendRedirect("index.jsp");
                 String errormessage="memoryerror";
                 request.setAttribute("error",errormessage);
                 request.getRequestDispatcher("index.jsp").forward(request,response);
                 OutMemory=0;
-                //System.exit(1);
 			}
 			otherOptions = "direct object, passive nominal subject, relative clause modifier, "
 					+ "prepositional modifier, RegexedCode, TaggedCode";
@@ -95,7 +88,6 @@ public class FindingServlet extends HttpServlet {
                 sentencesWithTasks = taskExtractor.extractTasks(text,options.get(0),options.get(1),options.get(2),options.get(3),options.get(4),options.get(5));
             }catch(OutOfMemoryError E){
                 System.err.println("Catch the error of OutOfMemory in if statement");
-                //response.sendRedirect("index.jsp");
                 String errormessage="memoryerror";
                 request.setAttribute("error",errormessage);
                 request.getRequestDispatcher("index.jsp").forward(request,response);
@@ -128,7 +120,8 @@ public class FindingServlet extends HttpServlet {
                     + myVerbs +"','"
                     + myAccusatives +"','"
                     + otherOptions +"','"
-                    + text +"')";           
+                    + text +"')";  
+            /*following code for create data storage table and account table*/
             //createTable();
             
             //add users for viewing database (first use or add another account)
@@ -150,7 +143,6 @@ public class FindingServlet extends HttpServlet {
 	    	state.execute(delete);
 	    	for(int i=0;i<accounts.size();i+=2){
 				String accountSql = "INSERT INTO account VALUES ('"+ accounts.get(i)+"','"+accounts.get(i+1)+"')";
-				//System.out.println(accountSql);
 				state.execute(accountSql);
 			}
 	    	conn.close();

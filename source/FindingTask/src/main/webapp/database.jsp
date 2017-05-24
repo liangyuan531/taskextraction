@@ -13,13 +13,11 @@
     if(session.getAttribute("userinfo") == null) {  
 %>  
         <script type="text/javascript"> 
-        	//$("#login").modal();
         	alert("Must login");
             window.document.location.href="login.jsp";  
         </script>   
 <%  
     }else{
-    	//session.removeAttribute("userinfo");
     	session.setMaxInactiveInterval(180);
     }
 %> 
@@ -44,10 +42,7 @@
 	List<String> data = (List<String>)session.getAttribute("data");
 	if(data != null){
 		for(int i=0;i<data.size();i+=9){%>
-			<tr>
-				<%-- <% for(int j=i;j<data.size();j++){%>
-					<td><%=data.get(j) %></td>
-				<% }%> --%>	
+			<tr>	
 				<td><%=data.get(i) %></td>
 				<td><%=data.get(i+1) %></td>
 				<td width="50%"><%=data.get(i+2) %></td>

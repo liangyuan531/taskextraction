@@ -18,9 +18,7 @@
 </head>
 <body class="center">
 <div>
-<%--<h3>This is error: <%=request.getAttribute("error")%></p>--%>
 <%! String test="";%>
-<%--test=(String)request.getAttribute("error"); --%>
 <% if(request.getAttribute("error") == null){ %>
 	<%}else{ %>
 		<script type="text/javascript"> window.onload = alertmemory; </script>
