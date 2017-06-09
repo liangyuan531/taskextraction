@@ -21,6 +21,8 @@ public final class Configuration
 {
 
 	private static Configuration instance = null;
+	private static String pro_option;
+	private static String gen_option;
 
 	private Set<String> aDomainTerms;
 	private String[] aExceptionalContains;
@@ -36,7 +38,35 @@ public final class Configuration
 	private Configuration()
 	{
 		Properties lProperties = new Properties();
-		File lFile = new File("config.properties");
+		File lFile=null;
+		if(pro_option.equals("yeswithdefined") && gen_option.equals("yeswithdefined")){
+			lFile = new File("config.properties");
+		}
+		else if(pro_option.equals("yeswithdefined") && gen_option.equals("yes")){
+			lFile=new File("customizedconfigwithprogramming.properties");
+		}	
+		else if(pro_option.equals("yeswithdefined") && gen_option.equals("no")){
+			lFile=new File("configwithoutgeneric.properties");
+		}
+		else if(pro_option.equals("no") && gen_option.equals("yeswithdefined")){
+			lFile=new File("configwithoutprogramming.properties");
+		}
+		else if(pro_option.equals("no") && gen_option.equals("yes")){
+			lFile=new File("customizedconfigwithoutprogramming.properties");
+		}
+		else if(pro_option.equals("no") && gen_option.equals("no")){
+			lFile=new File("configwithoutboth.properties");
+		}
+		else if(pro_option.equals("yes") && gen_option.equals("no")){
+			lFile=new File("customizedconfigwithoutgeneric.properties");
+		}
+		else if(pro_option.equals("yes") && gen_option.equals("yeswithdefined")){
+			lFile=new File("customizedconfigwithgeneric.properties");
+		}
+		else if(pro_option.equals("yes") && gen_option.equals("yes")){
+			lFile=new File("customizedconfigwithboth.properties");
+		}
+		
 		BufferedReader lBufferedReader;
 		try
 		{
@@ -62,16 +92,12 @@ public final class Configuration
 				Arrays.asList(lProperties.getProperty("PUNCTUATION_LEMMAS").split(","))));
 		getPunctuationLemmas().add(",");
 	}
-
 	/**
 	 * @return singleton
 	 */
 	public static Configuration getInstance()
 	{
-		if (instance == null)
-		{
-			instance = new Configuration();
-		}
+		instance = new Configuration();
 		return instance;
 	}
 
@@ -244,5 +270,17 @@ public final class Configuration
 	{
 		this.aDomainTerms = pDomainTerms;
 	}
-
+	
+	public static String getPro_option() {
+		return pro_option;
+	}
+	public static void setPro_option(String pro_option) {
+		Configuration.pro_option = pro_option;
+	}
+	public static String getGen_option() {
+		return gen_option;
+	}
+	public static void setGen_option(String gen_option) {
+		Configuration.gen_option = gen_option;
+	}
 }

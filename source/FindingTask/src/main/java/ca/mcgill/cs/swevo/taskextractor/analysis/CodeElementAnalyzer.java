@@ -94,7 +94,7 @@ public class CodeElementAnalyzer
 			aRegexes.add(createRegexEntry("([A-Z][a-zA-Z]+ ?<[A-Z][a-zA-Z]*>)", 0));
 			aRegexes.add(createRegexEntry("([a-zA-Z0-9\\.]+[(][a-zA-Z_,\\. ]*[)])", 0));
 			aRegexes.add(createRegexEntry(
-					"(https?://)?[a-zA-Z_\\-/]{2,}(\\.[a-zA-Z_0-9\\-]{2,})+[^\\s\\<\\>{\\(\\),'\"”’}:]*", 0));
+					"(https?://)?[a-zA-Z_\\-/]{2,}(\\.[a-zA-Z_0-9\\-]{2,})+[^\\s\\<\\>{\\(\\),'\"ï¿½ï¿½}:]*", 0));
 			aRegexes.add(createRegexEntry("([\\.]?[/]?\\w+\\.\\w+\\.?\\w+(?:\\.\\w+)*)", 0));
 			aRegexes.add(createRegexEntry("([A-Za-z]+\\.[A-Z]+)", 0));
 			aRegexes.add(createRegexEntry("([@][a-zA-Z]+)", 0));
@@ -120,7 +120,7 @@ public class CodeElementAnalyzer
 			aRegexes.add(createRegexEntry("(\\{\\{[^\\}]*\\}\\})", 0));
 			aRegexes.add(createRegexEntry("(\\{\\%[^\\%]*\\%\\})", 0));
 			aRegexes.add(createRegexEntry("(/[^/]*/)", 0));
-			aRegexes.add(createRegexEntry("(‘[^’]*’)", 0));
+			aRegexes.add(createRegexEntry("(ï¿½[^ï¿½]*ï¿½)", 0));
 			aRegexes.add(createRegexEntry("(__[^_]*__)", 0));
 			aRegexes.add(createRegexEntry("(\\$[A-Za-z\\_]+)", 0));
 			aRegexes.add(createRegexEntry("\\b(null)\\b", 0));
@@ -128,12 +128,6 @@ public class CodeElementAnalyzer
 			aRegexes.add(createRegexEntry("\\b(true)\\b", 0));
 			aRegexes.add(createRegexEntry("\\b(false)\\b", 0));
 			aRegexes.add(createRegexEntry("\\b(float)\\b", 0));
-
-			// all domain terms are masked as code elements
-			for (String lDomainTerm : Configuration.getInstance().getDomainTerms())
-			{
-				aRegexes.add(createRegexEntry("(?i)\\b(" + lDomainTerm + ")\\b", 0));
-			}
 		}
 		return aRegexes;
 	}

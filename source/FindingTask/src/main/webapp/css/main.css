@@ -1,0 +1,41 @@
+.jumbotron {
+  	background-color: #007991;
+  	color: #fff;
+  	 
+}
+.btn {
+  	width:120px;
+  	height:40px;
+}
+.position{ 
+ 	margin:0 auto;
+    width:200px;
+}
+.comments {  
+    width: 100%;
+    overflow: auto;  
+    word-break: break-all;  
+    resize:none;
+}
+#header{
+	width:100%;
+}
+
+#divsize{
+	width:50%;
+}
+
+#bgcolor{
+	background: #36d1dc;
+}
+.center{
+    position: relative;
+}
+.center .loading{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index:10;
+}
